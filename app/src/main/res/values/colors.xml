@@ -1,0 +1,19 @@
+<resources>
+    <color name="background_gradient_start">#000000</color>
+    <color name="black">#000000</color>
+    <color name="background_gradient_end">#DDDDDD</color>
+    <color name="fastlane_background">#0096a6</color>
+    <color name="search_opaque">#ffaa3f</color>
+    <color name="selected_background">#ffaa3f</color>
+    <color name="default_background">#3d3d3d</color>
+    <color name="blue">#085B9C</color>
+    <color name="blueshade">#2581C8</color>
+    <color name="cardBg">#F9D7FF</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="color1">#2581C8</color>
+    <color name="color2">#8A183F</color>
+    <color name="color3">#915905</color>
+    <color name="color4">#012902</color>
+    <color name="color5">#007A6F</color>
+</resources>

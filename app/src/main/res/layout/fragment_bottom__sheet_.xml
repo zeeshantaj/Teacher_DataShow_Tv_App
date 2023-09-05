@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".Fragments.Bottom_Sheet_Fragment"
+    android:orientation="vertical"
+    android:background="@drawable/fragment_bg"
+    android:layout_gravity="bottom">
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout7"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edKey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Key" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/setKeyBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:background="@color/blue"
+        android:text="Set Key"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textColor="@color/lb_tv_white"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Key:"
+        android:layout_marginStart="35dp"
+        android:textSize="24sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/showKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Key:"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:textSize="24sp"
+        android:layout_toEndOf="@id/txt"
+        android:layout_marginStart="5dp"
+        />
+    </RelativeLayout>
+
+
+
+</LinearLayout>
