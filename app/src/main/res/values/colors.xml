@@ -5,15 +5,18 @@
     <color name="fastlane_background">#0096a6</color>
     <color name="search_opaque">#ffaa3f</color>
     <color name="selected_background">#ffaa3f</color>
+    <color name="yellow">#FFE500</color>
     <color name="default_background">#3d3d3d</color>
+    <color name="darkBrown">#633C03</color>
     <color name="blue">#085B9C</color>
     <color name="blueshade">#2581C8</color>
     <color name="cardBg">#F9D7FF</color>
     <color name="white">#FFFFFF</color>
 
-    <color name="color1">#2581C8</color>
-    <color name="color2">#8A183F</color>
-    <color name="color3">#915905</color>
-    <color name="color4">#012902</color>
-    <color name="color5">#007A6F</color>
+    <color name="color1">#F9D7FF</color>
+    <color name="color2">#CA91A5</color>
+    <color name="color3">#ECCB9B</color>
+    <color name="color4">#95CF97</color>
+    <color name="color5">#A8F3EC</color>
+    <color name="color6">#A2EDF6</color>
 </resources>

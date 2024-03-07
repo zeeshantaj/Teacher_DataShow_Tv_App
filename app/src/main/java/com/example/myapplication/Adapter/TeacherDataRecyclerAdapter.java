@@ -122,6 +122,7 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
                 int hours = dura / 60;
                 int minutes = dura % 60;
                 if (hours == 1) {
+                   // duration1.setText(System.out.format("%d Hours %d Minutes",hours,minutes));
                     duration1.setText(hours + " Hour " + minutes + " Minutes");
                 } else {
                     duration1.setText(hours + " Hours " + minutes + " Minutes");
