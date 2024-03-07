@@ -40,8 +40,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private List<DataModel> teacherDataList;
     private Context context;
-    MediaPlayer mediaPlayer;
-    CountDownTimer countTime;
 
     private static final int TYPE_TEACHER_DATA = 0;
 
@@ -81,34 +79,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
         }
-//            int randomColor = getRandomColor();
-//            teacherDataViewHolder.cardView.setBackgroundColor(randomColor);
-//            if (teacherDataList.isEmpty()){
-//                //teacherDataViewHolder.itemView.setVisibility(View.GONE);
-//                return;
-//            }
-//            else {
-//
-//            }
-//            if (isLoading) {
-//                // Hide the regular item view if loading layout is shown
-//                holder.itemView.setVisibility(View.GONE);
-//            } else {
-//                holder.itemView.setVisibility(View.VISIBLE);
-//                // Bind your regular data here
-//                // ...
-//                teacherDataViewHolder.itemView.setVisibility(View.VISIBLE);
-//                DataModel teacherData = teacherDataList.get(position);
-//                teacherDataViewHolder.setData(teacherData);
-//            }
-//            }
-        // Set a random color to the item view's background
-
-
-//            DataModel teacherData = teacherDataList.get(position);
-//            teacherDataViewHolder.itemPosition = position;
-            // Fetch endTime and currentTime from Firebase (assuming you have a Firebase reference)
-            //teacherDataViewHolder.setData(teacherData);
     }
     private int getRandomColor() {
         TypedArray colorsArray = context.getResources().obtainTypedArray(R.array.random_colors);
@@ -182,8 +152,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         CardView cardView;
         String givenMinutes,givenCurrentTime;
         long differenceInMilliSeconds;
-        private int itemPosition;
-
         CountDownTimer countTime; // Initialize countTime here
 
         public TeacherDataViewHolder(View itemView) {
@@ -191,11 +159,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             teacher1 = itemView.findViewById(R.id.nametxt);
             subject1 = itemView.findViewById(R.id.subjectTxt);
             department1 = itemView.findViewById(R.id.departText);
-            topic1 = itemView.findViewById(R.id.topopicTxt);
+            topic1 = itemView.findViewById(R.id.topicTxt);
             room1 = itemView.findViewById(R.id.locationTxt);
             duration1 = itemView.findViewById(R.id.durationTxt);
             upload = itemView.findViewById(R.id.startedTxt);
-            remaining = itemView.findViewById(R.id.countTImer);
+            remaining = itemView.findViewById(R.id.counterTxt);
             cardView = itemView.findViewById(R.id.card_item);
 
         }
@@ -320,10 +288,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         if (adapterPosition != RecyclerView.NO_POSITION) {
                             removeItem(adapterPosition);
                         }
-
-                        //removeItem(itemPosition);
-                       // teacherDataList.remove(getAdapterPosition());
-
                     }
                 }.start();
 
