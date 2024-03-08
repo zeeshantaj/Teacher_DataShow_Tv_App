@@ -161,7 +161,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             department1 = itemView.findViewById(R.id.departText);
             topic1 = itemView.findViewById(R.id.topicTxt);
             room1 = itemView.findViewById(R.id.locationTxt);
-            duration1 = itemView.findViewById(R.id.durationTxt);
+            //duration1 = itemView.findViewById(R.id.durationTxt);
             upload = itemView.findViewById(R.id.startedTxt);
             remaining = itemView.findViewById(R.id.counterTxt);
             cardView = itemView.findViewById(R.id.card_item);

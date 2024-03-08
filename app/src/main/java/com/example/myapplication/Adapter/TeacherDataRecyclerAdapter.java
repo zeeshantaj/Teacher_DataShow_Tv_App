@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,7 +46,7 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
     @NonNull
     @Override
     public TeacherDataViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item1, parent, false);
         return new TeacherDataViewHolder(view);
     }
 
@@ -78,11 +79,12 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
     }
 
     public class TeacherDataViewHolder extends RecyclerView.ViewHolder {
-        private TextView teacher1, subject1, department1, topic1, room1,duration1,upload,remaining;
+        private TextView teacher1, subject1, department1, topic1, room1,upload,remaining;
         private CardView cardView;
         private String givenMinutes,givenCurrentTime;
         private CountDownTimer countTime;
         private long differenceInMilliSeconds;
+        private ProgressBar progressBar;
         public TeacherDataViewHolder(@NonNull View itemView) {
             super(itemView);
             teacher1 = itemView.findViewById(R.id.nametxt);
@@ -90,23 +92,24 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
             department1 = itemView.findViewById(R.id.departText);
             topic1 = itemView.findViewById(R.id.topicTxt);
             room1 = itemView.findViewById(R.id.locationTxt);
-            duration1 = itemView.findViewById(R.id.durationTxt);
+         //   duration1 = itemView.findViewById(R.id.durationTxt);
             upload = itemView.findViewById(R.id.startedTxt);
             remaining = itemView.findViewById(R.id.counterTxt);
             cardView = itemView.findViewById(R.id.card_item);
+            progressBar = itemView.findViewById(R.id.progressBarCircle);
         }
 
         public void bind(DataModel teacherData) {
             teacher1.setText(teacherData.getName());
-            teacher1.setSelected(true);
+            //teacher1.setSelected(true);
             subject1.setText(teacherData.getSubject());
-            subject1.setSelected(true);
+            //subject1.setSelected(true);
             department1.setText(teacherData.getDepartment());
             department1.setSelected(true);
             topic1.setText(teacherData.getTopic());
-            topic1.setSelected(true);
+            //topic1.setSelected(true);
             room1.setText(teacherData.getLocation());
-            room1.setSelected(true);
+            //room1.setSelected(true);
             int dura = Integer.parseInt(teacherDataList.get(getAdapterPosition()).getMinutes());
 
              givenMinutes = teacherDataList.get(getAdapterPosition()).getMinutes();
@@ -116,18 +119,18 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
             Log.d("currentTIme", givenCurrentTime);
             Log.d("givenMinutes", givenMinutes);
 
-            if (dura < 60) {
-                duration1.setText(dura + " Minutes");
-            } else {
-                int hours = dura / 60;
-                int minutes = dura % 60;
-                if (hours == 1) {
-                   // duration1.setText(System.out.format("%d Hours %d Minutes",hours,minutes));
-                    duration1.setText(hours + " Hour " + minutes + " Minutes");
-                } else {
-                    duration1.setText(hours + " Hours " + minutes + " Minutes");
-                }
-            }
+//            if (dura < 60) {
+//                duration1.setText(dura + " Minutes");
+//            } else {
+//                int hours = dura / 60;
+//                int minutes = dura % 60;
+//                if (hours == 1) {
+//                   // duration1.setText(System.out.format("%d Hours %d Minutes",hours,minutes));
+//                    duration1.setText(hours + " Hour " + minutes + " Minutes");
+//                } else {
+//                    duration1.setText(hours + " Hours " + minutes + " Minutes");
+//                }
+//            }
             upload.setText(teacherData.getCurrentTime());
 
             if (countTime != null){
@@ -169,6 +172,11 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
                         @Override
                         public void onTick(long millisUntilFinished) {
 
+                            long elapsedTime = differenceInMilliSeconds - millisUntilFinished;
+                            int progress = (int) (elapsedTime * 100 / differenceInMilliSeconds);
+                            progressBar.setProgress(100 - progress);
+
+
                             NumberFormat f = new DecimalFormat("00");
                             long hr = (millisUntilFinished / 3600000) % 24;
                             long min = (millisUntilFinished / 60000) % 60;
@@ -185,7 +193,7 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
                         }
                         @Override
                         public void onFinish() {
-
+                            progressBar.setProgress(0);
 
                             remaining.setText("Class Ended");
                             itemView.clearAnimation();
