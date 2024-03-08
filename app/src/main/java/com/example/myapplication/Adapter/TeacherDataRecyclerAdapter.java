@@ -101,15 +101,17 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
 
         public void bind(DataModel teacherData) {
             teacher1.setText(teacherData.getName());
-            //teacher1.setSelected(true);
+            teacher1.setSelected(true);
             subject1.setText(teacherData.getSubject());
-            //subject1.setSelected(true);
+            subject1.setSelected(true);
             department1.setText(teacherData.getDepartment());
             department1.setSelected(true);
             topic1.setText(teacherData.getTopic());
-            //topic1.setSelected(true);
+            topic1.setSelected(true);
             room1.setText(teacherData.getLocation());
-            //room1.setSelected(true);
+            room1.setSelected(true);
+            upload.setText(teacherData.getCurrentTime());
+            upload.setSelected(true);
             int dura = Integer.parseInt(teacherDataList.get(getAdapterPosition()).getMinutes());
 
              givenMinutes = teacherDataList.get(getAdapterPosition()).getMinutes();
@@ -131,7 +133,8 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
 //                    duration1.setText(hours + " Hours " + minutes + " Minutes");
 //                }
 //            }
-            upload.setText(teacherData.getCurrentTime());
+
+
 
             if (countTime != null){
                 countTime.cancel();

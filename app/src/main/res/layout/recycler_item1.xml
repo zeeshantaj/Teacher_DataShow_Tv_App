@@ -1,76 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:id="@+id/card_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:backgroundTint="@color/color1"
+    app:cardCornerRadius="10dp"
+    >
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/color1"
-        app:cardCornerRadius="10dp"
-        android:layout_margin="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="4dp">
+            android:orientation="vertical"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp">
 
-                <TextView
-                    android:id="@+id/subjectTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:ellipsize="marquee"
-                    android:focusable="true"
-                    android:fontFamily="sans-serif-black"
-                    android:letterSpacing="0.1"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:maxLines="1"
-                    android:scrollHorizontally="true"
-                    android:singleLine="true"
-                    android:text="Probability and statistics"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="28sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/subjectTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:fontFamily="sans-serif-black"
+                android:letterSpacing="0.1"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:maxLines="1"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="Probability and statistics"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <View
                 android:id="@+id/view"
-                android:layout_width="0dp"
-                android:layout_height="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
                 android:layout_marginTop="4dp"
                 android:background="@color/default_background"
                 app:layout_constraintEnd_toEndOf="@+id/subjectTxt"
                 app:layout_constraintStart_toStartOf="@+id/subjectTxt"
                 app:layout_constraintTop_toBottomOf="@+id/subjectTxt" />
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_mono_medium"
-                android:text="Teacher:"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/black"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/subjectTxt"
-                app:layout_constraintTop_toBottomOf="@+id/subjectTxt" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    android:text="Teacher:"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/nametxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginStart="4dp"
                     android:ellipsize="marquee"
                     android:focusable="true"
@@ -81,175 +80,405 @@
                     android:text="zeeshan taj"
                     android:textColor="@color/black"
                     android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    android:text="Major:"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView7"
-                    app:layout_constraintStart_toEndOf="@+id/textView7"
-                    app:layout_constraintTop_toTopOf="@+id/textView7" />
+                    app:layout_constraintStart_toStartOf="@+id/textView7"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-            <TextView
-                android:id="@+id/textView6"
+                <TextView
+                    android:id="@+id/departText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="bachelor of software engineering"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView6"
+                    app:layout_constraintTop_toTopOf="@+id/textView6" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textVie8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    android:text="Place:"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textView6"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                <TextView
+                    android:id="@+id/locationTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="room 3 new building"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textVie8"
+                    app:layout_constraintEnd_toEndOf="@+id/subjectTxt"
+                    app:layout_constraintStart_toEndOf="@+id/textVie8"
+                    app:layout_constraintTop_toTopOf="@+id/textVie8" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textVie4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    android:text="Topic:"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textVie8"
+                    app:layout_constraintTop_toBottomOf="@+id/textVie8" />
+
+                <TextView
+                    android:id="@+id/topicTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Normal distribution"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textVie4"
+                    app:layout_constraintEnd_toEndOf="@+id/subjectTxt"
+                    app:layout_constraintStart_toEndOf="@+id/textVie4"
+                    app:layout_constraintTop_toTopOf="@+id/textVie4" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    android:text="Time:"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textVie4"
+                    app:layout_constraintTop_toBottomOf="@+id/textVie4" />
+
+                <TextView
+                    android:id="@+id/startedTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="03:23:12 pm"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt"
+                    app:layout_constraintEnd_toEndOf="@+id/subjectTxt"
+                    app:layout_constraintStart_toEndOf="@+id/txt"
+                    app:layout_constraintTop_toTopOf="@+id/txt" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_mono_medium"
-                android:text="Major:"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="@+id/textView7"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                android:layout_gravity="center">
 
-            <TextView
-                android:id="@+id/departText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:focusable="true"
-                android:fontFamily="@font/roboto_mono_medium"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:ellipsize="marquee"
-                android:scrollHorizontally="true"
-                android:text="bachelor of software engineering"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/textView6"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toTopOf="@+id/textView6" />
+                <ProgressBar
+                    android:id="@+id/progressBarCircle"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerInParent="true"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:padding="4dp"
+                    android:progress="100"
+                    android:progressDrawable="@drawable/circle_yellow"
+                    android:rotation="-90"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textVie8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_mono_medium"
-                android:text="Location:"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                <TextView
+                    android:id="@+id/counterTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/progressBarCircle"
+                    app:layout_constraintEnd_toEndOf="@+id/progressBarCircle"
+                    app:layout_constraintStart_toStartOf="@+id/progressBarCircle"
+                    app:layout_constraintTop_toTopOf="@+id/progressBarCircle" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/locationTxt"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ellipsize="marquee"
-                android:focusable="true"
-                android:fontFamily="@font/roboto_mono_medium"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:text="room 3 new building"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginStart="4dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textVie8"
-                app:layout_constraintEnd_toEndOf="@+id/subjectTxt"
-                app:layout_constraintStart_toEndOf="@+id/textVie8"
-                app:layout_constraintTop_toTopOf="@+id/textVie8" />
-
-            <TextView
-                android:id="@+id/textVie4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_mono_medium"
-                android:text="Topic:"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/textVie8"
-                app:layout_constraintTop_toBottomOf="@+id/textVie8" />
-
-            <TextView
-                android:id="@+id/topicTxt"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ellipsize="marquee"
-                android:focusable="true"
-                android:fontFamily="@font/roboto_mono_medium"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:text="Normal distribution"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:layout_marginStart="4dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/textVie4"
-                app:layout_constraintEnd_toEndOf="@+id/subjectTxt"
-                app:layout_constraintStart_toEndOf="@+id/textVie4"
-                app:layout_constraintTop_toTopOf="@+id/textVie4" />
-
-            <TextView
-                android:id="@+id/txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_mono_medium"
-                android:text="Started Time:"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/textVie4"
-                app:layout_constraintTop_toBottomOf="@+id/textVie4" />
-
-            <TextView
-                android:id="@+id/startedTxt"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ellipsize="marquee"
-                android:focusable="true"
-                android:fontFamily="@font/roboto_mono_medium"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:maxLines="1"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:text="03:23:12 pm"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginStart="4dp"
-                app:layout_constraintBottom_toBottomOf="@+id/txt"
-                app:layout_constraintEnd_toEndOf="@+id/subjectTxt"
-                app:layout_constraintStart_toEndOf="@+id/txt"
-                app:layout_constraintTop_toTopOf="@+id/txt" />
+        </LinearLayout>
 
 
-            <ProgressBar
-                android:id="@+id/progressBarCircle"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_centerInParent="true"
-                android:indeterminate="false"
-                android:max="100"
-                android:padding="4dp"
-                android:progress="100"
-                android:progressDrawable="@drawable/circle_yellow"
-                android:rotation="-90"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/subjectTxt"
-                app:layout_constraintStart_toStartOf="@+id/subjectTxt"
-                app:layout_constraintTop_toBottomOf="@+id/txt" />
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:padding="4dp">-->
 
-            <TextView
-                android:id="@+id/counterTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/progressBarCircle"
-                app:layout_constraintEnd_toEndOf="@+id/progressBarCircle"
-                app:layout_constraintStart_toStartOf="@+id/progressBarCircle"
-                app:layout_constraintTop_toTopOf="@+id/progressBarCircle" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--            &lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:id="@+id/subjectTxt"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:layout_marginEnd="4dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:ellipsize="marquee"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:focusable="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:fontFamily="sans-serif-black"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:letterSpacing="0.1"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:marqueeRepeatLimit="marquee_forever"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:maxLines="1"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:scrollHorizontally="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:singleLine="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:text="Probability and statistics"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:textAlignment="center"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:textColor="@color/black"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:textSize="28sp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    android:textStyle="bold"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--            &lt;!&ndash;                    app:layout_constraintTop_toTopOf="parent" />&ndash;&gt;-->
 
-    </androidx.cardview.widget.CardView>
+<!--            &lt;!&ndash;            <View&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:id="@+id/view"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_height="3dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_marginTop="4dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:background="@color/default_background"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintEnd_toEndOf="@+id/subjectTxt"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintStart_toStartOf="@+id/subjectTxt"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintTop_toBottomOf="@+id/subjectTxt" />&ndash;&gt;-->
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!--            &lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:id="@+id/textView6"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:fontFamily="@font/roboto_mono_medium"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:text="Major:"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textColor="@color/black"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textStyle="bold"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textSize="24sp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintStart_toStartOf="@+id/textView7"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintTop_toBottomOf="@+id/textView7" />&ndash;&gt;-->
+
+<!--            &lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:id="@+id/departText"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_marginStart="4dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:focusable="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:fontFamily="@font/roboto_mono_medium"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:marqueeRepeatLimit="marquee_forever"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:maxLines="1"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:singleLine="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:ellipsize="marquee"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:scrollHorizontally="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:text="bachelor of software engineering"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textColor="@color/black"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textSize="24sp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textStyle="bold"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintBottom_toBottomOf="@+id/textView6"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintStart_toEndOf="@+id/textView6"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintTop_toTopOf="@+id/textView6" />&ndash;&gt;-->
+
+<!--            &lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:id="@+id/textVie8"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:fontFamily="@font/roboto_mono_medium"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:text="Location:"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textColor="@color/black"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textStyle="bold"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textSize="24sp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintStart_toStartOf="@+id/textView6"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintTop_toBottomOf="@+id/textView6" />&ndash;&gt;-->
+
+<!--            &lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:id="@+id/locationTxt"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:ellipsize="marquee"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:focusable="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:fontFamily="@font/roboto_mono_medium"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:marqueeRepeatLimit="marquee_forever"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:maxLines="1"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:scrollHorizontally="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:singleLine="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:text="room 3 new building"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textColor="@color/black"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textSize="24sp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textStyle="bold"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_marginStart="4dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintBottom_toBottomOf="@+id/textVie8"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintEnd_toEndOf="@+id/subjectTxt"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintStart_toEndOf="@+id/textVie8"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintTop_toTopOf="@+id/textVie8" />&ndash;&gt;-->
+
+<!--            &lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:id="@+id/textVie4"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:fontFamily="@font/roboto_mono_medium"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:text="Topic:"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textColor="@color/black"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textSize="24sp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textStyle="bold"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintStart_toStartOf="@+id/textVie8"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintTop_toBottomOf="@+id/textVie8" />&ndash;&gt;-->
+
+<!--            &lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:id="@+id/topicTxt"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:ellipsize="marquee"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:focusable="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:fontFamily="@font/roboto_mono_medium"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:marqueeRepeatLimit="marquee_forever"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:maxLines="1"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:scrollHorizontally="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:singleLine="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:text="Normal distribution"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textColor="@color/black"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textSize="24sp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_marginStart="4dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textStyle="bold"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintBottom_toBottomOf="@+id/textVie4"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintEnd_toEndOf="@+id/subjectTxt"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintStart_toEndOf="@+id/textVie4"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintTop_toTopOf="@+id/textVie4" />&ndash;&gt;-->
+
+<!--            &lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:id="@+id/txt"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:fontFamily="@font/roboto_mono_medium"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:text="Started Time:"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textColor="@color/black"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textSize="24sp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textStyle="bold"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintStart_toStartOf="@+id/textVie4"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintTop_toBottomOf="@+id/textVie4" />&ndash;&gt;-->
+
+<!--            &lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:id="@+id/startedTxt"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:ellipsize="marquee"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:focusable="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:fontFamily="@font/roboto_mono_medium"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:marqueeRepeatLimit="marquee_forever"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:maxLines="1"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:scrollHorizontally="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:singleLine="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:text="03:23:12 pm"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textColor="@color/black"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textSize="24sp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textStyle="bold"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_marginStart="4dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintBottom_toBottomOf="@+id/txt"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintEnd_toEndOf="@+id/subjectTxt"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintStart_toEndOf="@+id/txt"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintTop_toTopOf="@+id/txt" />&ndash;&gt;-->
+
+
+<!--            &lt;!&ndash;            <ProgressBar&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:id="@+id/progressBarCircle"&ndash;&gt;-->
+<!--            &lt;!&ndash;                style="?android:attr/progressBarStyleHorizontal"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_width="110dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_height="110dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_centerInParent="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:indeterminate="false"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:max="100"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:padding="4dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:progress="100"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:progressDrawable="@drawable/circle_yellow"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:rotation="-90"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintEnd_toEndOf="@+id/subjectTxt"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintStart_toStartOf="@+id/subjectTxt"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintTop_toBottomOf="@+id/txt" />&ndash;&gt;-->
+
+<!--            &lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:id="@+id/counterTxt"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textColor="@color/black"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textSize="20sp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textStyle="bold"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintBottom_toBottomOf="@+id/progressBarCircle"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintEnd_toEndOf="@+id/progressBarCircle"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintStart_toStartOf="@+id/progressBarCircle"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintTop_toTopOf="@+id/progressBarCircle" />&ndash;&gt;-->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+</androidx.cardview.widget.CardView>
