@@ -12,9 +12,11 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Model.DataModel;
@@ -55,8 +57,9 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
         DataModel teacherData = teacherDataList.get(position);
         holder.bind(teacherData);
 
-        int color_code = getRadonColor();
-        ((TeacherDataViewHolder) holder).cardView.setCardBackgroundColor(holder.itemView.getResources().getColor(color_code,null));
+//        int color_code = getRadonColor();
+//        holder.cardView.setCardBackgroundColor(holder.itemView.getResources().getColor(color_code,null));
+        //((TeacherDataViewHolder) holder).cardView.setCardBackgroundColor(holder.itemView.getResources().getColor(color_code,null));
 
     }
     private int getRadonColor(){
@@ -67,6 +70,7 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
         colorCode.add(R.color.color3);
         colorCode.add(R.color.color4);
         colorCode.add(R.color.color5);
+        colorCode.add(R.color.color6);
 
         Random random = new Random();
         int random_color = random.nextInt(colorCode.size());
@@ -117,24 +121,9 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
              givenMinutes = teacherDataList.get(getAdapterPosition()).getMinutes();
              givenCurrentTime = teacherDataList.get(getAdapterPosition()).getCurrentTime();
 
-            Log.d("AdapterDuration", String.valueOf(dura));
-            Log.d("currentTIme", givenCurrentTime);
-            Log.d("givenMinutes", givenMinutes);
-
-//            if (dura < 60) {
-//                duration1.setText(dura + " Minutes");
-//            } else {
-//                int hours = dura / 60;
-//                int minutes = dura % 60;
-//                if (hours == 1) {
-//                   // duration1.setText(System.out.format("%d Hours %d Minutes",hours,minutes));
-//                    duration1.setText(hours + " Hour " + minutes + " Minutes");
-//                } else {
-//                    duration1.setText(hours + " Hours " + minutes + " Minutes");
-//                }
-//            }
-
-
+            int color_code = getRadonColor();
+            int color = ContextCompat.getColor(itemView.getContext(), color_code);
+            cardView.setCardBackgroundColor(color);
 
             if (countTime != null){
                 countTime.cancel();
@@ -214,6 +203,7 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
                 }
             }
             catch (Exception e){
+                Toast.makeText(itemView.getContext(), "Error "+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }
