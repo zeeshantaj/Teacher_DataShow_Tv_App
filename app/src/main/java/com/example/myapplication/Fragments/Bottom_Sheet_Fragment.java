@@ -112,20 +112,15 @@ public class Bottom_Sheet_Fragment extends BottomSheetDialogFragment {
                     enteredKey.setError("Key field is empty");
                     return;
                 }
-                if (databaseKey.equals(key)){
-                    enteredKey.setError("Key Already Exists try different key to entered ");
-                    return;
-                }
-                else
-                {
-
+//                if (databaseKey.equals(key)){
+//                    Toast.makeText(getActivity(), "Key Already exists try different key", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
                     HashMap<String,String> value = new HashMap<>();
                     value.put("EnteredKey",key);
-
-                    databaseReference1.setValue(value).addOnCompleteListener(task -> Toast.makeText(getActivity(), "Key set Successfully", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show());
-
+                    databaseReference1.setValue(value).addOnCompleteListener(task -> Toast.makeText(getActivity(), "Key set Successfully",
+                            Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show());
                 }
-            }
         });
     }
 

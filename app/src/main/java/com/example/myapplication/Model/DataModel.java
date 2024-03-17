@@ -1,13 +1,14 @@
 package com.example.myapplication.Model;
 
 public class DataModel {
+    private String Name,department,location,subject,topic,key,minutes,endDateTime,currentDateTime,dateTime,startedTime;
 
-     private String Name,department,location,subject,topic,key,minutes,endDateTime,currentTime,endTime,dateTime;
+     //private String Name,department,location,subject,topic,key,minutes,endDateTime,currentTime,endTime,dateTime;
 
     public DataModel() {
     }
 
-    public DataModel(String name, String department, String location, String subject, String topic, String key, String minutes, String currentTime) {
+    public DataModel(String name, String department, String location, String subject, String topic, String key, String minutes, String endDateTime, String currentDateTime, String dateTime, String startedTime) {
         Name = name;
         this.department = department;
         this.location = location;
@@ -16,7 +17,9 @@ public class DataModel {
         this.key = key;
         this.minutes = minutes;
         this.endDateTime = endDateTime;
-        this.currentTime = currentTime;
+        this.currentDateTime = currentDateTime;
+        this.dateTime = dateTime;
+        this.startedTime = startedTime;
     }
 
     public String getName() {
@@ -83,20 +86,12 @@ public class DataModel {
         this.endDateTime = endDateTime;
     }
 
-    public String getCurrentTime() {
-        return currentTime;
+    public String getCurrentDateTime() {
+        return currentDateTime;
     }
 
-    public void setCurrentTime(String currentTime) {
-        this.currentTime = currentTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setCurrentDateTime(String currentDateTime) {
+        this.currentDateTime = currentDateTime;
     }
 
     public String getDateTime() {
@@ -105,5 +100,13 @@ public class DataModel {
 
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public String getStartedTime() {
+        return startedTime;
+    }
+
+    public void setStartedTime(String startedTime) {
+        this.startedTime = startedTime;
     }
 }

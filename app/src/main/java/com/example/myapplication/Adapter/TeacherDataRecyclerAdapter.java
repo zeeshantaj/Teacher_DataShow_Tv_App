@@ -26,6 +26,9 @@ import com.example.myapplication.ViewModel.TeacherDataViewModel;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -87,7 +90,7 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
         private CardView cardView;
         private String givenMinutes,givenCurrentTime;
         private CountDownTimer countTime;
-        private long differenceInMilliSeconds;
+        private long differenceInMilliSeconds,timeRemainingInMillis;
         private ProgressBar progressBar;
         public TeacherDataViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -114,12 +117,13 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
             topic1.setSelected(true);
             room1.setText(teacherData.getLocation());
             room1.setSelected(true);
-            upload.setText(teacherData.getCurrentTime());
+            upload.setText(teacherData.getCurrentDateTime());
             upload.setSelected(true);
-            int dura = Integer.parseInt(teacherDataList.get(getAdapterPosition()).getMinutes());
+           // String endDateTime = teacherData.getEndDateTime();
+            Log.e("MyApp","end time str"+teacherData.getEndDateTime());
 
              givenMinutes = teacherDataList.get(getAdapterPosition()).getMinutes();
-             givenCurrentTime = teacherDataList.get(getAdapterPosition()).getCurrentTime();
+             givenCurrentTime = teacherDataList.get(getAdapterPosition()).getCurrentDateTime();
 
             int color_code = getRadonColor();
             int color = ContextCompat.getColor(itemView.getContext(), color_code);
@@ -130,25 +134,20 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
             }
             try {
 
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-
-                    Calendar calendar = Calendar.getInstance();
-                    SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss:a", Locale.US);
-                    String currentTimeString = format.format(calendar.getTime());
                     try {
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy:MM:dd:hh:mm:ss:a");
+                            String endDateTime = "2024:03:18:01:53:14:am"; // Example endDateTime
+                            LocalDateTime endTime = LocalDateTime.parse(endDateTime, formatter);
+                            LocalDateTime currentDateTime = LocalDateTime.now();
+                            String currentTime = currentDateTime.format(formatter);
+                            LocalDateTime startTime = LocalDateTime.parse(currentTime, formatter);
+                            long differenceInMilliSeconds = Duration.between(startTime, endTime).toMillis();
 
-                        int minute = Integer.parseInt(givenMinutes);
-                        Date currentTime = format.parse(givenCurrentTime);
-                        Date currentTimeForCompare = format.parse(currentTimeString);
-
-                        calendar.setTime(currentTime);
-                        calendar.add(Calendar.MINUTE, minute);
-                        Date endTime = calendar.getTime();
-
-                        differenceInMilliSeconds = endTime.getTime() - currentTimeForCompare.getTime();
-                        Log.d("Difference", "Milliseconds: " + differenceInMilliSeconds);
-
-
+                            Log.e("MyApp", "currenttime" + currentTime);
+                            Log.e("MyApp", "endTime" + endTime);
+                            Log.e("MyApp", "millis" + differenceInMilliSeconds);
+                        }
                     }
                     catch (Exception e){
                         e.printStackTrace();
@@ -159,29 +158,29 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
                     // Calculating the difference in Seconds
                     long differenceInSeconds = (differenceInMilliSeconds / 1000) % 60;
 
-                    countTime = new CountDownTimer(differenceInMilliSeconds, 1000) {
+                    countTime = new CountDownTimer(60000, 1000) {
                         @SuppressLint("ResourceAsColor")
                         @Override
                         public void onTick(long millisUntilFinished) {
 
-                            long elapsedTime = differenceInMilliSeconds - millisUntilFinished;
-                            int progress = (int) (elapsedTime * 100 / differenceInMilliSeconds);
-                            progressBar.setProgress(100 - progress);
-
-
+//                            long elapsedTime = differenceInMilliSeconds - millisUntilFinished;
+//                            int progress = (int) (elapsedTime * 100 / differenceInMilliSeconds);
+//                            progressBar.setProgress(100 - progress);
+//
+//
                             NumberFormat f = new DecimalFormat("00");
                             long hr = (millisUntilFinished / 3600000) % 24;
                             long min = (millisUntilFinished / 60000) % 60;
                             long sec = (millisUntilFinished / 1000) % 60;
                             remaining.setText(f.format(hr) + ":" + f.format(min) + ":" + f.format(sec));
-
-                            if (millisUntilFinished<20000){
-                                remaining.setTextColor(Color.RED);
-                                blinkAnimation(itemView);
-                            }
-                            else {
-                                itemView.clearAnimation();
-                            }
+//
+//                            if (millisUntilFinished<20000){
+//                                remaining.setTextColor(Color.RED);
+//                                blinkAnimation(itemView);
+//                            }
+//                            else {
+//                                itemView.clearAnimation();
+//                            }
                         }
                         @Override
                         public void onFinish() {
@@ -200,7 +199,6 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
                             }
                         }
                     }.start();
-                }
             }
             catch (Exception e){
                 Toast.makeText(itemView.getContext(), "Error "+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -208,6 +206,7 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
             }
         }
     }
+
     private void blinkAnimation(View view) {
         Animation anim = new AlphaAnimation(0.0f, 1.0f);
         anim.setDuration(500); // Duration of the blink

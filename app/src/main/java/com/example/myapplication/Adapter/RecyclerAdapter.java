@@ -187,7 +187,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             int dura = Integer.parseInt(teacherDataList.get(getAdapterPosition()).getMinutes());
 
             givenMinutes = teacherDataList.get(getAdapterPosition()).getMinutes();
-            givenCurrentTime = teacherDataList.get(getAdapterPosition()).getCurrentTime();
+            // givenCurrentTime = teacherDataList.get(getAdapterPosition()).getCurrentTime();
 
             Log.d("AdapterDuration", String.valueOf(dura));
             Log.d("currentTIme", givenCurrentTime);
@@ -205,7 +205,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             }
 
-            upload.setText(teacherData.getCurrentTime());
+            //upload.setText(teacherData.getCurrentTime());
 
 
             if (countTime != null){
