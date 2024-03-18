@@ -1,5 +1,7 @@
 package com.example.myapplication.Adapter;
 
+import static java.time.format.ResolverStyle.*;
+
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.icu.util.Calendar;
@@ -28,7 +30,12 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.FormatStyle;
+import java.time.format.ResolverStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -122,7 +129,12 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
            // String endDateTime = teacherData.getEndDateTime();
             Log.e("MyApp","end time str"+teacherData.getEndDateTime());
 
-             givenMinutes = teacherDataList.get(getAdapterPosition()).getMinutes();
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                LocalDateTime currentDateTime = LocalDateTime.now();
+            }
+
+
+            givenMinutes = teacherDataList.get(getAdapterPosition()).getMinutes();
              givenCurrentTime = teacherDataList.get(getAdapterPosition()).getCurrentDateTime();
 
             int color_code = getRadonColor();
@@ -134,19 +146,37 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
             }
             try {
 
-                    try {
+//                    try {
+//                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+//                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy:MM:dd:hh:mm:ss:a");
+//                            //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy:MM:dd:hh:mm:ss:a");
+//                           // String endDateTime = "2024:03:18:10:15:14:pm"; // Example endDateTime
+//                            //LocalDateTime endTime = LocalDateTime.parse(endDateTime, formatter);
+//                            LocalDateTime currentDateTime = LocalDateTime.now();
+//                            String currentTime = currentDateTime.format(formatter);
+//                            LocalDateTime startTime = LocalDateTime.parse(currentTime, formatter);
+//                            //long differenceInMilliSeconds = Duration.between(startTime, endTime).toMillis();
+//
+//                            Log.e("MyApp", "currentTime " + startTime);
+////                            Log.e("MyApp", "endTime " + endTime);
+////                            Log.e("MyApp", "millis " + differenceInMilliSeconds);
+//                        }
+            try {
                         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy:MM:dd:hh:mm:ss:a");
-                            String endDateTime = "2024:03:18:01:53:14:am"; // Example endDateTime
-                            LocalDateTime endTime = LocalDateTime.parse(endDateTime, formatter);
-                            LocalDateTime currentDateTime = LocalDateTime.now();
-                            String currentTime = currentDateTime.format(formatter);
-                            LocalDateTime startTime = LocalDateTime.parse(currentTime, formatter);
-                            long differenceInMilliSeconds = Duration.between(startTime, endTime).toMillis();
 
-                            Log.e("MyApp", "currenttime" + currentTime);
-                            Log.e("MyApp", "endTime" + endTime);
-                            Log.e("MyApp", "millis" + differenceInMilliSeconds);
+                            LocalDateTime currentDateTime = LocalDateTime.now();
+
+                            String endDateTime = teacherData.getEndDateTime();
+                            endDateTime = endDateTime.replaceAll("(?i)pm", "PM").replaceAll("(?i)am", "AM");
+
+
+// Parse the formatted date and time string into LocalDateTime
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy:MM:dd:hh:mm:ss:a");
+                            LocalDateTime formattedDateTime = LocalDateTime.parse(endDateTime, formatter);
+
+// Calculate the difference in milliseconds
+                            differenceInMilliSeconds = ChronoUnit.MILLIS.between(currentDateTime, formattedDateTime);
+
                         }
                     }
                     catch (Exception e){
@@ -158,7 +188,7 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
                     // Calculating the difference in Seconds
                     long differenceInSeconds = (differenceInMilliSeconds / 1000) % 60;
 
-                    countTime = new CountDownTimer(60000, 1000) {
+                    countTime = new CountDownTimer(differenceInMilliSeconds, 1000) {
                         @SuppressLint("ResourceAsColor")
                         @Override
                         public void onTick(long millisUntilFinished) {
