@@ -1,11 +1,8 @@
 package com.example.myapplication.Fragments;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
 import android.provider.Settings;
 import android.util.Log;
@@ -38,8 +35,8 @@ public class Bottom_Sheet_Fragment extends BottomSheetDialogFragment {
 
     private TextInputEditText enteredKey;
     private Button setKeyBtn;
-    private DatabaseReference databaseReference, databaseReference1;
-    private String androidId,databaseKey,showKey;
+    private DatabaseReference queryReference, insertReference;
+    private String androidId,databaseKey, uploadedKey;
     private TextView keyTextView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,12 +61,12 @@ public class Bottom_Sheet_Fragment extends BottomSheetDialogFragment {
         setKey();
     }
 
-    @SuppressLint("HardwareIds")
+
     private void setKey(){
         androidId = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
-        databaseReference1 = FirebaseDatabase.getInstance().getReference("Tv_keys").child(androidId);
-        databaseReference = FirebaseDatabase.getInstance().getReference("Tv_keys");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        insertReference = FirebaseDatabase.getInstance().getReference("Tv_keys").child(androidId);
+        queryReference = FirebaseDatabase.getInstance().getReference("Tv_keys");
+        queryReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -88,13 +85,11 @@ public class Bottom_Sheet_Fragment extends BottomSheetDialogFragment {
             }
         });
 
-        databaseReference1.addListenerForSingleValueEvent(new ValueEventListener() {
+        insertReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                showKey = snapshot.child("EnteredKey").getValue(String.class);
-                keyTextView.setText(showKey);
-                Intent intent = new Intent();
-                intent.putExtra("keyFromIntent", databaseKey);
+                uploadedKey = snapshot.child("EnteredKey").getValue(String.class);
+                keyTextView.setText(uploadedKey);
             }
 
             @Override
@@ -112,21 +107,27 @@ public class Bottom_Sheet_Fragment extends BottomSheetDialogFragment {
                     enteredKey.setError("Key field is empty");
                     return;
                 }
-//                if (databaseKey.equals(key)){
-//                    Toast.makeText(getActivity(), "Key Already exists try different key", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
+                if (databaseKey.equals(key)){
+                    Toast.makeText(getActivity(), "Key Already exists try different key", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                     HashMap<String,String> value = new HashMap<>();
                     value.put("EnteredKey",key);
-                    databaseReference1.setValue(value).addOnCompleteListener(task -> Toast.makeText(getActivity(), "Key set Successfully",
-                            Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show());
-                }
+
+                    insertReference.setValue(value).addOnCompleteListener(task -> {
+                        keyTextView.setText(key);
+                        Toast.makeText(getActivity(), "key set successfully", Toast.LENGTH_SHORT).show();
+                    }).addOnFailureListener(e -> {
+                        Toast.makeText(getActivity(), "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    });
+            }
         });
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        keyTextView.setText(showKey);
+        keyTextView.setText(uploadedKey);
     }
 }

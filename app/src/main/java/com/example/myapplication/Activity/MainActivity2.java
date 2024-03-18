@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.Adapter.RecyclerAdapter;
 import com.example.myapplication.Adapter.TeacherDataRecyclerAdapter;
 import com.example.myapplication.Fragments.Bottom_Sheet_Fragment;
 import com.example.myapplication.Model.DataModel;
@@ -39,7 +38,7 @@ import java.util.List;
         private DatabaseReference databaseReference;
 
         private TextView uploadText;
-        private String showKey;
+        private String dbKey;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -55,11 +54,11 @@ import java.util.List;
             keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    showKey = snapshot.child("EnteredKey").getValue(String.class);
-                    if (showKey != null) {
+                    dbKey = snapshot.child("EnteredKey").getValue(String.class);
+                    if (dbKey != null) {
                         // Initialize ViewModel and observe data changes
                         TeacherDataViewModel viewModel = new ViewModelProvider(MainActivity2.this).get(TeacherDataViewModel.class);
-                        viewModel.getTeacherDataList(showKey).observe(MainActivity2.this, new Observer<List<DataModel>>() {
+                        viewModel.getTeacherDataList(dbKey).observe(MainActivity2.this, new Observer<List<DataModel>>() {
                             @Override
                             public void onChanged(List<DataModel> newDataList) {
                                 recyclerAdapter.setData(newDataList);
