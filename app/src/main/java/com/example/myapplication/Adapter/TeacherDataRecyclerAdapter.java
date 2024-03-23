@@ -3,6 +3,7 @@ package com.example.myapplication.Adapter;
 import static java.time.format.ResolverStyle.*;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.CountDownTimer;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.BaseAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
