@@ -87,6 +87,7 @@ public class TestActivity extends AppCompatActivity {
         });
         viewPager2.setPageTransformer(compositePageTransformer);
 
+
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
