@@ -77,7 +77,7 @@ public class TestActivity extends AppCompatActivity {
         viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
 
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(160));
+        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
             @Override
             public void transformPage(@NonNull View page, float position) {
@@ -85,6 +85,7 @@ public class TestActivity extends AppCompatActivity {
                 page.setScaleY(0.85f + r * 0.15f);
             }
         });
+        viewPager2.setPageTransformer(compositePageTransformer);
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -94,7 +95,7 @@ public class TestActivity extends AppCompatActivity {
                 sliderHandler.postDelayed(sliderRunnable,3000);
             }
         });
-        viewPager2.setPageTransformer(compositePageTransformer);
+
     }
     private Runnable sliderRunnable = new Runnable() {
         @Override

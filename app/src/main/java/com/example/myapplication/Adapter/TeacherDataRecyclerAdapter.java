@@ -186,30 +186,30 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
                         long sec = (millisUntilFinished / 1000) % 60;
                         remaining.setText(f.format(hr) + ":" + f.format(min) + ":" + f.format(sec));
 
-                            if (millisUntilFinished<20000){
-                                remaining.setTextColor(Color.RED);
-                                blinkAnimation(itemView);
-                            }
-                            else {
-                                itemView.clearAnimation();
-                            }
+//                            if (millisUntilFinished<20000){
+//                                remaining.setTextColor(Color.RED);
+//                                blinkAnimation(itemView);
+//                            }
+//                            else {
+//                                itemView.clearAnimation();
+//                            }
                     }
 
                     @Override
                     public void onFinish() {
                         progressBar.setProgress(0);
 
-                        remaining.setText("Class Ended");
-                        itemView.clearAnimation();
-                        if (remaining.equals("Class Ended")) {
-                            itemView.clearAnimation();
-
-                        }
-
-                        int adapterPosition = getAdapterPosition();
-                        if (adapterPosition != RecyclerView.NO_POSITION) {
-                            removeItem(adapterPosition);
-                        }
+//                        remaining.setText("Class Ended");
+//                        itemView.clearAnimation();
+//                        if (remaining.equals("Class Ended")) {
+//                            itemView.clearAnimation();
+//
+//                        }
+//
+//                        int adapterPosition = getAdapterPosition();
+//                        if (adapterPosition != RecyclerView.NO_POSITION) {
+//                            removeItem(adapterPosition);
+//                        }
                     }
                 }.start();
             } catch (Exception e) {
