@@ -1,5 +1,6 @@
 package com.example.myapplication.Adapter;
 
+import static com.example.myapplication.Utils.MethodUtils.getRadonColor;
 import static java.time.format.ResolverStyle.*;
 
 import android.annotation.SuppressLint;
@@ -75,21 +76,7 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
 
     }
 
-    private int getRadonColor() {
-        List<Integer> colorCode = new ArrayList<>();
 
-        colorCode.add(R.color.color1);
-        colorCode.add(R.color.color2);
-        colorCode.add(R.color.color3);
-        colorCode.add(R.color.color4);
-        colorCode.add(R.color.color5);
-        colorCode.add(R.color.color6);
-
-        Random random = new Random();
-        int random_color = random.nextInt(colorCode.size());
-
-        return colorCode.get(random_color);
-    }
 
     @Override
     public int getItemCount() {
@@ -139,6 +126,7 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
             int color_code = getRadonColor();
             int color = ContextCompat.getColor(itemView.getContext(), color_code);
             cardView.setCardBackgroundColor(color);
+
 
             if (countTime != null) {
                 countTime.cancel();
