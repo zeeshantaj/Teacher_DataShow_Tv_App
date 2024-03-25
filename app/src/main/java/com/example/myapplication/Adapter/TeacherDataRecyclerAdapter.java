@@ -129,7 +129,7 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
             topic1.setSelected(true);
             room1.setText(teacherData.getLocation());
             room1.setSelected(true);
-            upload.setText(teacherData.getCurrentDateTime());
+            upload.setText(teacherData.getDateTime());
             upload.setSelected(true);
 
 

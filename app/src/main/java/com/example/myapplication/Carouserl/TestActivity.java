@@ -101,7 +101,17 @@ public class TestActivity extends AppCompatActivity {
     private Runnable sliderRunnable = new Runnable() {
         @Override
         public void run() {
-            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
+//            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
+            int currentItem = viewPager2.getCurrentItem();
+            int itemCount = viewPager2.getAdapter().getItemCount();
+            if (currentItem < itemCount - 1) {
+                viewPager2.setCurrentItem(currentItem + 1);
+            } else {
+                viewPager2.setCurrentItem(0);
+            }
+
+            // Repeat this runnable after a delay
+            sliderHandler.postDelayed(this, 3000);
         }
     };
 }
