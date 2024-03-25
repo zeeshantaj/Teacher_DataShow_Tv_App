@@ -8,28 +8,45 @@
     tools:context=".Carouserl.TestActivity">
 
 
+    <ImageView
+        android:id="@+id/noDataToshowImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/nodata_to_show"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="2">
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/noDataToshowImg"
+        app:layout_constraintTop_toTopOf="parent">
+
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/VPIMGSlider"
+            android:id="@+id/classDataVP"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_weight="0.9"
             android:paddingStart="80dp"
-            android:paddingEnd="80dp"
-            android:layout_weight="0.9"/>
+            android:paddingEnd="80dp" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/VPIMGSlider1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1.1"
             android:paddingStart="80dp"
-            android:paddingEnd="80dp"
-            android:layout_weight="1"/>
-
+            android:paddingEnd="80dp" />
 
     </LinearLayout>
 
