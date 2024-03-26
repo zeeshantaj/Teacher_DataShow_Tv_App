@@ -75,7 +75,9 @@ public class TestActivity extends AppCompatActivity {
                                 binding.classDataVP.setVisibility(View.GONE);
                             }
                             classDataAdapter.setData(newDataList);
+                            showNoDataImageView();
                         }
+
                     });
                 }
             }
