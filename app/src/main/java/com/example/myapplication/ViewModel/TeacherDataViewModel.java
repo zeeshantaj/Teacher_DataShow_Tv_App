@@ -20,11 +20,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class TeacherDataViewModel extends ViewModel  {
     private MutableLiveData<List<DataModel>> teacherDataListLiveData;
     private MutableLiveData<List<AnnouncementModel>> announcementData;
-    private DatabaseReference databaseReference;
     private String showKey;
 
     public LiveData<List<DataModel>> getTeacherDataList(String showKey) {
@@ -47,7 +47,7 @@ public class TeacherDataViewModel extends ViewModel  {
 
 
     private void loadTeacherData() {
-        databaseReference = FirebaseDatabase.getInstance().getReference("Teacher_Data");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Teacher_Data");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -70,38 +70,38 @@ public class TeacherDataViewModel extends ViewModel  {
         });
     }
     private void loadAnnouncementData() {
-        databaseReference = FirebaseDatabase.getInstance().getReference("Announcement");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Announcement");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    List<AnnouncementModel> modelList = new ArrayList<>();
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        AnnouncementModel model = new AnnouncementModel(); // Create a new instance for each iteration
+                List<AnnouncementModel> modelList = new ArrayList<>();
 
-                        if (dataSnapshot.child("title").exists()) {
-                            model.setTitle(dataSnapshot.child("title").getValue(String.class));
-                            model.setCurrent_date(dataSnapshot.child("current_date").getValue(String.class));
-                            model.setDue_date(dataSnapshot.child("due_date").getValue(String.class));
-                            model.setKey(dataSnapshot.child("key").getValue(String.class));
-                            model.setDescription(dataSnapshot.child("description").getValue(String.class));
-                            model.setId(dataSnapshot.child("id").getValue(String.class));
+                for (DataSnapshot uidSnapshot : snapshot.getChildren()) {
+                    for (DataSnapshot keySnapshot : uidSnapshot.getChildren()) {
+                        String key = keySnapshot.child("key").getValue(String.class);
+                        if (key != null && key.equals(showKey)) {
+                            AnnouncementModel model = new AnnouncementModel(); // Create a new instance only if the key matches
+
+                            if (keySnapshot.child("title").exists()) {
+                                model.setTitle(keySnapshot.child("title").getValue(String.class));
+                                model.setCurrent_date(keySnapshot.child("current_date").getValue(String.class));
+                                model.setDue_date(keySnapshot.child("due_date").getValue(String.class));
+                                model.setKey(keySnapshot.child("key").getValue(String.class));
+                                model.setDescription(keySnapshot.child("description").getValue(String.class));
+                                model.setId(keySnapshot.child("id").getValue(String.class));
+                            }
+
+                            if (keySnapshot.child("imageUrl").exists()) {
+                                model.setImageUrl(keySnapshot.child("imageUrl").getValue(String.class));
+                            }
+
+                            modelList.add(model);
                         }
-
-                        if (dataSnapshot.child("imageUrl").exists()) {
-                            model.setImageUrl(dataSnapshot.child("imageUrl").getValue(String.class));
-                            model.setCurrent_date(dataSnapshot.child("current_date").getValue(String.class));
-                            model.setDue_date(dataSnapshot.child("due_date").getValue(String.class));
-                            model.setKey(dataSnapshot.child("key").getValue(String.class));
-                            model.setId(dataSnapshot.child("id").getValue(String.class));
-                        }
-
-                        modelList.add(model);
                     }
-
-                    // Set the value of LiveData after the loop to contain all items
-                    announcementData.setValue(modelList);
                 }
+
+                // Set the value of LiveData after the loop to contain all items
+                announcementData.setValue(modelList);
             }
 
             @Override

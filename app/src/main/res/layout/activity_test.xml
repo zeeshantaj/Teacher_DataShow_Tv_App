@@ -37,11 +37,12 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="0.9"
+
             android:paddingStart="80dp"
             android:paddingEnd="80dp" />
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/VPIMGSlider1"
+            android:id="@+id/announceDataVP"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.1"

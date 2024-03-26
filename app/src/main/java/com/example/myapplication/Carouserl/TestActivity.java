@@ -36,8 +36,10 @@ public class TestActivity extends AppCompatActivity {
 
     private TeacherDataRecyclerAdapter classDataAdapter;
     private AnnouncementAdapter announcementAdapter;
-    private Handler sliderHandler = new Handler();
+    private Handler classSliderHandler = new Handler();
+    private Handler announceSlideHandler = new Handler();
     private ActivityTestBinding binding;
+    private DatabaseReference keyReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +49,7 @@ public class TestActivity extends AppCompatActivity {
         classDataAdapter = new TeacherDataRecyclerAdapter(new ArrayList<>());
         announcementAdapter = new AnnouncementAdapter(new ArrayList<>(),this);
         String androidId = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
-        DatabaseReference keyReference = FirebaseDatabase.getInstance().getReference("Tv_keys").child(androidId);
+         keyReference = FirebaseDatabase.getInstance().getReference("Tv_keys").child(androidId);
         keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -76,33 +78,14 @@ public class TestActivity extends AppCompatActivity {
             }
         });
 
-        keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String dbKey = snapshot.child("EnteredKey").getValue(String.class);
-                if (dbKey != null) {
-                    // Initialize ViewModel and observe data changes
-                    TeacherDataViewModel viewModel = new ViewModelProvider(TestActivity.this).get(TeacherDataViewModel.class);
-                    viewModel.getAnnouncementData(dbKey).observe(TestActivity.this, new Observer<List<AnnouncementModel>>() {
-                        @Override
-                        public void onChanged(List<AnnouncementModel> announcementModels) {
-                            announcementAdapter.setData(announcementModels);
-                        }
-                    });
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("Firebase", "Error: " + error.getMessage());
-            }
-        });
 
         binding.classDataVP.setAdapter(classDataAdapter);
         binding.classDataVP.setClipToPadding(false);
         binding.classDataVP.setClipChildren(false);
         binding.classDataVP.setOffscreenPageLimit(5);
         binding.classDataVP.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
 
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         compositePageTransformer.addTransformer(new MarginPageTransformer(40));
@@ -119,18 +102,64 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                sliderHandler.removeCallbacks(sliderRunnable);
-                sliderHandler.postDelayed(sliderRunnable,3000);
+                classSliderHandler.removeCallbacks(classDataSlider);
+                classSliderHandler.postDelayed(classDataSlider,3000);
             }
         });
+        getAnnouncementData();
 
     }
     private void getAnnouncementData(){
+        keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String dbKey = snapshot.child("EnteredKey").getValue(String.class);
+                if (dbKey != null) {
+                    // Initialize ViewModel and observe data changes
+                    TeacherDataViewModel viewModel = new ViewModelProvider(TestActivity.this).get(TeacherDataViewModel.class);
+                    viewModel.getAnnouncementData(dbKey).observe(TestActivity.this, new Observer<List<AnnouncementModel>>() {
+                        @Override
+                        public void onChanged(List<AnnouncementModel> announcementModels) {
+                            announcementAdapter.setData(announcementModels);
+                            Log.e("MyApp","count"+announcementModels.size());
+                        }
+                    });
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Firebase", "Error: " + error.getMessage());
+            }
+        });
+        binding.announceDataVP.setAdapter(announcementAdapter);
+        binding.announceDataVP.setClipToPadding(false);
+        binding.announceDataVP.setClipChildren(false);
+        binding.announceDataVP.setOffscreenPageLimit(3);
+        binding.announceDataVP.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+        binding.announceDataVP.setPageTransformer(new ViewPager2.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                float r = 1 - Math.abs(position);
+                page.setScaleY(0.85f + r * 0.15f);
+            }
+        });
+
+        binding.announceDataVP.setPageTransformer(compositePageTransformer);
+        binding.announceDataVP.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                announceSlideHandler.removeCallbacks(announceDataSlider);
+                announceSlideHandler.postDelayed(announceDataSlider,3000);
+            }
+        });
     }
 
 
-    private Runnable sliderRunnable = new Runnable() {
+    private Runnable classDataSlider = new Runnable() {
         @Override
         public void run() {
 //            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
@@ -143,7 +172,23 @@ public class TestActivity extends AppCompatActivity {
             }
 
             // Repeat this runnable after a delay
-            sliderHandler.postDelayed(this, 3000);
+            classSliderHandler.postDelayed(this, 3000);
+        }
+    };
+    private Runnable announceDataSlider = new Runnable() {
+        @Override
+        public void run() {
+//            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
+            int currentItem = binding.announceDataVP.getCurrentItem();
+            int itemCount = binding.announceDataVP.getAdapter().getItemCount();
+            if (currentItem < itemCount - 1) {
+                binding.announceDataVP.setCurrentItem(currentItem + 1);
+            } else {
+                binding.announceDataVP.setCurrentItem(0);
+            }
+
+            // Repeat this runnable after a delay
+            announceSlideHandler.postDelayed(this, 3000);
         }
     };
 }
