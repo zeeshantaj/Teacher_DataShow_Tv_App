@@ -57,7 +57,9 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
             AnnounceDataLayoutBinding binding = AnnounceDataLayoutBinding.bind(holder.itemView);
             binding.itemDate.setText(model.getCurrent_date());
             binding.itemTitle.setText(model.getTitle());
+            binding.itemTitle.setSelected(true);
             binding.itemDes.setText(model.getDescription());
+            binding.itemDes.setSelected(true);
             binding.itemDueDate.setText(model.getDue_date());
         } else {
             // Set data for image layout
@@ -67,7 +69,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
 
             Glide.with(holder.itemView.getContext())
                     .load(model.getImageUrl())
-                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(15)))
+                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(35)))
                     .into(binding.itemImage);
         }
     }
@@ -86,6 +88,8 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
     public class AnnouncementViewHolder extends RecyclerView.ViewHolder {
         public AnnouncementViewHolder(@NonNull View itemView) {
             super(itemView);
+
+
         }
     }
 }
