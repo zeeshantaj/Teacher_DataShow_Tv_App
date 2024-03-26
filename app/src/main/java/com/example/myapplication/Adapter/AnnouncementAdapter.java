@@ -28,7 +28,11 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         this.announcementModelList = announcementModelList;
         this.context = context;
     }
-
+    public void setData(List<AnnouncementModel> newDataList) {
+        announcementModelList.clear();
+        announcementModelList.addAll(newDataList);
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public AnnouncementViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

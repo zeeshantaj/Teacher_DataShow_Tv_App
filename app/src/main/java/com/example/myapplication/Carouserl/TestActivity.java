@@ -6,12 +6,8 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,11 +15,10 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.myapplication.Activity.MainActivity2;
-import com.example.myapplication.Adapter.RecyclerAdapter;
+import com.example.myapplication.Adapter.AnnouncementAdapter;
 import com.example.myapplication.Adapter.TeacherDataRecyclerAdapter;
+import com.example.myapplication.Model.AnnouncementModel;
 import com.example.myapplication.Model.DataModel;
-import com.example.myapplication.R;
 import com.example.myapplication.ViewModel.TeacherDataViewModel;
 import com.example.myapplication.databinding.ActivityTestBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -39,7 +34,8 @@ public class TestActivity extends AppCompatActivity {
 
 
 
-    private TeacherDataRecyclerAdapter recyclerAdapter;
+    private TeacherDataRecyclerAdapter classDataAdapter;
+    private AnnouncementAdapter announcementAdapter;
     private Handler sliderHandler = new Handler();
     private ActivityTestBinding binding;
     @Override
@@ -48,7 +44,8 @@ public class TestActivity extends AppCompatActivity {
         binding = ActivityTestBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        recyclerAdapter = new TeacherDataRecyclerAdapter(new ArrayList<>());
+        classDataAdapter = new TeacherDataRecyclerAdapter(new ArrayList<>());
+        announcementAdapter = new AnnouncementAdapter(new ArrayList<>(),this);
         String androidId = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
         DatabaseReference keyReference = FirebaseDatabase.getInstance().getReference("Tv_keys").child(androidId);
         keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -67,7 +64,7 @@ public class TestActivity extends AppCompatActivity {
                             else {
                                 binding.noDataToshowImg.setVisibility(View.VISIBLE);
                             }
-                            recyclerAdapter.setData(newDataList);
+                            classDataAdapter.setData(newDataList);
                         }
                     });
                 }
@@ -78,7 +75,30 @@ public class TestActivity extends AppCompatActivity {
                 Log.e("Firebase", "Error: " + error.getMessage());
             }
         });
-        binding.classDataVP.setAdapter(recyclerAdapter);
+
+        keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String dbKey = snapshot.child("EnteredKey").getValue(String.class);
+                if (dbKey != null) {
+                    // Initialize ViewModel and observe data changes
+                    TeacherDataViewModel viewModel = new ViewModelProvider(TestActivity.this).get(TeacherDataViewModel.class);
+                    viewModel.getAnnouncementData(dbKey).observe(TestActivity.this, new Observer<List<AnnouncementModel>>() {
+                        @Override
+                        public void onChanged(List<AnnouncementModel> announcementModels) {
+                            announcementAdapter.setData(announcementModels);
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Firebase", "Error: " + error.getMessage());
+            }
+        });
+
+        binding.classDataVP.setAdapter(classDataAdapter);
         binding.classDataVP.setClipToPadding(false);
         binding.classDataVP.setClipChildren(false);
         binding.classDataVP.setOffscreenPageLimit(5);

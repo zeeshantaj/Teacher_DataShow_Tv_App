@@ -1,12 +1,15 @@
 package com.example.myapplication.ViewModel;
 
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.example.myapplication.Model.AnnouncementModel;
 import com.example.myapplication.Model.DataModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,10 +18,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TeacherDataViewModel extends ViewModel  {
     private MutableLiveData<List<DataModel>> teacherDataListLiveData;
+    private MutableLiveData<List<AnnouncementModel>> announcementData;
     private DatabaseReference databaseReference;
     private String showKey;
 
@@ -30,6 +35,16 @@ public class TeacherDataViewModel extends ViewModel  {
         }
         return teacherDataListLiveData;
     }
+
+    public LiveData<List<AnnouncementModel>> getAnnouncementData(String showKey){
+        if (announcementData == null){
+            announcementData = new MutableLiveData<>();
+            this.showKey = showKey;
+            loadAnnouncementData();
+        }
+        return announcementData;
+    }
+
 
     private void loadTeacherData() {
         databaseReference = FirebaseDatabase.getInstance().getReference("Teacher_Data");
@@ -45,6 +60,48 @@ public class TeacherDataViewModel extends ViewModel  {
                     }
                 }
                 teacherDataListLiveData.setValue(newDataList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle any errors
+                Log.e("Firebase", "Error: " + error.getMessage());
+            }
+        });
+    }
+    private void loadAnnouncementData() {
+        databaseReference = FirebaseDatabase.getInstance().getReference("Announcement");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    List<AnnouncementModel> modelList = new ArrayList<>();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        AnnouncementModel model = new AnnouncementModel(); // Create a new instance for each iteration
+
+                        if (dataSnapshot.child("title").exists()) {
+                            model.setTitle(dataSnapshot.child("title").getValue(String.class));
+                            model.setCurrent_date(dataSnapshot.child("current_date").getValue(String.class));
+                            model.setDue_date(dataSnapshot.child("due_date").getValue(String.class));
+                            model.setKey(dataSnapshot.child("key").getValue(String.class));
+                            model.setDescription(dataSnapshot.child("description").getValue(String.class));
+                            model.setId(dataSnapshot.child("id").getValue(String.class));
+                        }
+
+                        if (dataSnapshot.child("imageUrl").exists()) {
+                            model.setImageUrl(dataSnapshot.child("imageUrl").getValue(String.class));
+                            model.setCurrent_date(dataSnapshot.child("current_date").getValue(String.class));
+                            model.setDue_date(dataSnapshot.child("due_date").getValue(String.class));
+                            model.setKey(dataSnapshot.child("key").getValue(String.class));
+                            model.setId(dataSnapshot.child("id").getValue(String.class));
+                        }
+
+                        modelList.add(model);
+                    }
+
+                    // Set the value of LiveData after the loop to contain all items
+                    announcementData.setValue(modelList);
+                }
             }
 
             @Override
