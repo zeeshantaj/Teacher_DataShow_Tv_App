@@ -2,12 +2,16 @@ package com.example.myapplication.ViewModel;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.NonUiContext;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.myapplication.Model.AnnouncementModel;
 import com.example.myapplication.Model.DataModel;
@@ -24,7 +28,7 @@ import java.util.Locale;
 
 public class TeacherDataViewModel extends ViewModel  {
     private MutableLiveData<List<DataModel>> teacherDataListLiveData;
-    private MutableLiveData<List<AnnouncementModel>> announcementData;
+    private  MutableLiveData<List<AnnouncementModel>> announcementData;
     private String showKey;
 
     public LiveData<List<DataModel>> getTeacherDataList(String showKey) {
@@ -60,6 +64,9 @@ public class TeacherDataViewModel extends ViewModel  {
                     }
                 }
                 teacherDataListLiveData.setValue(newDataList);
+
+
+
             }
 
             @Override
@@ -99,7 +106,6 @@ public class TeacherDataViewModel extends ViewModel  {
                         }
                     }
                 }
-
                 // Set the value of LiveData after the loop to contain all items
                 announcementData.setValue(modelList);
             }
@@ -111,4 +117,18 @@ public class TeacherDataViewModel extends ViewModel  {
             }
         });
     }
+//    public static void checkData(ImageView imageView, ViewPager2 announceVP,ViewPager2 classDataVP){
+//        if (announcementData.getValue() != null && teacherDataListLiveData.getValue() != null){
+//            imageView.setVisibility(View.VISIBLE);
+//        }
+//        else {
+//            imageView.setVisibility(View.GONE);
+//        }
+//        if (announcementData.getValue() == null && teacherDataListLiveData.getValue() != null){
+//            announceVP.setVisibility(View.GONE);
+//        }
+//        if (teacherDataListLiveData.getValue() == null && announcementData.getValue() != null){
+//            classDataVP.setVisibility(View.GONE);
+//        }
+//    }
 }

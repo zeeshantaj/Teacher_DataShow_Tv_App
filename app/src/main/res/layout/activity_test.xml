@@ -12,7 +12,7 @@
         android:id="@+id/noDataToshowImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/nodata_to_show"
+        android:src="@drawable/nodata_to_show_img"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"

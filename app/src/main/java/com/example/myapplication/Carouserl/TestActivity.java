@@ -1,10 +1,13 @@
 package com.example.myapplication.Carouserl;
 
+
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +43,9 @@ public class TestActivity extends AppCompatActivity {
     private Handler announceSlideHandler = new Handler();
     private ActivityTestBinding binding;
     private DatabaseReference keyReference;
+    private boolean isClassDataAvailable = false;
+    private boolean isAnnounceDataAvailable = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,10 +67,12 @@ public class TestActivity extends AppCompatActivity {
                         @Override
                         public void onChanged(List<DataModel> newDataList) {
                             if (!newDataList.isEmpty()){
-                                binding.noDataToshowImg.setVisibility(View.GONE);
+                                isClassDataAvailable = true;
+                                binding.classDataVP.setVisibility(View.VISIBLE);
                             }
                             else {
-                                binding.noDataToshowImg.setVisibility(View.VISIBLE);
+                                isClassDataAvailable = false;
+                                binding.classDataVP.setVisibility(View.GONE);
                             }
                             classDataAdapter.setData(newDataList);
                         }
@@ -108,6 +116,7 @@ public class TestActivity extends AppCompatActivity {
         });
         getAnnouncementData();
 
+
     }
     private void getAnnouncementData(){
         keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -120,8 +129,16 @@ public class TestActivity extends AppCompatActivity {
                     viewModel.getAnnouncementData(dbKey).observe(TestActivity.this, new Observer<List<AnnouncementModel>>() {
                         @Override
                         public void onChanged(List<AnnouncementModel> announcementModels) {
+                            if (!announcementModels.isEmpty()){
+                                isAnnounceDataAvailable = true;
+                                binding.announceDataVP.setVisibility(View.VISIBLE);
+                            }
+                            else {
+                                isAnnounceDataAvailable = false;
+                                binding.announceDataVP.setVisibility(View.GONE);
+                            }
                             announcementAdapter.setData(announcementModels);
-                            Log.e("MyApp","count"+announcementModels.size());
+                            showNoDataImageView();
                         }
                     });
                 }
@@ -156,6 +173,16 @@ public class TestActivity extends AppCompatActivity {
                 announceSlideHandler.postDelayed(announceDataSlider,3000);
             }
         });
+    }
+
+    private void showNoDataImageView() {
+        if (!isClassDataAvailable && !isAnnounceDataAvailable) {
+            // Show image view
+            binding.noDataToshowImg.setVisibility(View.VISIBLE);
+        } else {
+            // Hide image view
+            binding.noDataToshowImg.setVisibility(View.GONE);
+        }
     }
 
 
