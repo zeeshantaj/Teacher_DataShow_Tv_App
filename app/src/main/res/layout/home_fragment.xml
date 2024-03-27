@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/cardBg">
 
-
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/list_fragment"
         android:layout_width="0dp"

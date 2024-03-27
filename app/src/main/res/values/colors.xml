@@ -12,6 +12,7 @@
     <color name="blueshade">#2581C8</color>
     <color name="cardBg">#F9D7FF</color>
     <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
 
     <color name="color1">#F9D7FF</color>
     <color name="color2">#CA91A5</color>

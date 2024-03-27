@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -68,13 +69,15 @@ class HomeActivity : FragmentActivity(), View.OnKeyListener {
     }
 
     private fun openMenu() {
-        navBar.requestLayout()
-        navBar.layoutParams.width = getWidth(16)
+        val params = navBar.layoutParams as ViewGroup.LayoutParams
+        params.width = getWidth(16)
+        navBar.layoutParams = params
     }
 
     private fun closeMenu() {
-        navBar.requestLayout()
-        navBar.layoutParams.width = getWidth(5)
+        val params = navBar.layoutParams as ViewGroup.LayoutParams
+        params.width = getWidth(5)
+        navBar.layoutParams = params
     }
 
     fun getWidth(percent: Int): Int{
