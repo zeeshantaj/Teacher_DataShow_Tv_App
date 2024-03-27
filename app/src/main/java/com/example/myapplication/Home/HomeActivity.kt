@@ -43,6 +43,7 @@ class HomeActivity : FragmentActivity(), View.OnKeyListener {
     fun changeFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameContainer, fragment)
+        transaction.commit()
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
@@ -98,6 +99,7 @@ class HomeActivity : FragmentActivity(), View.OnKeyListener {
         val params = navBar.layoutParams as ViewGroup.LayoutParams
         params.width = getWidth(5)
         navBar.layoutParams = params
+        SIDE_MENU = false
     }
 
     fun getWidth(percent: Int): Int {
