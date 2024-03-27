@@ -30,11 +30,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:text="Home"
-                android:textColor="@color/white"
+                android:textColor="@color/text_focus"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="16dp"
                 android:focusable="true"
                 android:drawablePadding="16dp"
+                android:background="@drawable/selector"
                 android:drawableLeft="@drawable/baseline_home_24"/>
 
             <TextView
@@ -42,11 +43,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:text="Set Key"
-                android:textColor="@color/white"
+                android:textColor="@color/text_focus"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="16dp"
                 android:focusable="true"
                 android:drawablePadding="16dp"
+                android:background="@drawable/selector"
+
                 android:drawableLeft="@drawable/baseline_vpn_key_24"/>
 
             <TextView
@@ -54,11 +57,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:text="Set class scroll time"
-                android:textColor="@color/white"
+                android:textColor="@color/text_focus"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="16dp"
                 android:focusable="true"
                 android:drawablePadding="16dp"
+                android:background="@drawable/selector"
+
                 android:drawableLeft="@drawable/scroll_icon"/>
 
             <TextView
@@ -66,11 +71,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:text="Set Announce scroll time"
-                android:textColor="@color/white"
+                android:textColor="@color/text_focus"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="16dp"
                 android:focusable="true"
                 android:drawablePadding="16dp"
+                android:background="@drawable/selector"
                 android:drawableLeft="@drawable/scroll_icon" />
 
         </LinearLayout>
