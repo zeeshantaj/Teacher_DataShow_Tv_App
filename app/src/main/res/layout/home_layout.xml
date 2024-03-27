@@ -6,11 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Home.HomeActivity">
 
-    <FrameLayout
-        android:id="@+id/frameContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:nextFocusRight="@id/navBar"/>
 
     <androidx.leanback.widget.BrowseFrameLayout
         android:id="@+id/navBar"
@@ -31,7 +26,7 @@
                 android:drawablePadding="20dp"
                 android:padding="20sp"
                 android:text="Home"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="28sp"
                 android:focusable="true"
                 app:drawableLeftCompat="@drawable/baseline_home_24" />
@@ -43,7 +38,7 @@
                 android:drawablePadding="20dp"
                 android:padding="20sp"
                 android:text="Set Key for data receiving"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="28sp"
                 android:focusable="true"
                 app:drawableLeftCompat="@drawable/baseline_vpn_key_24" />
@@ -56,7 +51,7 @@
                 android:focusable="true"
                 android:padding="20sp"
                 android:text="Class scroll Time"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="28sp"
                 app:drawableLeftCompat="@drawable/scroll_icon" />
 
@@ -68,11 +63,17 @@
                 android:focusable="true"
                 android:padding="20sp"
                 android:text="Announce scroll Time"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="28sp"
                 app:drawableLeftCompat="@drawable/scroll_icon" />
 
         </LinearLayout>
     </androidx.leanback.widget.BrowseFrameLayout>
 
+    <FrameLayout
+        android:id="@+id/frameContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="50dp"
+        android:nextFocusRight="@id/navBar"/>
 </merge>
