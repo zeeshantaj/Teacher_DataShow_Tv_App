@@ -33,8 +33,6 @@ public class BottomMenuFragment extends BottomSheetDialogFragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        binding.dismissBtn.setOnClickListener(v -> {
-            dismiss();
-        });
+
     }
 }

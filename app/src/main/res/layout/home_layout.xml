@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".Home.HomeActivity">
 
     <FrameLayout
         android:id="@+id/frameContainer"
@@ -28,6 +30,7 @@
                 android:layout_height="45dp"
                 android:drawablePadding="20dp"
                 android:padding="20sp"
+                android:text="Home"
                 android:textColor="@color/black"
                 android:textSize="28sp"
                 android:focusable="true"
@@ -39,6 +42,7 @@
                 android:layout_height="45dp"
                 android:drawablePadding="20dp"
                 android:padding="20sp"
+                android:text="Set Key for data receiving"
                 android:textColor="@color/black"
                 android:textSize="28sp"
                 android:focusable="true"
@@ -51,6 +55,7 @@
                 android:drawablePadding="20dp"
                 android:focusable="true"
                 android:padding="20sp"
+                android:text="Class scroll Time"
                 android:textColor="@color/black"
                 android:textSize="28sp"
                 app:drawableLeftCompat="@drawable/scroll_icon" />
@@ -62,6 +67,7 @@
                 android:drawablePadding="20dp"
                 android:focusable="true"
                 android:padding="20sp"
+                android:text="Announce scroll Time"
                 android:textColor="@color/black"
                 android:textSize="28sp"
                 app:drawableLeftCompat="@drawable/scroll_icon" />
