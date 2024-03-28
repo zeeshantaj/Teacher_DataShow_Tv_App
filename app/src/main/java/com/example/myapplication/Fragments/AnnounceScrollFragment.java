@@ -1,5 +1,7 @@
 package com.example.myapplication.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +44,14 @@ public class AnnounceScrollFragment extends Fragment {
             binding.secTxt.setText(String.valueOf(count));
         });
         binding.timeSetBtn.setOnClickListener(v -> {
-            Toast.makeText(getActivity(), "Time "+binding.secTxt.getText().toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Time Set "+binding.secTxt.getText().toString(), Toast.LENGTH_SHORT).show();
+
+            int time = Integer.parseInt(binding.secTxt.getText().toString());
+
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("announceScrollTimeShared", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("announceScrollTime",time);
+            editor.apply();
         });
     }
 }
