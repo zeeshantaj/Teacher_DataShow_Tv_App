@@ -3,7 +3,13 @@
     <!-- Pressed state -->
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <solid android:color="#8A3D6DEB" /> <!-- Semi-transparent grey color when pressed -->
+            <solid android:color="#8FF4F2D6" /> <!-- Semi-transparent grey color when pressed -->
+            <corners android:radius="30dp" />
+        </shape>
+    </item>
+  <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#8ABCC8E8" /> <!-- Semi-transparent grey color when pressed -->
             <corners android:radius="30dp" />
         </shape>
     </item>

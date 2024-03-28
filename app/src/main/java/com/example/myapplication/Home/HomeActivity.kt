@@ -5,11 +5,12 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.leanback.widget.BrowseFrameLayout
 import com.example.myapplication.Fragments.AnnounceScrollFragment
-import com.example.myapplication.Fragments.Bottom_Sheet_Fragment
+import com.example.myapplication.Fragments.fragment_key_set
 import com.example.myapplication.Fragments.ClassScrollFragment
 import com.example.myapplication.Fragments.HomeFragment
 import com.example.myapplication.R
@@ -63,16 +64,18 @@ class HomeActivity : FragmentActivity(), View.OnKeyListener {
                 when (v?.id) {
                     R.id.homeBtn -> {
                         changeFragment(HomeFragment())
+                        Toast.makeText(this,"home",Toast.LENGTH_LONG).show()
                     }
-                    R.id.homeBtn -> {
-                        changeFragment(Bottom_Sheet_Fragment())
+                    R.id.keySetBtn -> {
+                        changeFragment(fragment_key_set())
+                        Toast.makeText(this,"",Toast.LENGTH_LONG).show()
                     }
 
-                    R.id.homeBtn -> {
+                    R.id.classScrollTimeBtn -> {
                         changeFragment(ClassScrollFragment())
                     }
 
-                    R.id.homeBtn -> {
+                    R.id.announceScrollTimeBtn -> {
                         changeFragment(AnnounceScrollFragment())
                     }
                 }

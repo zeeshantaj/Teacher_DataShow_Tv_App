@@ -4,35 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.Adapter.TeacherDataRecyclerAdapter;
 import com.example.myapplication.BottomMenu.BottomMenuFragment;
-import com.example.myapplication.Fragments.Bottom_Sheet_Fragment;
-import com.example.myapplication.Model.DataModel;
 import com.example.myapplication.R;
-import com.example.myapplication.ViewModel.TeacherDataViewModel;
 import com.example.myapplication.databinding.ActivityMain2Binding;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity2 extends AppCompatActivity {

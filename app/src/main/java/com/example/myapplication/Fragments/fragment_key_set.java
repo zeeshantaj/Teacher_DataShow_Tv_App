@@ -3,22 +3,16 @@ package com.example.myapplication.Fragments;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.google.android.material.textfield.TextInputEditText;
+import com.example.myapplication.databinding.FragmentKeyKeySetBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,32 +21,25 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-public class Bottom_Sheet_Fragment extends BottomSheetDialogFragment {
+public class fragment_key_set extends Fragment {
 
-    public Bottom_Sheet_Fragment() {
+    public fragment_key_set() {
         // Required empty public constructor
     }
 
-    private TextInputEditText enteredKey;
-    private Button setKeyBtn;
     private DatabaseReference queryReference, insertReference;
     private String androidId,databaseKey, uploadedKey;
-    private TextView keyTextView;
+
+    private FragmentKeyKeySetBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_bottom__sheet_, container, false);
-        view.setFocusableInTouchMode(true);
-        view.requestFocus();
-
-        enteredKey = view.findViewById(R.id.edKey);
-        setKeyBtn = view.findViewById(R.id.setKeyBtn);
-        keyTextView = view.findViewById(R.id.showKey);
-        //setKey();
+        binding = FragmentKeyKeySetBinding.inflate(inflater,container,false);
 
 
-        return view;
+
+        return binding.getRoot();
     }
 
     @Override
@@ -89,7 +76,7 @@ public class Bottom_Sheet_Fragment extends BottomSheetDialogFragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 uploadedKey = snapshot.child("EnteredKey").getValue(String.class);
-                keyTextView.setText(uploadedKey);
+                binding.showKey.setText(uploadedKey);
             }
 
             @Override
@@ -99,12 +86,12 @@ public class Bottom_Sheet_Fragment extends BottomSheetDialogFragment {
         });
 
 
-        setKeyBtn.setOnClickListener(new View.OnClickListener() {
+        binding.setKeyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String key = enteredKey.getText().toString();
+                String key = binding.edKey.getText().toString();
                 if (key.isEmpty()){
-                    enteredKey.setError("Key field is empty");
+                    binding.edKey.setError("Key field is empty");
                     return;
                 }
                 if (databaseKey.equals(key)){
@@ -115,7 +102,7 @@ public class Bottom_Sheet_Fragment extends BottomSheetDialogFragment {
                     value.put("EnteredKey",key);
 
                     insertReference.setValue(value).addOnCompleteListener(task -> {
-                        keyTextView.setText(key);
+                        binding.setKeyBtn.setText(key);
                         Toast.makeText(getActivity(), "key set successfully", Toast.LENGTH_SHORT).show();
                     }).addOnFailureListener(e -> {
                         Toast.makeText(getActivity(), "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -128,6 +115,6 @@ public class Bottom_Sheet_Fragment extends BottomSheetDialogFragment {
     @Override
     public void onResume() {
         super.onResume();
-        keyTextView.setText(uploadedKey);
+        binding.showKey.setText(uploadedKey);
     }
 }
