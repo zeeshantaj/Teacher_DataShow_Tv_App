@@ -64,9 +64,6 @@ public class TeacherDataViewModel extends ViewModel  {
                     }
                 }
                 teacherDataListLiveData.setValue(newDataList);
-
-
-
             }
 
             @Override
@@ -117,18 +114,4 @@ public class TeacherDataViewModel extends ViewModel  {
             }
         });
     }
-//    public static void checkData(ImageView imageView, ViewPager2 announceVP,ViewPager2 classDataVP){
-//        if (announcementData.getValue() != null && teacherDataListLiveData.getValue() != null){
-//            imageView.setVisibility(View.VISIBLE);
-//        }
-//        else {
-//            imageView.setVisibility(View.GONE);
-//        }
-//        if (announcementData.getValue() == null && teacherDataListLiveData.getValue() != null){
-//            announceVP.setVisibility(View.GONE);
-//        }
-//        if (teacherDataListLiveData.getValue() == null && announcementData.getValue() != null){
-//            classDataVP.setVisibility(View.GONE);
-//        }
-//    }
 }
