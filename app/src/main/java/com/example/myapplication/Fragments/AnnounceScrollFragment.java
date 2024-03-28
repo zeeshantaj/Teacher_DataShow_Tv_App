@@ -14,7 +14,7 @@ import com.example.myapplication.databinding.ScrollTimeLayoutBinding;
 
 public class AnnounceScrollFragment extends Fragment {
     private ScrollTimeLayoutBinding binding;
-    private int count = 3;
+    private int count = 5;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -26,10 +26,18 @@ public class AnnounceScrollFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.increaseBtn.setOnClickListener(v -> {
+            if (count == 60){
+                Toast.makeText(getActivity(), "Seconds can not be greater than 60", Toast.LENGTH_SHORT).show();
+                return;
+            }
             count++;
             binding.secTxt.setText(String.valueOf(count));
         });
         binding.decreaseBtn.setOnClickListener(v -> {
+            if (count == 5){
+                Toast.makeText(getActivity(), "Seconds can not be less than 5", Toast.LENGTH_SHORT).show();
+                return;
+            }
             count--;
             binding.secTxt.setText(String.valueOf(count));
         });
