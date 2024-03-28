@@ -64,19 +64,21 @@ class HomeActivity : FragmentActivity(), View.OnKeyListener {
                 when (v?.id) {
                     R.id.homeBtn -> {
                         changeFragment(HomeFragment())
-                        Toast.makeText(this,"home",Toast.LENGTH_LONG).show()
+                        closeMenu()
                     }
                     R.id.keySetBtn -> {
                         changeFragment(fragment_key_set())
-                        Toast.makeText(this,"",Toast.LENGTH_LONG).show()
+                        closeMenu()
                     }
 
                     R.id.classScrollTimeBtn -> {
                         changeFragment(ClassScrollFragment())
+                        closeMenu()
                     }
 
                     R.id.announceScrollTimeBtn -> {
                         changeFragment(AnnounceScrollFragment())
+                        closeMenu()
                     }
                 }
             }
