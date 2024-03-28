@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home.HomeActivity">
+    >
 
     <FrameLayout
         android:id="@+id/frameContainer"
@@ -26,7 +26,7 @@
             android:layout_marginTop="32dp">
 
             <TextView
-                android:id="@+id/homeBtn"
+                android:id="@+id/navHome"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:text="Home"
@@ -39,7 +39,7 @@
                 android:drawableLeft="@drawable/baseline_home_24"/>
 
             <TextView
-                android:id="@+id/keySetBtn"
+                android:id="@+id/navKey"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:text="Set Key"
@@ -53,7 +53,7 @@
                 android:drawableLeft="@drawable/baseline_vpn_key_24"/>
 
             <TextView
-                android:id="@+id/classScrollTimeBtn"
+                android:id="@+id/navClassScroll"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:text="Set class scroll time"
@@ -67,7 +67,7 @@
                 android:drawableLeft="@drawable/scroll_icon"/>
 
             <TextView
-                android:id="@+id/announceScrollTimeBtn"
+                android:id="@+id/navAnnounceScroll"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:text="Set Announce scroll time"

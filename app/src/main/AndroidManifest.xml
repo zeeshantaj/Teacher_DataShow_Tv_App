@@ -21,25 +21,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".Home.HomeActivity"
-            android:exported="true" >
-
+            android:name=".Activity.MainActivity2"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity
-            android:name=".Carouserl.TestActivity"
-            android:exported="false">
-
-        </activity>
-        <activity
-            android:name=".Activity.MainActivity2"
-            android:exported="true">
-
         </activity>
 
         <meta-data

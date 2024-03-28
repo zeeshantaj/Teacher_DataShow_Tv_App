@@ -9,12 +9,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,7 +21,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.myapplication.Adapter.AnnouncementAdapter;
 import com.example.myapplication.Adapter.TeacherDataRecyclerAdapter;
-import com.example.myapplication.Carouserl.TestActivity;
 import com.example.myapplication.Model.AnnouncementModel;
 import com.example.myapplication.Model.DataModel;
 import com.example.myapplication.ViewModel.TeacherDataViewModel;
@@ -37,13 +33,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class HomeFragment extends Fragment {
     public HomeFragment() {
-
     }
-
     private HomeFragmentBinding binding;
     private TeacherDataRecyclerAdapter classDataAdapter;
     private AnnouncementAdapter announcementAdapter;
@@ -177,31 +170,31 @@ public class HomeFragment extends Fragment {
                 Log.e("Firebase", "Error: " + error.getMessage());
             }
         });
-        setViewPagerProperties(binding.announceDataVP,announceScrollTime,announceSlideHandler,announceDataSlider);
-//        binding.announceDataVP.setAdapter(announcementAdapter);
-//        binding.announceDataVP.setClipToPadding(false);
-//        binding.announceDataVP.setClipChildren(false);
-//        binding.announceDataVP.setOffscreenPageLimit(3);
-//        binding.announceDataVP.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-//        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-//        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
-//        binding.announceDataVP.setPageTransformer(new ViewPager2.PageTransformer() {
-//            @Override
-//            public void transformPage(@NonNull View page, float position) {
-//                float r = 1 - Math.abs(position);
-//                page.setScaleY(0.85f + r * 0.15f);
-//            }
-//        });
-//
-//        binding.announceDataVP.setPageTransformer(compositePageTransformer);
-//        binding.announceDataVP.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-//            @Override
-//            public void onPageSelected(int position) {
-//                super.onPageSelected(position);
-//                announceSlideHandler.removeCallbacks(announceDataSlider);
-//                announceSlideHandler.postDelayed(announceDataSlider, announceScrollTime);
-//            }
-//        });
+      //  setViewPagerProperties(binding.announceDataVP,announceScrollTime,announceSlideHandler,announceDataSlider);
+        binding.announceDataVP.setAdapter(announcementAdapter);
+        binding.announceDataVP.setClipToPadding(false);
+        binding.announceDataVP.setClipChildren(false);
+        binding.announceDataVP.setOffscreenPageLimit(3);
+        binding.announceDataVP.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+        binding.announceDataVP.setPageTransformer(new ViewPager2.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                float r = 1 - Math.abs(position);
+                page.setScaleY(0.85f + r * 0.15f);
+            }
+        });
+
+        binding.announceDataVP.setPageTransformer(compositePageTransformer);
+        binding.announceDataVP.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                announceSlideHandler.removeCallbacks(announceDataSlider);
+                announceSlideHandler.postDelayed(announceDataSlider, announceScrollTime);
+            }
+        });
     }
 
     private void showNoDataImageView() {
