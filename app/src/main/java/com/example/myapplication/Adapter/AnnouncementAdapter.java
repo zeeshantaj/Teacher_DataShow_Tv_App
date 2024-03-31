@@ -19,7 +19,10 @@ import com.example.myapplication.R;
 import com.example.myapplication.databinding.AnnounceDataLayoutBinding;
 import com.example.myapplication.databinding.AnnounceImgLaoutBinding;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapter.AnnouncementViewHolder> {
     private List<AnnouncementModel> announcementModelList;
@@ -61,6 +64,9 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
             binding.itemDes.setText(model.getDescription());
             binding.itemDes.setSelected(true);
             binding.itemDueDate.setText(model.getDue_date());
+
+            compareDate(model.getDue_date(),binding.dayCountTxt);
+
         } else {
             // Set data for image layout
             AnnounceImgLaoutBinding binding = AnnounceImgLaoutBinding.bind(holder.itemView);
@@ -72,6 +78,22 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
                     .apply(RequestOptions.bitmapTransform(new RoundedCorners(35)))
                     .into(binding.itemImage);
         }
+
+
+    }
+    private void compareDate(String due_date,TextView textView){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy;M:d", Locale.US);
+        try {
+            Date givenDate = simpleDateFormat.parse(due_date);
+            Date currentDate = new Date();
+            long diffInMillls = givenDate.getTime() - currentDate.getTime();
+            long diffInDays = diffInMillls / (1000 * 60 * 60 * 24);
+            String dayStr = String.format("Days Left: %s",diffInDays);
+            textView.setText(dayStr);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override
