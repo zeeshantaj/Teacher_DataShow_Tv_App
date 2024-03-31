@@ -25,6 +25,10 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
     private TextView navAnnounceScroll;
     private BrowseFrameLayout navBar;
     private boolean SIDE_MENU = false;
+    private final String navName = "Home";
+    private final String navName1 = "Set Key";
+    private final String navName2 = "Set class scroll time";
+    private final String navName3 = "Set Announcement scroll time";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,12 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         navClassScroll = findViewById(R.id.navClassScroll);
         navAnnounceScroll = findViewById(R.id.navAnnounceScroll);
         navBar = findViewById(R.id.navBar);
+
+
+        navHome.setText("");
+        navKey.setText("");
+        navClassScroll.setText("");
+        navAnnounceScroll.setText("");
 
         navHome.setOnKeyListener(this);
         navKey.setOnKeyListener(this);
@@ -92,6 +102,11 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         ViewGroup.LayoutParams params = navBar.getLayoutParams();
         params.width = getWidth(16);
         navBar.setLayoutParams(params);
+
+        navHome.setText(navName);
+        navKey.setText(navName1);
+        navClassScroll.setText(navName2);
+        navAnnounceScroll.setText(navName3);
     }
 
     private void closeMenu() {
@@ -99,6 +114,10 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         params.width = getWidth(5);
         navBar.setLayoutParams(params);
         SIDE_MENU = false;
+        navHome.setText("");
+        navKey.setText("");
+        navClassScroll.setText("");
+        navAnnounceScroll.setText("");
     }
 
     private int getWidth(int percent) {
