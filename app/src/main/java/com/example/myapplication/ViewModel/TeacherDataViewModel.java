@@ -114,4 +114,38 @@ public class TeacherDataViewModel extends ViewModel  {
             }
         });
     }
+
+    private void removeAnnouncement(){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Announcement");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot uidSnapshot : snapshot.getChildren()) {
+                    for (DataSnapshot keySnapshot : uidSnapshot.getChildren()) {
+                        String key = keySnapshot.child("key").getValue(String.class);
+                        if (key != null && key.equals(showKey)) {
+
+                            if (keySnapshot.child("title").exists()) {
+                                String due_date = keySnapshot.child("due_date").getValue(String.class);
+                            }
+
+                            if (keySnapshot.child("imageUrl").exists()) {
+                                String due_date = keySnapshot.child("due_date").getValue(String.class);
+                            }
+
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle any errors
+                Log.e("Firebase", "Error: " + error.getMessage());
+            }
+        });
+    }
+
 }

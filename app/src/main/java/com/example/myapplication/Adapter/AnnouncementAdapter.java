@@ -19,8 +19,14 @@ import com.example.myapplication.Model.DataModel;
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.AnnounceDataLayoutBinding;
 import com.example.myapplication.databinding.AnnounceImgLaoutBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -100,9 +106,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
 
     }
 
-    private void removeAnnouncement(){
 
-    }
 
     @Override
     public int getItemCount() {
