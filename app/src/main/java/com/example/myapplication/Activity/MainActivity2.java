@@ -100,7 +100,7 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
     }
     private void openMenu() {
         ViewGroup.LayoutParams params = navBar.getLayoutParams();
-        params.width = getWidth(16);
+        params.width = getWidth(21);
         navBar.setLayoutParams(params);
 
         navHome.setText(navName);
