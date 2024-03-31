@@ -33,14 +33,17 @@ public class Intro_Activity extends FancyWalkthroughActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FancyWalkthroughCard fancywalkthroughCard1 = new FancyWalkthroughCard("Key Set Fragment", "First of all you need to set the key then you start receiving class details and announcement.",R.drawable.baseline_home_24);
-        FancyWalkthroughCard fancywalkthroughCard2 = new FancyWalkthroughCard("Home Fragment", "This is where you showed up the received Data",R.drawable.baseline_home_24);
+        FancyWalkthroughCard fancywalkthroughCard2 = new FancyWalkthroughCard("Home Fragment", "This is where you showed up the received Data",R.drawable.home_intro);
         FancyWalkthroughCard fancywalkthroughCard3 = new FancyWalkthroughCard("Class scroll time fragment", "This is where you can set the class data scroll time.",R.drawable.baseline_home_24);
         FancyWalkthroughCard fancywalkthroughCard4 = new FancyWalkthroughCard("Announcement scroll time fragment", "This is where you can set the class data scroll time.",R.drawable.baseline_home_24);
 
+
+
+
         fancywalkthroughCard1.setBackgroundColor(R.color.white);
-        fancywalkthroughCard1.setIconLayoutParams(300,300,0,0,0,0);
+        fancywalkthroughCard1.setIconLayoutParams(700,500,0,0,0,0);
         fancywalkthroughCard2.setBackgroundColor(R.color.white);
-        fancywalkthroughCard2.setIconLayoutParams(300,300,0,0,0,0);
+        fancywalkthroughCard2.setIconLayoutParams(300,500,0,0,0,0);
         fancywalkthroughCard3.setBackgroundColor(R.color.white);
         fancywalkthroughCard3.setIconLayoutParams(300,300,0,0,0,0);
         fancywalkthroughCard4.setBackgroundColor(R.color.white);
