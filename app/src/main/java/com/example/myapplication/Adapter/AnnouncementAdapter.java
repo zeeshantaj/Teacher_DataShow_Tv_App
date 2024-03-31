@@ -1,6 +1,7 @@
 package com.example.myapplication.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +83,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
 
     }
     private void compareDate(String due_date,TextView textView){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy;M:d", Locale.US);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy:M:d", Locale.US);
         try {
             Date givenDate = simpleDateFormat.parse(due_date);
             Date currentDate = new Date();
@@ -90,9 +91,16 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
             long diffInDays = diffInMillls / (1000 * 60 * 60 * 24);
             String dayStr = String.format("Days Left: %s",diffInDays);
             textView.setText(dayStr);
+            if (diffInMillls < 0){
+
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
+
+    }
+
+    private void removeAnnouncement(){
 
     }
 
