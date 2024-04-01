@@ -20,15 +20,6 @@ import java.util.List;
 
 public class Intro_Activity extends FancyWalkthroughActivity {
 
-    ActivityIntroBinding binding;
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        binding = ActivityIntroBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
-//    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

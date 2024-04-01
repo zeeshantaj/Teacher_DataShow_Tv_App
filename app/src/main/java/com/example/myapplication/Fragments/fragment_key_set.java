@@ -102,7 +102,7 @@ public class fragment_key_set extends Fragment {
                     value.put("EnteredKey",key);
 
                     insertReference.setValue(value).addOnCompleteListener(task -> {
-                        binding.setKeyBtn.setText(key);
+                        binding.showKey.setText(key);
                         Toast.makeText(getActivity(), "key set successfully", Toast.LENGTH_SHORT).show();
                     }).addOnFailureListener(e -> {
                         Toast.makeText(getActivity(), "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
