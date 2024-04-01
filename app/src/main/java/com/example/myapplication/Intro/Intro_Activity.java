@@ -1,17 +1,11 @@
 package com.example.myapplication.Intro;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapplication.Activity.MainActivity2;
 import com.example.myapplication.R;
-import com.example.myapplication.databinding.ActivityIntroBinding;
 import com.shashank.sony.fancywalkthroughlib.FancyWalkthroughActivity;
 import com.shashank.sony.fancywalkthroughlib.FancyWalkthroughCard;
 
@@ -61,10 +55,20 @@ public class Intro_Activity extends FancyWalkthroughActivity {
         setInactiveIndicatorColor(R.color.grey);
         setActiveIndicatorColor(R.color.color4);
         setOnboardPages(pages);
+
+
+        oneTimeView();
+    }
+    private void oneTimeView(){
+        SharedPreferences sharedPreferences = getSharedPreferences("introShared",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isIntro",true);
+        editor.apply();
     }
 
     @Override
     public void onFinishButtonPressed() {
         startActivity(new Intent(this, MainActivity2.class));
+        finish();
     }
 }

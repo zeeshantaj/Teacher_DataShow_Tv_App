@@ -22,4 +22,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="description">Description:</string>
     <string name="due_date">Due Date:</string>
+    <string name="inspiring_tech_solution_for_a_brighten_future">Inspiring Tech Solution for a brighten Future</string>
+    <string name="class_connect">Class \nConnect</string>
 </resources>

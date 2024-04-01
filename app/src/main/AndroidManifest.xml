@@ -21,13 +21,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".Intro.Intro_Activity"
+            android:name=".Intro.Splash_Screen"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Intro.Intro_Activity"
+            android:exported="true">
 
         </activity>
         <activity
