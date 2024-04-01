@@ -23,6 +23,7 @@ public class Splash_Screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        getSupportActionBar().hide();
         setContentView(R.layout.splash_screen);
 
         new Handler().postDelayed(new Runnable() {
