@@ -174,13 +174,13 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
                         long sec = (millisUntilFinished / 1000) % 60;
                         remaining.setText(f.format(hr) + ":" + f.format(min) + ":" + f.format(sec));
 
-//                            if (millisUntilFinished<20000){
-//                                remaining.setTextColor(Color.RED);
-//                                blinkAnimation(itemView);
-//                            }
-//                            else {
-//                                itemView.clearAnimation();
-//                            }
+                            if (millisUntilFinished<60000){
+                                remaining.setTextColor(Color.RED);
+                                blinkAnimation(itemView);
+                            }
+                            else {
+                                itemView.clearAnimation();
+                            }
                     }
 
                     @Override

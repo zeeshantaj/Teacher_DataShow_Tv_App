@@ -109,7 +109,7 @@ public class HomeFragment extends Fragment {
                 Log.e("Firebase", "Error: " + error.getMessage());
             }
         });
-
+        binding.classDataVP.setAdapter(classDataAdapter);
         setViewPagerProperties(binding.classDataVP, classScrollTime, classSliderHandler, classDataSlider);
 //        binding.classDataVP.setAdapter(classDataAdapter);
 //        binding.classDataVP.setClipToPadding(false);
@@ -170,31 +170,32 @@ public class HomeFragment extends Fragment {
                 Log.e("Firebase", "Error: " + error.getMessage());
             }
         });
-      //  setViewPagerProperties(binding.announceDataVP,announceScrollTime,announceSlideHandler,announceDataSlider);
         binding.announceDataVP.setAdapter(announcementAdapter);
-        binding.announceDataVP.setClipToPadding(false);
-        binding.announceDataVP.setClipChildren(false);
-        binding.announceDataVP.setOffscreenPageLimit(3);
-        binding.announceDataVP.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
-        binding.announceDataVP.setPageTransformer(new ViewPager2.PageTransformer() {
-            @Override
-            public void transformPage(@NonNull View page, float position) {
-                float r = 1 - Math.abs(position);
-                page.setScaleY(0.85f + r * 0.15f);
-            }
-        });
+        setViewPagerProperties(binding.announceDataVP,announceScrollTime,announceSlideHandler,announceDataSlider);
 
-        binding.announceDataVP.setPageTransformer(compositePageTransformer);
-        binding.announceDataVP.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                announceSlideHandler.removeCallbacks(announceDataSlider);
-                announceSlideHandler.postDelayed(announceDataSlider, announceScrollTime);
-            }
-        });
+//        binding.announceDataVP.setClipToPadding(false);
+//        binding.announceDataVP.setClipChildren(false);
+//        binding.announceDataVP.setOffscreenPageLimit(3);
+//        binding.announceDataVP.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+//        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+//        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+//        binding.announceDataVP.setPageTransformer(new ViewPager2.PageTransformer() {
+//            @Override
+//            public void transformPage(@NonNull View page, float position) {
+//                float r = 1 - Math.abs(position);
+//                page.setScaleY(0.85f + r * 0.15f);
+//            }
+//        });
+//
+//        binding.announceDataVP.setPageTransformer(compositePageTransformer);
+//        binding.announceDataVP.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+//            @Override
+//            public void onPageSelected(int position) {
+//                super.onPageSelected(position);
+//                announceSlideHandler.removeCallbacks(announceDataSlider);
+//                announceSlideHandler.postDelayed(announceDataSlider, announceScrollTime);
+//            }
+//        });
     }
 
     private void showNoDataImageView() {
@@ -209,7 +210,7 @@ public class HomeFragment extends Fragment {
 
     private void setViewPagerProperties(ViewPager2 viewPager2, int time, Handler handler, Runnable runnable) {
 
-        viewPager2.setAdapter(classDataAdapter);
+
         viewPager2.setClipToPadding(false);
         viewPager2.setClipChildren(false);
         viewPager2.setOffscreenPageLimit(5);
