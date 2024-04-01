@@ -89,7 +89,7 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
         private String givenMinutes, givenCurrentTime;
         private CountDownTimer countTime;
         private long differenceInMilliSeconds, timeRemainingInMillis;
-        private ProgressBar progressBar;
+
 
         public TeacherDataViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -102,7 +102,6 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
             upload = itemView.findViewById(R.id.startedTxt);
             remaining = itemView.findViewById(R.id.counterTxt);
             cardView = itemView.findViewById(R.id.card_item);
-            progressBar = itemView.findViewById(R.id.progressBarCircle);
         }
 
         public void bind(DataModel teacherData) {
@@ -163,9 +162,9 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
                     @Override
                     public void onTick(long millisUntilFinished) {
 
-                            long elapsedTime = differenceInMilliSeconds - millisUntilFinished;
-                            int progress = (int) (elapsedTime * 100 / differenceInMilliSeconds);
-                            progressBar.setProgress(100 - progress);
+//                            long elapsedTime = differenceInMilliSeconds - millisUntilFinished;
+//                            int progress = (int) (elapsedTime * 100 / differenceInMilliSeconds);
+//                            progressBar.setProgress(100 - progress);
 //
 //
                         NumberFormat f = new DecimalFormat("00");
@@ -185,7 +184,7 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
 
                     @Override
                     public void onFinish() {
-                        progressBar.setProgress(0);
+                   //     progressBar.setProgress(0);
 
 //                        remaining.setText("Class Ended");
 //                        itemView.clearAnimation();

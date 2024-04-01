@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
-    android:padding="20dp">
+    android:layout_margin="15dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_item"
@@ -22,7 +22,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="8dp"
             android:orientation="vertical">
 
@@ -216,7 +216,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_mono_medium"
-                    android:text="Time:"
+                    android:text="Started At:"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:textStyle="bold"
@@ -244,42 +244,14 @@
                     app:layout_constraintTop_toTopOf="@+id/txt" />
 
             </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/counterTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
-                <ProgressBar
-                    android:id="@+id/progressBarCircle"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_centerInParent="true"
-                    android:indeterminate="false"
-                    android:max="100"
-                    android:padding="4dp"
-                    android:progress="100"
-                    android:progressDrawable="@drawable/circle_yellow"
-                    android:rotation="-90"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/counterTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/progressBarCircle"
-                    app:layout_constraintEnd_toEndOf="@+id/progressBarCircle"
-                    app:layout_constraintStart_toStartOf="@+id/progressBarCircle"
-                    app:layout_constraintTop_toTopOf="@+id/progressBarCircle" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
