@@ -11,6 +11,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.Fragments.AnnounceScrollFragment;
 import com.example.myapplication.Fragments.ClassScrollFragment;
@@ -61,15 +62,9 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
 
         changeFragment(new HomeFragment());
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
-                //Toast.makeText(getActivity(), " successful ", Toast.LENGTH_SHORT).show();
-            }
+        MobileAds.initialize(this, initializationStatus -> {
+            Toast.makeText(this, " successful ", Toast.LENGTH_SHORT).show();
         });
-//        adView = view.findViewById(R.id.adView);
-
-        //adView.setAdUnitId("ca-app-pub-4144305165966580/3630690721");
         AdRequest adRequest = new AdRequest.Builder().build();
 
         adView.loadAd(adRequest);
