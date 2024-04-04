@@ -1,5 +1,6 @@
 package com.example.myapplication.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -16,6 +17,11 @@ import com.example.myapplication.Fragments.ClassScrollFragment;
 import com.example.myapplication.Fragments.HomeFragment;
 import com.example.myapplication.Fragments.fragment_key_set;
 import com.example.myapplication.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class MainActivity2 extends FragmentActivity implements View.OnKeyListener {
 
@@ -35,6 +41,7 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        AdView adView = findViewById(R.id.adView);
         navHome = findViewById(R.id.navHome);
         navKey = findViewById(R.id.navKey);
         navClassScroll = findViewById(R.id.navClassScroll);
@@ -53,6 +60,20 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         navAnnounceScroll.setOnKeyListener(this);
 
         changeFragment(new HomeFragment());
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+                //Toast.makeText(getActivity(), " successful ", Toast.LENGTH_SHORT).show();
+            }
+        });
+//        adView = view.findViewById(R.id.adView);
+
+        //adView.setAdUnitId("ca-app-pub-4144305165966580/3630690721");
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        adView.loadAd(adRequest);
+
     }
 
     private void changeFragment(Fragment fragment) {
