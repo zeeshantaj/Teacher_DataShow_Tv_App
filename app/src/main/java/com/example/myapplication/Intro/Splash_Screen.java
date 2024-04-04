@@ -13,7 +13,7 @@ import com.example.myapplication.R;
 
 public class Splash_Screen extends AppCompatActivity  {
 
-    private static final int SPLASH_DELAY = 3000;
+    private static final int SPLASH_DELAY = 2000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

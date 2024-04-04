@@ -2,6 +2,7 @@ package com.example.myapplication.Fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -25,6 +26,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.myapplication.Adapter.AnnouncementAdapter;
 import com.example.myapplication.Adapter.TeacherDataRecyclerAdapter;
+import com.example.myapplication.Background.LoadDataInBackground;
 import com.example.myapplication.Model.AnnouncementModel;
 import com.example.myapplication.Model.DataModel;
 import com.example.myapplication.R;
@@ -82,44 +84,45 @@ public class HomeFragment extends Fragment {
     }
 
 
-
     private void getClassData() {
-        keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String dbKey = snapshot.child("EnteredKey").getValue(String.class);
-                if (dbKey != null) {
-                    // Initialize ViewModel and observe data changes
-                    if (getActivity() != null) {
-
-                        TeacherDataViewModel viewModel = new ViewModelProvider(getActivity()).get(TeacherDataViewModel.class);
-                        viewModel.getTeacherDataList(dbKey).observe(getActivity(), new Observer<List<DataModel>>() {
-                            @Override
-                            public void onChanged(List<DataModel> newDataList) {
-                                if (!newDataList.isEmpty()) {
-                                    isClassDataAvailable = true;
-                                    binding.classDataVP.setVisibility(View.VISIBLE);
-                                } else {
-                                    isClassDataAvailable = false;
-                                    binding.classDataVP.setVisibility(View.GONE);
-                                }
-                                classDataAdapter.setData(newDataList);
-                                showNoDataImageView();
-                            }
-
-                        });
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(), "Error "+error.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("Firebase", "Error: " + error.getMessage());
-            }
-        });
-        binding.classDataVP.setAdapter(classDataAdapter);
-        setViewPagerProperties(binding.classDataVP, classScrollTime, classSliderHandler, classDataSlider);
+//        keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                String dbKey = snapshot.child("EnteredKey").getValue(String.class);
+//                if (dbKey != null) {
+//                    // Initialize ViewModel and observe data changes
+//                    if (getActivity() != null) {
+//
+//                        TeacherDataViewModel viewModel = new ViewModelProvider(getActivity()).get(TeacherDataViewModel.class);
+//                        viewModel.getTeacherDataList(dbKey).observe(getActivity(), new Observer<List<DataModel>>() {
+//                            @Override
+//                            public void onChanged(List<DataModel> newDataList) {
+//                                if (!newDataList.isEmpty()) {
+//                                    isClassDataAvailable = true;
+//                                    binding.classDataVP.setVisibility(View.VISIBLE);
+//                                } else {
+//                                    isClassDataAvailable = false;
+//                                    binding.classDataVP.setVisibility(View.GONE);
+//                                }
+//                                classDataAdapter.setData(newDataList);
+//                                showNoDataImageView();
+//                            }
+//
+//                        });
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(getActivity(), "Error "+error.getMessage(), Toast.LENGTH_SHORT).show();
+//                Log.e("Firebase", "Error: " + error.getMessage());
+//            }
+//        });
+//        binding.classDataVP.setAdapter(classDataAdapter);
+//        setViewPagerProperties(binding.classDataVP, classScrollTime, classSliderHandler, classDataSlider);
+        TeacherDataViewModel viewModel = new ViewModelProvider(getActivity()).get(TeacherDataViewModel.class);
+        new LoadDataInBackground(this,keyReference,viewModel,isClassDataAvailable,classDataAdapter,binding.classDataVP,classScrollTime,classSliderHandler,classDataSlider);
     }
 
     private void getAnnouncementData() {
