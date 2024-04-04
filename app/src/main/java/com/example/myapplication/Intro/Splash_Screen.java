@@ -4,19 +4,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapplication.Activity.MainActivity2;
 import com.example.myapplication.R;
 
-public class Splash_Screen extends AppCompatActivity {
+public class Splash_Screen extends AppCompatActivity  {
 
     private static final int SPLASH_DELAY = 3000;
     @Override

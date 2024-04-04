@@ -26,4 +26,5 @@ public class MethodUtils {
         return colorCode.get(random_color);
     }
 
+
 }

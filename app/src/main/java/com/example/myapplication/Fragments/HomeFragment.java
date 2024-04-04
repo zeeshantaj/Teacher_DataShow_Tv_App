@@ -81,8 +81,6 @@ public class HomeFragment extends Fragment {
         getClassData();
     }
 
-
-
     private void getClassData() {
         keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -121,7 +119,6 @@ public class HomeFragment extends Fragment {
         binding.classDataVP.setAdapter(classDataAdapter);
         setViewPagerProperties(binding.classDataVP, classScrollTime, classSliderHandler, classDataSlider);
     }
-
 
     private void getAnnouncementData() {
         keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
