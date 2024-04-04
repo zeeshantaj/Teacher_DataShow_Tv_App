@@ -9,6 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -23,8 +27,10 @@ import com.example.myapplication.Adapter.AnnouncementAdapter;
 import com.example.myapplication.Adapter.TeacherDataRecyclerAdapter;
 import com.example.myapplication.Model.AnnouncementModel;
 import com.example.myapplication.Model.DataModel;
+import com.example.myapplication.R;
 import com.example.myapplication.ViewModel.TeacherDataViewModel;
 import com.example.myapplication.databinding.HomeFragmentBinding;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -75,6 +81,8 @@ public class HomeFragment extends Fragment {
         getClassData();
     }
 
+
+
     private void getClassData() {
         keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -106,38 +114,14 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(), "Error "+error.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("Firebase", "Error: " + error.getMessage());
             }
         });
         binding.classDataVP.setAdapter(classDataAdapter);
         setViewPagerProperties(binding.classDataVP, classScrollTime, classSliderHandler, classDataSlider);
-//        binding.classDataVP.setAdapter(classDataAdapter);
-//        binding.classDataVP.setClipToPadding(false);
-//        binding.classDataVP.setClipChildren(false);
-//        binding.classDataVP.setOffscreenPageLimit(5);
-//        binding.classDataVP.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-//
-//
-//        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-//        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
-//        binding.classDataVP.setPageTransformer(new ViewPager2.PageTransformer() {
-//            @Override
-//            public void transformPage(@NonNull View page, float position) {
-//                float r = 1 - Math.abs(position);
-//                page.setScaleY(0.85f + r * 0.15f);
-//            }
-//        });
-//
-//        binding.classDataVP.setPageTransformer(compositePageTransformer);
-//        binding.classDataVP.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-//            @Override
-//            public void onPageSelected(int position) {
-//                super.onPageSelected(position);
-//                classSliderHandler.removeCallbacks(classDataSlider);
-//                classSliderHandler.postDelayed(classDataSlider, classScrollTime);
-//            }
-//        });
     }
+
 
     private void getAnnouncementData() {
         keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -167,35 +151,12 @@ public class HomeFragment extends Fragment {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(), "Error "+error.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("Firebase", "Error: " + error.getMessage());
             }
         });
         binding.announceDataVP.setAdapter(announcementAdapter);
         setViewPagerProperties(binding.announceDataVP,announceScrollTime,announceSlideHandler,announceDataSlider);
-
-//        binding.announceDataVP.setClipToPadding(false);
-//        binding.announceDataVP.setClipChildren(false);
-//        binding.announceDataVP.setOffscreenPageLimit(3);
-//        binding.announceDataVP.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-//        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-//        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
-//        binding.announceDataVP.setPageTransformer(new ViewPager2.PageTransformer() {
-//            @Override
-//            public void transformPage(@NonNull View page, float position) {
-//                float r = 1 - Math.abs(position);
-//                page.setScaleY(0.85f + r * 0.15f);
-//            }
-//        });
-//
-//        binding.announceDataVP.setPageTransformer(compositePageTransformer);
-//        binding.announceDataVP.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-//            @Override
-//            public void onPageSelected(int position) {
-//                super.onPageSelected(position);
-//                announceSlideHandler.removeCallbacks(announceDataSlider);
-//                announceSlideHandler.postDelayed(announceDataSlider, announceScrollTime);
-//            }
-//        });
     }
 
     private void showNoDataImageView() {

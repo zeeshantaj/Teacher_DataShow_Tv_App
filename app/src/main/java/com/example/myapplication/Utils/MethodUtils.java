@@ -1,6 +1,9 @@
 package com.example.myapplication.Utils;
 
+import android.view.View;
+
 import com.example.myapplication.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,4 +25,5 @@ public class MethodUtils {
 
         return colorCode.get(random_color);
     }
+
 }
