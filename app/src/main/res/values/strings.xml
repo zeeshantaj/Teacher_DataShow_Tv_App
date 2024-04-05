@@ -3,7 +3,7 @@
     <!--    <string name="app_name">My Application</string>-->
     <string name="title_activity_main">Leanback MainActivity</string>
 
-    <string name="admob_banner_id">ca-app-pub-4144305165966580/3630690721</string>    <!-- Error messages -->
+    <string name="admob_banner_id">ca-app-pub-3940256099942544/9214589741</string>    <!-- Error messages -->
     <string name="error_fragment_message">An error occurred</string>
     <string name="dismiss_error">Dismiss</string>
     <!-- TODO: Remove or change this placeholder text -->

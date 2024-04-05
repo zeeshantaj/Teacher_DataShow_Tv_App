@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.leanback.widget.BrowseFrameLayout;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,10 @@ import com.example.myapplication.Fragments.ClassScrollFragment;
 import com.example.myapplication.Fragments.HomeFragment;
 import com.example.myapplication.Fragments.fragment_key_set;
 import com.example.myapplication.R;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -62,12 +65,32 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
 
         changeFragment(new HomeFragment());
 
-        MobileAds.initialize(this, initializationStatus -> {
-            Toast.makeText(this, " successful ", Toast.LENGTH_SHORT).show();
-        });
-        AdRequest adRequest = new AdRequest.Builder().build();
-
-        adView.loadAd(adRequest);
+//        MobileAds.initialize(this, initializationStatus -> {
+//            Toast.makeText(this, " successful ", Toast.LENGTH_SHORT).show();
+//        });
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        adView.loadAd(adRequest);
+//        adView.setAdListener(new AdListener() {
+//            @Override
+//            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+//                super.onAdFailedToLoad(loadAdError);
+//                Log.e("MyApp","failedToLoad");
+//            }
+//
+//
+//            @Override
+//            public void onAdLoaded() {
+//                super.onAdLoaded();
+//
+//                Log.e("MyApp","AddLoaded");
+//            }
+//
+//            @Override
+//            public void onAdOpened() {
+//                super.onAdOpened();
+//                Log.e("MyApp","addOpened");
+//            }
+//        });
 
     }
 
