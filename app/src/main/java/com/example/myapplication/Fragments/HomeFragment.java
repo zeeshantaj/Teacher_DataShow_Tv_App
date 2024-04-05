@@ -2,7 +2,6 @@ package com.example.myapplication.Fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -10,8 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,13 +23,10 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.myapplication.Adapter.AnnouncementAdapter;
 import com.example.myapplication.Adapter.TeacherDataRecyclerAdapter;
-import com.example.myapplication.Background.LoadDataInBackground;
 import com.example.myapplication.Model.AnnouncementModel;
 import com.example.myapplication.Model.DataModel;
-import com.example.myapplication.R;
 import com.example.myapplication.ViewModel.TeacherDataViewModel;
 import com.example.myapplication.databinding.HomeFragmentBinding;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -65,7 +59,11 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("classScrollTimeShared", Context.MODE_PRIVATE);
         classScrollTime = sharedPreferences.getInt("classScrollTime", 5);
         classScrollTime *= 1000;
@@ -83,46 +81,47 @@ public class HomeFragment extends Fragment {
         getClassData();
     }
 
-
     private void getClassData() {
-//        keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                String dbKey = snapshot.child("EnteredKey").getValue(String.class);
-//                if (dbKey != null) {
-//                    // Initialize ViewModel and observe data changes
-//                    if (getActivity() != null) {
-//
-//                        TeacherDataViewModel viewModel = new ViewModelProvider(getActivity()).get(TeacherDataViewModel.class);
-//                        viewModel.getTeacherDataList(dbKey).observe(getActivity(), new Observer<List<DataModel>>() {
-//                            @Override
-//                            public void onChanged(List<DataModel> newDataList) {
-//                                if (!newDataList.isEmpty()) {
-//                                    isClassDataAvailable = true;
-//                                    binding.classDataVP.setVisibility(View.VISIBLE);
-//                                } else {
-//                                    isClassDataAvailable = false;
-//                                    binding.classDataVP.setVisibility(View.GONE);
-//                                }
-//                                classDataAdapter.setData(newDataList);
-//                                showNoDataImageView();
-//                            }
-//
-//                        });
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Toast.makeText(getActivity(), "Error "+error.getMessage(), Toast.LENGTH_SHORT).show();
-//                Log.e("Firebase", "Error: " + error.getMessage());
-//            }
-//        });
-//        binding.classDataVP.setAdapter(classDataAdapter);
-//        setViewPagerProperties(binding.classDataVP, classScrollTime, classSliderHandler, classDataSlider);
-        TeacherDataViewModel viewModel = new ViewModelProvider(getActivity()).get(TeacherDataViewModel.class);
-        new LoadDataInBackground(this,keyReference,viewModel,isClassDataAvailable,classDataAdapter,binding.classDataVP,classScrollTime,classSliderHandler,classDataSlider);
+        keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String dbKey = snapshot.child("EnteredKey").getValue(String.class);
+                if (dbKey != null) {
+                    // Initialize ViewModel and observe data changes
+                    if (getActivity() != null) {
+
+                        TeacherDataViewModel viewModel = new ViewModelProvider(getActivity()).get(TeacherDataViewModel.class);
+                        viewModel.getTeacherDataList(dbKey).observe(getActivity(), new Observer<List<DataModel>>() {
+                            @Override
+                            public void onChanged(List<DataModel> newDataList) {
+                                if (!newDataList.isEmpty()) {
+                                    isClassDataAvailable = true;
+                                    binding.classDataVP.setVisibility(View.VISIBLE);
+                                } else {
+                                    isClassDataAvailable = false;
+                                    binding.classDataVP.setVisibility(View.GONE);
+                                }
+                                classDataAdapter.setData(newDataList);
+                                showNoDataImageView();
+                            }
+
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(), "Error "+error.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("Firebase", "Error: " + error.getMessage());
+            }
+        });
+        binding.classDataVP.setAdapter(classDataAdapter);
+        setViewPagerProperties(binding.classDataVP, classScrollTime, classSliderHandler, classDataSlider);
+
+
+//        TeacherDataViewModel viewModel = new ViewModelProvider(getActivity()).get(TeacherDataViewModel.class);
+//        new LoadDataInBackground(this,keyReference,viewModel,isClassDataAvailable,classDataAdapter,binding.classDataVP,classScrollTime,classSliderHandler,classDataSlider);
     }
 
     private void getAnnouncementData() {
@@ -217,7 +216,7 @@ public class HomeFragment extends Fragment {
             classSliderHandler.postDelayed(this, classScrollTime);
         }
     };
-    private Runnable announceDataSlider = new Runnable() {
+   private Runnable announceDataSlider = new Runnable() {
         @Override
         public void run() {
 //            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
@@ -233,4 +232,5 @@ public class HomeFragment extends Fragment {
             announceSlideHandler.postDelayed(this, announceScrollTime);
         }
     };
+
 }

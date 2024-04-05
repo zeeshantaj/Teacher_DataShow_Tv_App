@@ -21,6 +21,12 @@ public class Splash_Screen extends AppCompatActivity  {
         getSupportActionBar().hide();
         setContentView(R.layout.splash_screen);
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -29,7 +35,7 @@ public class Splash_Screen extends AppCompatActivity  {
                 boolean isTrue = sharedPreferences.getBoolean("isIntro",false);
                 Intent intent;
                 if (isTrue){
-                     intent = new Intent(Splash_Screen.this, MainActivity2.class);
+                    intent = new Intent(Splash_Screen.this, MainActivity2.class);
 
                 }
                 else {
@@ -39,7 +45,5 @@ public class Splash_Screen extends AppCompatActivity  {
                 finish();
             }
         },SPLASH_DELAY);
-
-
     }
 }
