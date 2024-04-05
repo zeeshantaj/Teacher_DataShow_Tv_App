@@ -45,7 +45,6 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        AdView adView = findViewById(R.id.adView);
         navHome = findViewById(R.id.navHome);
         navKey = findViewById(R.id.navKey);
         navClassScroll = findViewById(R.id.navClassScroll);
@@ -64,7 +63,7 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         navAnnounceScroll.setOnKeyListener(this);
 
         changeFragment(new HomeFragment());
-
+//        AdView adView = findViewById(R.id.adView);
 //        MobileAds.initialize(this, initializationStatus -> {
 //            Toast.makeText(this, " successful ", Toast.LENGTH_SHORT).show();
 //        });

@@ -33,6 +33,12 @@ public class AnnounceScrollFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        SharedPreferences sharedPreferences1 = getActivity().getSharedPreferences("announceScrollTimeShared", Context.MODE_PRIVATE);
+        count = sharedPreferences1.getInt("announceScrollTime", 5);
+        binding.secTxt.setText(String.valueOf(count));
+
+
         binding.increaseBtn.setOnClickListener(v -> {
             if (count == 60){
                 Toast.makeText(getActivity(), "Seconds can not be greater than 60", Toast.LENGTH_SHORT).show();
