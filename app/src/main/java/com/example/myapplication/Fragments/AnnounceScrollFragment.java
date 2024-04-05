@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.Utils.MethodUtils;
 import com.example.myapplication.databinding.ScrollTimeLayoutBinding;
 
 public class AnnounceScrollFragment extends Fragment {
@@ -59,11 +60,11 @@ public class AnnounceScrollFragment extends Fragment {
             Toast.makeText(getActivity(), "Time Set "+binding.secTxt.getText().toString(), Toast.LENGTH_SHORT).show();
 
             int time = Integer.parseInt(binding.secTxt.getText().toString());
-
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("announceScrollTimeShared", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt("announceScrollTime",time);
-            editor.apply();
+            MethodUtils.createSharedPreference(getActivity(),"announceScrollTimeShared","announceScrollTime",time);
+//            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("announceScrollTimeShared", Context.MODE_PRIVATE);
+//            SharedPreferences.Editor editor = sharedPreferences.edit();
+//            editor.putInt("announceScrollTime",time);
+//            editor.apply();
         });
     }
 }

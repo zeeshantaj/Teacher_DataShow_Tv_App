@@ -1,5 +1,7 @@
 package com.example.myapplication.Utils;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.View;
 
 import com.example.myapplication.R;
@@ -26,5 +28,11 @@ public class MethodUtils {
         return colorCode.get(random_color);
     }
 
+    public static void createSharedPreference(Context context,String sharedName,String editorName,int time){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(sharedName, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(editorName,time);
+        editor.apply();
+    }
 
 }

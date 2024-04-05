@@ -1,5 +1,7 @@
 package com.example.myapplication.Adapter;
 
+import static com.example.myapplication.Utils.MethodUtils.getRadonColor;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -73,6 +76,10 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
             binding.itemDueDate.setText(model.getDue_date());
 
             compareDate(model.getDue_date(),binding.dayCountTxt);
+
+            int color_code = getRadonColor();
+            int color = ContextCompat.getColor(holder.itemView.getContext(), color_code);
+            binding.card.setCardBackgroundColor(color);
 
         } else {
             // Set data for image layout
