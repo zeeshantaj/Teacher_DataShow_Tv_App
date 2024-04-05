@@ -55,8 +55,6 @@ public class Intro_Activity extends FancyWalkthroughActivity {
         setInactiveIndicatorColor(R.color.grey);
         setActiveIndicatorColor(R.color.color4);
         setOnboardPages(pages);
-
-
         oneTimeView();
     }
     private void oneTimeView(){
