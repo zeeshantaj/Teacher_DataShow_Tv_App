@@ -36,9 +36,6 @@ public class fragment_key_set extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentKeyKeySetBinding.inflate(inflater,container,false);
-
-
-
         return binding.getRoot();
     }
 

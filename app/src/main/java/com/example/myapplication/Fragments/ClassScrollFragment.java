@@ -30,6 +30,12 @@ public class ClassScrollFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         SharedPreferences sharedPreferences1 = getActivity().getSharedPreferences("classScrollTimeShared", Context.MODE_PRIVATE);
         count = sharedPreferences1.getInt("classScrollTime", 5);
         binding.secTxt.setText(String.valueOf(count));
@@ -56,11 +62,6 @@ public class ClassScrollFragment extends Fragment {
             int time = Integer.parseInt(binding.secTxt.getText().toString());
 
             MethodUtils.createSharedPreference(getActivity(),"classScrollTimeShared","classScrollTime",time);
-//            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("classScrollTimeShared", Context.MODE_PRIVATE);
-//            SharedPreferences.Editor editor = sharedPreferences.edit();
-//            editor.putInt("classScrollTime",time);
-//            editor.apply();
-
         });
     }
 }
