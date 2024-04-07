@@ -6,7 +6,14 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.leanback.widget.BrowseFrameLayout;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -14,6 +21,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.Connectivity_Check.InternetAccessCallBack;
+import com.example.myapplication.Connectivity_Check.InternetAccessTask;
+import com.example.myapplication.Connectivity_Check.NetworkUtils;
 import com.example.myapplication.Fragments.AnnounceScrollFragment;
 import com.example.myapplication.Fragments.ClassScrollFragment;
 import com.example.myapplication.Fragments.HomeFragment;
@@ -91,8 +101,80 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
 //            }
 //        });
 
+        CheckForInternetConnection();
     }
+    private void CheckForInternetConnection(){
+//        if (NetworkUtils.isNetworkAvailable(this)){
+//            Toast.makeText(this, "connected", Toast.LENGTH_SHORT).show();
+//            NetworkUtils.hasInternetAccess(new InternetAccessCallBack() {
+//                @Override
+//                public void onInternetAccessResult(boolean hasInternetAccess) {
+//                    if (hasInternetAccess){
+//                        Toast.makeText(MainActivity2.this, "You Are Online", Toast.LENGTH_SHORT).show();
+//
+//                    }else {
+//                        // no service
+//                        Toast.makeText(MainActivity2.this, "no internet service", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
+//        }else {
+//            // no internet connected
+//            Toast.makeText(MainActivity2.this, "internet is turned off  ", Toast.LENGTH_SHORT).show();
+//        }
 
+//        ConnectivityManager cm = (ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);
+//        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+//        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+//        if (isConnected) {
+//            // do something
+//            Toast.makeText(MainActivity2.this, "Connected ", Toast.LENGTH_SHORT).show();
+//        } else {
+//            // show an error message or do something else
+//            Toast.makeText(MainActivity2.this, "not connected", Toast.LENGTH_SHORT).show();
+//        }
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+                // Device's internet is turned on
+                Toast.makeText(MainActivity2.this, "Device's internet is turned on", Toast.LENGTH_SHORT).show();
+                NetworkUtils.hasInternetAccess(new InternetAccessCallBack() {
+                    @Override
+                    public void onInternetAccessResult(boolean hasInternetAccess) {
+                        if (hasInternetAccess){
+                            Toast.makeText(MainActivity2.this, "service available", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(MainActivity2.this, "service not available", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            } else {
+                // Device's internet is turned off
+                Toast.makeText(MainActivity2.this, "Device's internet is turned off", Toast.LENGTH_SHORT).show();
+
+                // Show dialog to prompt user to turn on internet
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+                builder.setMessage("Internet is turned off. Do you want to turn it on?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        } else {
+            // Error checking internet connection
+            Toast.makeText(MainActivity2.this, "Error checking internet connection", Toast.LENGTH_SHORT).show();
+        }
+    }
     private void changeFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frameContainer, fragment);
