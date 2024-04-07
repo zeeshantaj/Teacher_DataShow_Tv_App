@@ -25,6 +25,7 @@ import com.example.myapplication.Adapter.AnnouncementAdapter;
 import com.example.myapplication.Adapter.TeacherDataRecyclerAdapter;
 import com.example.myapplication.Model.AnnouncementModel;
 import com.example.myapplication.Model.DataModel;
+import com.example.myapplication.Utils.MethodUtils;
 import com.example.myapplication.ViewModel.TeacherDataViewModel;
 import com.example.myapplication.databinding.HomeFragmentBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -74,7 +75,8 @@ public class HomeFragment extends Fragment {
 
         classDataAdapter = new TeacherDataRecyclerAdapter(new ArrayList<>());
         announcementAdapter = new AnnouncementAdapter(new ArrayList<>(), getActivity());
-        String androidId = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
+        //String androidId = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
+        String androidId = MethodUtils.getSystemUid(getActivity());
         keyReference = FirebaseDatabase.getInstance().getReference("Tv_keys").child(androidId);
 
         getAnnouncementData();

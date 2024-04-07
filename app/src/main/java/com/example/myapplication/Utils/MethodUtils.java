@@ -2,6 +2,7 @@ package com.example.myapplication.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.provider.Settings;
 import android.view.View;
 
 import com.example.myapplication.R;
@@ -33,6 +34,10 @@ public class MethodUtils {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(editorName,time);
         editor.apply();
+    }
+    public static String getSystemUid(Context context){
+        String androidId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        return androidId;
     }
 
 }
