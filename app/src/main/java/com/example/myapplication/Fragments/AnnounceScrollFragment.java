@@ -61,10 +61,7 @@ public class AnnounceScrollFragment extends Fragment {
 
             int time = Integer.parseInt(binding.secTxt.getText().toString());
             MethodUtils.createSharedPreference(getActivity(),"announceScrollTimeShared","announceScrollTime",time);
-//            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("announceScrollTimeShared", Context.MODE_PRIVATE);
-//            SharedPreferences.Editor editor = sharedPreferences.edit();
-//            editor.putInt("announceScrollTime",time);
-//            editor.apply();
+
         });
     }
 }

@@ -36,8 +36,7 @@ public class MethodUtils {
         editor.apply();
     }
     public static String getSystemUid(Context context){
-        String androidId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
-        return androidId;
+        return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
 }

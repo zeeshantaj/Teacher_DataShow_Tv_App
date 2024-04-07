@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.myapplication.Utils.MethodUtils;
 import com.example.myapplication.databinding.FragmentKeyKeySetBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,8 +29,7 @@ public class fragment_key_set extends Fragment {
     }
 
     private DatabaseReference queryReference, insertReference;
-    private String androidId,databaseKey, uploadedKey;
-
+    private String databaseKey,uploadedKey;
     private FragmentKeyKeySetBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,7 +47,7 @@ public class fragment_key_set extends Fragment {
 
 
     private void setKey(){
-        androidId = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
+        String androidId = MethodUtils.getSystemUid(getActivity());
         insertReference = FirebaseDatabase.getInstance().getReference("Tv_keys").child(androidId);
         queryReference = FirebaseDatabase.getInstance().getReference("Tv_keys");
         queryReference.addValueEventListener(new ValueEventListener() {
@@ -57,15 +57,13 @@ public class fragment_key_set extends Fragment {
                 if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         databaseKey = dataSnapshot.child("EnteredKey").getValue(String.class);
-//
-                        Log.d("databaseKey", databaseKey);
                     }
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getActivity(), "Error "+ error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -79,6 +77,7 @@ public class fragment_key_set extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.e("error firebase",error.getMessage());
+                Toast.makeText(getActivity(), "Error "+error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
