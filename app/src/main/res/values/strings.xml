@@ -12,4 +12,9 @@
     <string name="due_date">Due Date:</string>
     <string name="inspiring_tech_solution_for_a_brighten_future">Inspiring Tech Solution for a brighten Future</string>
     <string name="class_connect">Class \nConnect</string>
+    <string name="teacher">Teacher:</string>
+    <string name="major">Major:</string>
+    <string name="place">Place:</string>
+    <string name="topic">Topic:</string>
+    <string name="started_at">Started At:</string>
 </resources>
