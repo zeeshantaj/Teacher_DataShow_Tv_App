@@ -54,11 +54,6 @@ public class MethodUtils {
                 NetworkUtils.hasInternetAccess(hasInternetAccess -> {
                     if (hasInternetAccess){
                         Toast.makeText(context, "Internet has service", Toast.LENGTH_SHORT).show();
-                        Snackbar.make(rootView.findViewById(android.R.id.content), "You Lost Internet Connection!", Snackbar.LENGTH_INDEFINITE)
-                                .setAction("Check Again", view -> {
-                                    // Retry checking internet connectivity
-                                    checkInternet(context,rootView);
-                                }).show();
 
                     }else {
                         Snackbar.make(rootView.findViewById(android.R.id.content), "You Lost Internet Connection!", Snackbar.LENGTH_INDEFINITE)

@@ -5,25 +5,14 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.leanback.widget.BrowseFrameLayout;
 
-import android.app.AlertDialog;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.myapplication.Network.InternetAccessCallBack;
 import com.example.myapplication.Network.NetworkCheckReceiver;
-import com.example.myapplication.Network.NetworkUtils;
 import com.example.myapplication.Fragments.AnnounceScrollFragment;
 import com.example.myapplication.Fragments.ClassScrollFragment;
 import com.example.myapplication.Fragments.HomeFragment;
