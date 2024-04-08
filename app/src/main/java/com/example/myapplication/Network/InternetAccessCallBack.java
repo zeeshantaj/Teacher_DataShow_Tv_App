@@ -1,4 +1,4 @@
-package com.example.myapplication.Connectivity_Check;
+package com.example.myapplication.Network;
 
 public interface InternetAccessCallBack {
     void onInternetAccessResult(boolean hasInternetAccess);

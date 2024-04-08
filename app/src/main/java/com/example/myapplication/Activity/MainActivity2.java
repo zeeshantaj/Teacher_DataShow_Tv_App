@@ -1,6 +1,5 @@
 package com.example.myapplication.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -14,28 +13,19 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.Connectivity_Check.InternetAccessCallBack;
-import com.example.myapplication.Connectivity_Check.InternetAccessTask;
-import com.example.myapplication.Connectivity_Check.NetworkUtils;
+import com.example.myapplication.Network.InternetAccessCallBack;
+import com.example.myapplication.Network.NetworkUtils;
 import com.example.myapplication.Fragments.AnnounceScrollFragment;
 import com.example.myapplication.Fragments.ClassScrollFragment;
 import com.example.myapplication.Fragments.HomeFragment;
 import com.example.myapplication.Fragments.fragment_key_set;
 import com.example.myapplication.R;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class MainActivity2 extends FragmentActivity implements View.OnKeyListener {
 
