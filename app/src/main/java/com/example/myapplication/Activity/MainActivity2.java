@@ -106,7 +106,7 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         if (isTrue){
 
         }
-        showGuide("This is Navigation bar","All the Crucial things that you need for customization are located here", navBar,type);
+        showGuide("This is Navigation bar","All the Crucial things that you need for customization are located here", navHome,type);
     }
     private void putSharedPreference(boolean bool){
         SharedPreferences sharedPreferences = getSharedPreferences("showcaseShared", Context.MODE_PRIVATE);
@@ -124,6 +124,11 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && SIDE_MENU) {
             SIDE_MENU = false;
             closeMenu();
+        }
+        if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT || keyCode == KeyEvent.KEYCODE_DPAD_LEFT
+            ||keyCode == KeyEvent.KEYCODE_DPAD_UP || keyCode == KeyEvent.KEYCODE_DPAD_DOWN){
+
+        //`    showGuide("This is Navigation bar","All the Crucial things that you need for customization are located here", navBar,type);
         }
         return super.onKeyDown(keyCode, event);
     }
