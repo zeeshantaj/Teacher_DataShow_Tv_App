@@ -17,4 +17,5 @@
     <string name="place">Place:</string>
     <string name="topic">Topic:</string>
     <string name="started_at">Started At:</string>
+    <string name="set_auto_scroll_time_here">Set Auto Scroll Time Here</string>
 </resources>

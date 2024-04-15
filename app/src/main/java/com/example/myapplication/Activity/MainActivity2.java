@@ -10,6 +10,7 @@ import androidx.leanback.widget.BrowseFrameLayout;
 
 import android.content.Context;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -28,6 +29,7 @@ import com.example.myapplication.R;
 import smartdevelop.ir.eram.showcaseviewlib.GuideView;
 import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
 import smartdevelop.ir.eram.showcaseviewlib.config.Gravity;
+import smartdevelop.ir.eram.showcaseviewlib.listener.GuideListener;
 
 public class MainActivity2 extends FragmentActivity implements View.OnKeyListener {
 
@@ -99,10 +101,19 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         networkCheckReceiver = new NetworkCheckReceiver();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(networkCheckReceiver,intentFilter);
+        SharedPreferences sharedPreferences1 = getSharedPreferences("showcaseShared", Context.MODE_PRIVATE);
+        boolean isTrue = sharedPreferences1.getBoolean("showcase", true);
+        if (isTrue){
 
-        showGuide();
+        }
+        showGuide("This is Navigation bar","All the Crucial things that you need for customization are located here", navBar,1);
     }
-
+    private void putSharedPreference(boolean bool){
+        SharedPreferences sharedPreferences = getSharedPreferences("showcaseShared", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("showcase",bool);
+        editor.apply();
+    }
     private void changeFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frameContainer, fragment);
@@ -171,24 +182,42 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         int width = getResources().getDisplayMetrics().widthPixels;
         return (width * percent) / 100;
     }
+    private void showGuide(String title,String content,View targetId,int type){
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unregisterReceiver(networkCheckReceiver);
-    }
-    private void showGuide(){
         new GuideView.Builder(this)
-                .setTitle("This is where you can set the app key")
-                .setContentText("You have to set the key here in order to\n receive data from Class Connect Mobile App")
+                .setTitle(title)
+                .setContentText(content)
                 .setGravity(Gravity.auto) //optional
                 .setDismissType(DismissType.anywhere) //optional - default DismissType.targetView
-                .setTargetView(navKey)
+                .setTargetView(targetId)
+                .setGuideListener(view -> {
+                    if (type == 1){
+                        showGuide("This is where you can set the app key",
+                                "You have to set the key here in order to\n receive data from Class Connect Mobile App",navKey,2);
+                    }
+                    else if (type == 2){
+                        showGuide("This is Class scroll time fragment",
+                                "This is where you can set the auto scrolling time of Class data",navClassScroll,3);
+                    }else if (type == 3){
+                        showGuide("This is Announcement scroll time fragment",
+                                "This is where you can set the auto scrolling time of announcement data",navAnnounceScroll,4);
+                    }else if (type == 4){
+                        showGuide("This is Home Fragment",
+                                "This is where you showed up the received data",navHome,5);
+                    }
+                    if (type == 5){
+                        putSharedPreference(false);
+                    }
+                })
                 .setContentTextSize(22)//optional
                 .setTitleTextSize(24)//optional
                 .build()
                 .show();
-
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(networkCheckReceiver);
     }
 }
 

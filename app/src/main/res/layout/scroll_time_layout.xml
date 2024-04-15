@@ -10,7 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Set Auto Scroll Time Here"
+        android:text="@string/set_auto_scroll_time_here"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="28sp"

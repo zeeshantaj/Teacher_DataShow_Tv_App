@@ -61,7 +61,7 @@ public class ClassScrollFragment extends Fragment {
 
             int time = Integer.parseInt(binding.secTxt.getText().toString());
 
-            MethodUtils.createSharedPreference(getActivity(),"classScrollTimeShared","classScrollTime",time);
+            MethodUtils.createSharedPreference(getActivity(), "classScrollTimeShared","classScrollTime",time);
         });
     }
 }
