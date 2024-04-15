@@ -1,10 +1,14 @@
 package com.example.myapplication.Activity;
 
+import static com.google.android.material.internal.ContextUtils.getActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.leanback.widget.BrowseFrameLayout;
 
+import android.content.Context;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -12,6 +16,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.erkutaras.showcaseview.ShowcaseManager;
 import com.example.myapplication.Network.NetworkCheckReceiver;
 import com.example.myapplication.Fragments.AnnounceScrollFragment;
 import com.example.myapplication.Fragments.ClassScrollFragment;
@@ -19,10 +25,10 @@ import com.example.myapplication.Fragments.HomeFragment;
 import com.example.myapplication.Fragments.fragment_key_set;
 import com.example.myapplication.R;
 
-public class MainActivity2 extends FragmentActivity implements View.OnKeyListener {
+public class MainActivity2 extends AppCompatActivity implements View.OnKeyListener {
 
     private TextView navHome;
-    private TextView navKey;
+    public TextView navKey;
     private TextView navClassScroll;
     private TextView navAnnounceScroll;
     private BrowseFrameLayout navBar;
@@ -31,8 +37,9 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
     private final String navName1 = "Set Key";
     private final String navName2 = "Set class scroll time";
     private final String navName3 = "Set Announcement scroll time";
+    private NetworkCheckReceiver networkCheckReceiver;
 
-    NetworkCheckReceiver networkCheckReceiver;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +95,8 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         networkCheckReceiver = new NetworkCheckReceiver();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(networkCheckReceiver,intentFilter);
+
+        showGuide();
     }
 
     private void changeFragment(Fragment fragment) {
@@ -95,14 +104,12 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         transaction.replace(R.id.frameContainer, fragment);
         transaction.commit();
     }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && SIDE_MENU) {
             SIDE_MENU = false;
             closeMenu();
         }
-
         return super.onKeyDown(keyCode, event);
     }
 
@@ -165,6 +172,22 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(networkCheckReceiver);
+    }
+    private void showGuide(){
+        ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
+        builder.context(this)
+                .key("KEY")
+                .developerMode(true)
+                .view(navKey)
+                .descriptionTitle("you can either upload image or text data")
+                .descriptionText("touch and hold on the image, to remove image\nor clear text to upload image")
+                .buttonText("Done")
+                .buttonVisibility(true)
+                .cancelButtonVisibility(true)
+                .cancelButtonColor(getResources().getColor(R.color.white))
+                .add()
+                .build()
+                .show();
     }
 }
 

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,10 +22,13 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.erkutaras.showcaseview.ShowcaseManager;
+import com.example.myapplication.Activity.MainActivity2;
 import com.example.myapplication.Adapter.AnnouncementAdapter;
 import com.example.myapplication.Adapter.TeacherDataRecyclerAdapter;
 import com.example.myapplication.Model.AnnouncementModel;
 import com.example.myapplication.Model.DataModel;
+import com.example.myapplication.R;
 import com.example.myapplication.Utils.MethodUtils;
 import com.example.myapplication.ViewModel.TeacherDataViewModel;
 import com.example.myapplication.databinding.HomeFragmentBinding;
@@ -82,8 +86,7 @@ public class HomeFragment extends Fragment {
         getAnnouncementData();
         getClassData();
     }
-
-    private void getClassData() {
+        private void getClassData() {
         keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
