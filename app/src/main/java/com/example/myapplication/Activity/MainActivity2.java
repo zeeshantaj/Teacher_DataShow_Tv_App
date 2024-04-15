@@ -25,7 +25,11 @@ import com.example.myapplication.Fragments.HomeFragment;
 import com.example.myapplication.Fragments.fragment_key_set;
 import com.example.myapplication.R;
 
-public class MainActivity2 extends AppCompatActivity implements View.OnKeyListener {
+import smartdevelop.ir.eram.showcaseviewlib.GuideView;
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
+import smartdevelop.ir.eram.showcaseviewlib.config.Gravity;
+
+public class MainActivity2 extends FragmentActivity implements View.OnKeyListener {
 
     private TextView navHome;
     public TextView navKey;
@@ -174,20 +178,17 @@ public class MainActivity2 extends AppCompatActivity implements View.OnKeyListen
         unregisterReceiver(networkCheckReceiver);
     }
     private void showGuide(){
-        ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
-        builder.context(this)
-                .key("KEY")
-                .developerMode(true)
-                .view(navKey)
-                .descriptionTitle("you can either upload image or text data")
-                .descriptionText("touch and hold on the image, to remove image\nor clear text to upload image")
-                .buttonText("Done")
-                .buttonVisibility(true)
-                .cancelButtonVisibility(true)
-                .cancelButtonColor(getResources().getColor(R.color.white))
-                .add()
+        new GuideView.Builder(this)
+                .setTitle("This is where you can set the app key")
+                .setContentText("You have to set the key here in order to\n receive data from Class Connect Mobile App")
+                .setGravity(Gravity.auto) //optional
+                .setDismissType(DismissType.anywhere) //optional - default DismissType.targetView
+                .setTargetView(navKey)
+                .setContentTextSize(22)//optional
+                .setTitleTextSize(24)//optional
                 .build()
                 .show();
+
     }
 }
 
