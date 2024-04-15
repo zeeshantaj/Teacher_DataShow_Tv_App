@@ -45,7 +45,7 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
     private final String navName3 = "Set Announcement scroll time";
     private NetworkCheckReceiver networkCheckReceiver;
 
-
+    private int type = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +106,7 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         if (isTrue){
 
         }
-        showGuide("This is Navigation bar","All the Crucial things that you need for customization are located here", navBar,1);
+        showGuide("This is Navigation bar","All the Crucial things that you need for customization are located here", navBar,type);
     }
     private void putSharedPreference(boolean bool){
         SharedPreferences sharedPreferences = getSharedPreferences("showcaseShared", Context.MODE_PRIVATE);
@@ -135,6 +135,7 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
                 if (v.getId() == R.id.navHome) {
                     changeFragment(new HomeFragment());
                     closeMenu();
+                    type++;
                 } else if (v.getId() == R.id.navKey) {
                     changeFragment(new fragment_key_set());
                     closeMenu();
