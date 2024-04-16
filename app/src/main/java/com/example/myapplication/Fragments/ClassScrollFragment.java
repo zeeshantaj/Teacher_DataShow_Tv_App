@@ -53,12 +53,17 @@ public class ClassScrollFragment extends Fragment {
                 Toast.makeText(getActivity(), "Seconds can not be less than 5", Toast.LENGTH_SHORT).show();
                 return;
             }
+            
             count--;
             binding.secTxt.setText(String.valueOf(count));
         });
         binding.timeSetBtn.setOnClickListener(v -> {
+            int pos = binding.scrollTimeSpinner.getSelectedItemPosition(); 
+            if (pos <= 0){
+                Toast.makeText(getActivity(), "Please Selected Item \nclass scroll time or announcement scroll time", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Toast.makeText(getActivity(), "Time Set "+binding.secTxt.getText().toString(), Toast.LENGTH_SHORT).show();
-
             int time = Integer.parseInt(binding.secTxt.getText().toString());
 
             MethodUtils.createSharedPreference(getActivity(), "classScrollTimeShared","classScrollTime",time);

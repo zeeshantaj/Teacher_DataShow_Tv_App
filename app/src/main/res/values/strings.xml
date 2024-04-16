@@ -18,4 +18,9 @@
     <string name="topic">Topic:</string>
     <string name="started_at">Started At:</string>
     <string name="set_auto_scroll_time_here">Set Auto Scroll Time Here</string>
+    <string-array name="SpinnerList">
+        <item>Select item</item>
+        <item>Class Scroll Time</item>
+        <item>Announcement Scroll Time</item>
+    </string-array>
 </resources>
