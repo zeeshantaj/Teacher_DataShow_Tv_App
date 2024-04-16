@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,9 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-public class fragment_key_set extends Fragment {
+public class Key_Set_Fragment extends Fragment {
 
-    public fragment_key_set() {
+    public Key_Set_Fragment() {
         // Required empty public constructor
     }
 

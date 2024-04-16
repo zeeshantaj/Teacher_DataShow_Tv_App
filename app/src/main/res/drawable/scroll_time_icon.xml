@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Full box -->
+    <item
+        android:width="24dp"
+        android:height="20dp"
+        android:left="25dp"
+        android:gravity="center_vertical|center_horizontal|end">
+        <shape android:shape="rectangle"
+            >
+            <solid android:color="#E8E7E5" />
+        </shape>
+    </item>
+
+    <!-- Half box -->
+    <item
+        android:width="24dp"
+        android:height="24dp"
+        android:right="21dp"
+        android:gravity="center_vertical">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFC107" />
+        </shape>
+    </item>
+
+    <!-- Watch -->
+    <item
+        android:width="12dp"
+        android:height="12dp"
+        android:gravity="bottom"
+        android:drawable="@drawable/ic_watch"
+        android:drawablePadding="-5dp" />
+</layer-list>

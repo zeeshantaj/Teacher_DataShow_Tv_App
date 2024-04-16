@@ -1,8 +1,5 @@
 package com.example.myapplication.Activity;
 
-import static com.google.android.material.internal.ContextUtils.getActivity;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -11,27 +8,23 @@ import androidx.leanback.widget.BrowseFrameLayout;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.erkutaras.showcaseview.ShowcaseManager;
 import com.example.myapplication.Network.NetworkCheckReceiver;
 import com.example.myapplication.Fragments.AnnounceScrollFragment;
 import com.example.myapplication.Fragments.ClassScrollFragment;
 import com.example.myapplication.Fragments.HomeFragment;
-import com.example.myapplication.Fragments.fragment_key_set;
+import com.example.myapplication.Fragments.Key_Set_Fragment;
 import com.example.myapplication.R;
 
 import smartdevelop.ir.eram.showcaseviewlib.GuideView;
 import smartdevelop.ir.eram.showcaseviewlib.config.DismissType;
 import smartdevelop.ir.eram.showcaseviewlib.config.Gravity;
-import smartdevelop.ir.eram.showcaseviewlib.listener.GuideListener;
 
 public class MainActivity2 extends FragmentActivity implements View.OnKeyListener {
 
@@ -59,8 +52,11 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         navClassScroll = findViewById(R.id.navClassScroll);
         navAnnounceScroll = findViewById(R.id.navAnnounceScroll);
         navBar = findViewById(R.id.navBar);
+    }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
         navHome.setText("");
         navKey.setText("");
         navClassScroll.setText("");
@@ -71,7 +67,7 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         navClassScroll.setOnKeyListener(this);
         navAnnounceScroll.setOnKeyListener(this);
 
-        changeFragment(new HomeFragment());
+
 //        AdView adView = findViewById(R.id.adView);
 //        MobileAds.initialize(this, initializationStatus -> {
 //            Toast.makeText(this, " successful ", Toast.LENGTH_SHORT).show();
@@ -103,14 +99,16 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         networkCheckReceiver = new NetworkCheckReceiver();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(networkCheckReceiver,intentFilter);
+
         SharedPreferences sharedPreferences1 = getSharedPreferences("showcaseShared", Context.MODE_PRIVATE);
         boolean isTrue = sharedPreferences1.getBoolean("showcase", true);
         if (isTrue){
-
+            showGuide("This is Navigation bar","All the Crucial things that you need for customization are located here", navHome);
         }
-        showGuide("This is Navigation bar","All the Crucial things that you need for customization are located here", navHome);
+        changeFragment(new HomeFragment());
 
     }
+
     private void putSharedPreference(boolean bool){
         SharedPreferences sharedPreferences = getSharedPreferences("showcaseShared", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -170,7 +168,7 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
                     changeFragment(new HomeFragment());
                     closeMenu();
                 } else if (v.getId() == R.id.navKey) {
-                    changeFragment(new fragment_key_set());
+                    changeFragment(new Key_Set_Fragment());
                     closeMenu();
                 } else if (v.getId() == R.id.navClassScroll) {
                     changeFragment(new ClassScrollFragment());
