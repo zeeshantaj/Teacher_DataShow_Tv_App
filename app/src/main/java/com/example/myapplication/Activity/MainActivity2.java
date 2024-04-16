@@ -11,8 +11,10 @@ import androidx.leanback.widget.BrowseFrameLayout;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,9 +46,9 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
     private final String navName2 = "Set class scroll time";
     private final String navName3 = "Set Announcement scroll time";
     private NetworkCheckReceiver networkCheckReceiver;
-
-    private int type = 1;
-
+    private GuideView mGuideView;
+    private GuideView.Builder builder;
+    int type = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +108,8 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         if (isTrue){
 
         }
-        showGuide("This is Navigation bar","All the Crucial things that you need for customization are located here", navHome,type);
+        showGuide("This is Navigation bar","All the Crucial things that you need for customization are located here", navHome);
+
     }
     private void putSharedPreference(boolean bool){
         SharedPreferences sharedPreferences = getSharedPreferences("showcaseShared", Context.MODE_PRIVATE);
@@ -125,10 +128,36 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
             SIDE_MENU = false;
             closeMenu();
         }
-        if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT || keyCode == KeyEvent.KEYCODE_DPAD_LEFT
-            ||keyCode == KeyEvent.KEYCODE_DPAD_UP || keyCode == KeyEvent.KEYCODE_DPAD_DOWN){
+        if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER){
+            type++;
 
-        //`    showGuide("This is Navigation bar","All the Crucial things that you need for customization are located here", navBar,type);
+            // Dismiss the previous guide view if it's showing
+            if (mGuideView != null && mGuideView.isShowing()) {
+                mGuideView.dismiss();
+            }
+
+            // Show the guide for the next target
+            switch (type) {
+                case 1:
+                    showGuide("This is where you can set the app key",
+                            "You have to set the key here in order to\n receive data from Class Connect Mobile App", navKey);
+                    break;
+                case 2:
+                    showGuide("This is Class scroll time fragment",
+                            "This is where you can set the auto scrolling time of Class data", navClassScroll);
+                    break;
+                case 3:
+                    showGuide("This is Announcement scroll time fragment",
+                            "This is where you can set the auto scrolling time of announcement data", navAnnounceScroll);
+                    break;
+                case 4:
+                    showGuide("This is Home Fragment",
+                            "This is where you showed up the received data", navHome);
+                    break;
+                case 5:
+                    putSharedPreference(false);
+                    break;
+            }
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -140,7 +169,6 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
                 if (v.getId() == R.id.navHome) {
                     changeFragment(new HomeFragment());
                     closeMenu();
-                    type++;
                 } else if (v.getId() == R.id.navKey) {
                     changeFragment(new fragment_key_set());
                     closeMenu();
@@ -188,38 +216,84 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         int width = getResources().getDisplayMetrics().widthPixels;
         return (width * percent) / 100;
     }
-    private void showGuide(String title,String content,View targetId,int type){
+    private void showGuide(String title,String content,View targetId){
+        if (mGuideView != null) {
+            mGuideView.dismiss(); // Dismiss previous guide view
+        }
 
-        new GuideView.Builder(this)
+        builder = new GuideView.Builder(this)
                 .setTitle(title)
                 .setContentText(content)
-                .setGravity(Gravity.auto) //optional
-                .setDismissType(DismissType.anywhere) //optional - default DismissType.targetView
+                .setGravity(Gravity.auto) // optional
+                .setDismissType(DismissType.anywhere) // optional - default DismissType.targetView
                 .setTargetView(targetId)
-                .setGuideListener(view -> {
-                    if (type == 1){
-                        showGuide("This is where you can set the app key",
-                                "You have to set the key here in order to\n receive data from Class Connect Mobile App",navKey,2);
-                    }
-                    else if (type == 2){
-                        showGuide("This is Class scroll time fragment",
-                                "This is where you can set the auto scrolling time of Class data",navClassScroll,3);
-                    }else if (type == 3){
-                        showGuide("This is Announcement scroll time fragment",
-                                "This is where you can set the auto scrolling time of announcement data",navAnnounceScroll,4);
-                    }else if (type == 4){
-                        showGuide("This is Home Fragment",
-                                "This is where you showed up the received data",navHome,5);
-                    }
-                    if (type == 5){
-                        putSharedPreference(false);
-                    }
-                })
-                .setContentTextSize(22)//optional
-                .setTitleTextSize(24)//optional
-                .build()
-                .show();
+                .setContentTextSize(22) // optional
+                .setTitleTextSize(24);// optional
+//                .setGuideListener(view -> {
+//                    // Increment type to show the next target
+//                    type++;
+//                    switch (type) {
+//                        case 1:
+//                            showGuide("This is where you can set the app key",
+//                                    "You have to set the key here in order to\n receive data from Class Connect Mobile App", navKey);
+//                            break;
+//                        case 2:
+//                            showGuide("This is Class scroll time fragment",
+//                                    "This is where you can set the auto scrolling time of Class data", navClassScroll);
+//                            break;
+//                        case 3:
+//                            showGuide("This is Announcement scroll time fragment",
+//                                    "This is where you can set the auto scrolling time of announcement data", navAnnounceScroll);
+//                            break;
+//                        case 4:
+//                            showGuide("This is Home Fragment",
+//                                    "This is where you showed up the received data", navHome);
+//                            break;
+//                        case 5:
+//                            putSharedPreference(false);
+//                            break;
+//                    }
+//                });
+
+        mGuideView = builder.build();
+        mGuideView.show();
+//        builder = new GuideView.Builder(this)
+//                .setTitle(title)
+//                .setContentText(content)
+//                .setGravity(Gravity.auto) //optional
+//                .setDismissType(DismissType.anywhere) //optional - default DismissType.targetView
+//                .setTargetView(targetId)
+//                .setContentTextSize(22)//optional
+//                .setTitleTextSize(24)//optional
+//                .setGuideListener(view -> {
+//                    for (type = 1; type <= 5; type++){
+//                        if (type == 1){
+//                            showGuide("This is where you can set the app key",
+//                                    "You have to set the key here in order to\n receive data from Class Connect Mobile App",navKey);
+//                        }
+//                        else if (type == 2){
+//                            showGuide("This is Class scroll time fragment",
+//                                    "This is where you can set the auto scrolling time of Class data",navClassScroll);
+//                        }else if (type == 3){
+//                            showGuide("This is Announcement scroll time fragment",
+//                                    "This is where you can set the auto scrolling time of announcement data",navAnnounceScroll);
+//                        }else if (type == 4){
+//                            showGuide("This is Home Fragment",
+//                                    "This is where you showed up the received data",navHome);
+//                        }
+//                        if (type == 5){
+//                            putSharedPreference(false);
+//                        }
+//                    }
+//
+//                    mGuideView = builder.build();
+//                    mGuideView.show();
+//                });
+//                mGuideView = builder.build();
+//                mGuideView.show();
+
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
