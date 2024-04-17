@@ -72,18 +72,6 @@
                     android:gravity="center_vertical"
                     android:textColor="@color/text_focus" />
 
-                <TextView
-                    android:id="@+id/navAnnounceScroll"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="16dp"
-                    android:background="@drawable/selector"
-                    android:drawableLeft="@drawable/scroll_time_icon"
-                    android:drawablePadding="16dp"
-                    android:focusable="true"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/text_focus" />
-
             </LinearLayout>
         </androidx.leanback.widget.BrowseFrameLayout>
 

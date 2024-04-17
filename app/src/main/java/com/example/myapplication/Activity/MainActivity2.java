@@ -31,7 +31,6 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
     private TextView navHome;
     public TextView navKey;
     private TextView navClassScroll;
-    private TextView navAnnounceScroll;
     private BrowseFrameLayout navBar;
     private boolean SIDE_MENU = false;
     private final String navName = "Home";
@@ -50,7 +49,6 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         navHome = findViewById(R.id.navHome);
         navKey = findViewById(R.id.navKey);
         navClassScroll = findViewById(R.id.navClassScroll);
-        navAnnounceScroll = findViewById(R.id.navAnnounceScroll);
         navBar = findViewById(R.id.navBar);
     }
 
@@ -60,12 +58,10 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         navHome.setText("");
         navKey.setText("");
         navClassScroll.setText("");
-        navAnnounceScroll.setText("");
 
         navHome.setOnKeyListener(this);
         navKey.setOnKeyListener(this);
         navClassScroll.setOnKeyListener(this);
-        navAnnounceScroll.setOnKeyListener(this);
 
 
 //        AdView adView = findViewById(R.id.adView);
@@ -145,14 +141,10 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
                             "This is where you can set the auto scrolling time of Class data", navClassScroll);
                     break;
                 case 3:
-                    showGuide("This is Announcement scroll time fragment",
-                            "This is where you can set the auto scrolling time of announcement data", navAnnounceScroll);
-                    break;
-                case 4:
                     showGuide("This is Home Fragment",
                             "This is where you showed up the received data", navHome);
                     break;
-                case 5:
+                case 4:
                     putSharedPreference(false);
                     break;
             }
@@ -173,11 +165,7 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
                 } else if (v.getId() == R.id.navClassScroll) {
                     changeFragment(new ClassScrollFragment());
                     closeMenu();
-                } else if (v.getId() == R.id.navAnnounceScroll) {
-                    changeFragment(new AnnounceScrollFragment());
-                    closeMenu();
                 }
-                break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 if (!SIDE_MENU) {
                     openMenu();
@@ -196,7 +184,6 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         navHome.setText(navName);
         navKey.setText(navName1);
         navClassScroll.setText(navName2);
-        navAnnounceScroll.setText(navName3);
     }
 
     private void closeMenu() {
@@ -207,7 +194,6 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         navHome.setText("");
         navKey.setText("");
         navClassScroll.setText("");
-        navAnnounceScroll.setText("");
     }
 
     private int getWidth(int percent) {

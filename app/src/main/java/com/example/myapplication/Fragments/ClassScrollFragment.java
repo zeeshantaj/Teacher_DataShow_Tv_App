@@ -37,9 +37,6 @@ public class ClassScrollFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-
-
-
         binding.increaseBtn.setOnClickListener(v -> {
             if (count == 60){
                 Toast.makeText(getActivity(), "Seconds can not be greater than 60", Toast.LENGTH_SHORT).show();
@@ -67,11 +64,13 @@ public class ClassScrollFragment extends Fragment {
                 Toast.makeText(getActivity(), "Time Set "+binding.secTxt.getText().toString(), Toast.LENGTH_SHORT).show();
                 int time = Integer.parseInt(binding.secTxt.getText().toString());
                 MethodUtils.createSharedPreference(getActivity(), "classScrollTimeShared","classScrollTime",time);
+                binding.classPresetST.setText(getFormatStr(time));
             }
             if (pos == 2) {
                 Toast.makeText(getActivity(), "Time Set "+binding.secTxt.getText().toString(), Toast.LENGTH_SHORT).show();
                 int time = Integer.parseInt(binding.secTxt.getText().toString());
                 MethodUtils.createSharedPreference(getActivity(),"announceScrollTimeShared","announceScrollTime",time);
+                binding.announcePresetST.setText(getFormatStr(time));
             }
         });
         getClassTime();
@@ -80,13 +79,14 @@ public class ClassScrollFragment extends Fragment {
     private void getClassTime(){
         SharedPreferences sharedPreferences1 = getActivity().getSharedPreferences("classScrollTimeShared", Context.MODE_PRIVATE);
         count = sharedPreferences1.getInt("classScrollTime", 5);
-        String classFormattedStr = String.format("%s is preset time for class scroll",count);
-        binding.classPresetST.setText(classFormattedStr);
+        binding.classPresetST.setText(getFormatStr(count));
     }
     private void getAnnounceTime(){
         SharedPreferences sharedPreferences2 = getActivity().getSharedPreferences("announceScrollTimeShared", Context.MODE_PRIVATE);
         count = sharedPreferences2.getInt("announceScrollTime", 5);
-        String classFormattedStr1 = String.format("%s is preset time for class scroll", count);
-        binding.classPresetST.setText(classFormattedStr1);
+        binding.announcePresetST.setText(getFormatStr(count));
+    }
+    private String getFormatStr(int count){
+        return String.format("%s is preset time for announcement scroll", count);
     }
 }
