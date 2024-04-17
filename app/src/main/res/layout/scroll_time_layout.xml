@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/btn_selector_bg"
-            android:src="@drawable/down_arrow_icon"
+            android:src="@drawable/up_arrow_icon"
             />
 
         <TextView
