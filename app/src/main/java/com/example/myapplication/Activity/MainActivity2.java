@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.myapplication.Network.NetworkCheckReceiver;
-import com.example.myapplication.Fragments.AnnounceScrollFragment;
 import com.example.myapplication.Fragments.ClassScrollFragment;
 import com.example.myapplication.Fragments.HomeFragment;
 import com.example.myapplication.Fragments.Key_Set_Fragment;

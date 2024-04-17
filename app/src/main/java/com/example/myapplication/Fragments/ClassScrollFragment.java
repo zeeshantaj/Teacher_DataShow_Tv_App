@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.Animation.ShakeAnimation;
 import com.example.myapplication.Utils.MethodUtils;
 import com.example.myapplication.databinding.ScrollTimeLayoutBinding;
 
@@ -57,6 +58,7 @@ public class ClassScrollFragment extends Fragment {
         binding.timeSetBtn.setOnClickListener(v -> {
             int pos = binding.scrollTimeSpinner.getSelectedItemPosition(); 
             if (pos <= 0){
+                ShakeAnimation.setAnimation(getActivity(), binding.scrollTimeSpinner);
                 Toast.makeText(getActivity(), "Please Selected Item \nclass scroll time or announcement scroll time", Toast.LENGTH_SHORT).show();
                 return;
             }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.myapplication.Animation.ShakeAnimation;
 import com.example.myapplication.Utils.MethodUtils;
 import com.example.myapplication.databinding.FragmentKeyKeySetBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -86,6 +87,7 @@ public class Key_Set_Fragment extends Fragment {
             public void onClick(View view) {
                 String key = binding.edKey.getText().toString();
                 if (key.isEmpty()){
+                    ShakeAnimation.setAnimation(getActivity(), binding.edKey);
                     binding.edKey.setError("Key field is empty");
                     return;
                 }
