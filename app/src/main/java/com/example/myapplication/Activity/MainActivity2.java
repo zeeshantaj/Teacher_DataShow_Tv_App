@@ -96,9 +96,8 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(networkCheckReceiver,intentFilter);
 
-        SharedPreferences sharedPreferences1 = getSharedPreferences("showcaseShared", Context.MODE_PRIVATE);
-        boolean isTrue = sharedPreferences1.getBoolean("showcase", true);
-        if (isTrue){
+
+        if (getSharedIsTrue()){
             showGuide("This is Navigation bar","All the Crucial things that you need for customization are located here", navHome);
         }
         changeFragment(new HomeFragment());
@@ -123,31 +122,33 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
             closeMenu();
         }
         if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER){
-            type++;
+            if (getSharedIsTrue()){
+                type++;
+                // Dismiss the previous guide view if it's showing
+                if (mGuideView != null && mGuideView.isShowing()) {
+                    mGuideView.dismiss();
+                }
 
-            // Dismiss the previous guide view if it's showing
-            if (mGuideView != null && mGuideView.isShowing()) {
-                mGuideView.dismiss();
+                // Show the guide for the next target
+                switch (type) {
+                    case 2:
+                        showGuide("This is where you can set the app key",
+                                "You have to set the key here in order to\n receive data from Class Connect Mobile App", navKey);
+                        break;
+                    case 3:
+                        showGuide("This is Class scroll time fragment",
+                                "This is where you can set the auto scrolling time of Class data", navClassScroll);
+                        break;
+                    case 4:
+                        showGuide("This is Home Fragment",
+                                "This is where you showed up the received data", navHome);
+                        break;
+                    case 5:
+                        putSharedPreference(false);
+                        break;
+                }
             }
 
-            // Show the guide for the next target
-            switch (type) {
-                case 1:
-                    showGuide("This is where you can set the app key",
-                            "You have to set the key here in order to\n receive data from Class Connect Mobile App", navKey);
-                    break;
-                case 2:
-                    showGuide("This is Class scroll time fragment",
-                            "This is where you can set the auto scrolling time of Class data", navClassScroll);
-                    break;
-                case 3:
-                    showGuide("This is Home Fragment",
-                            "This is where you showed up the received data", navHome);
-                    break;
-                case 4:
-                    putSharedPreference(false);
-                    break;
-            }
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -278,6 +279,10 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
 
     }
 
+    private boolean getSharedIsTrue(){
+        SharedPreferences sharedPreferences1 = getSharedPreferences("showcaseShared", Context.MODE_PRIVATE);
+        return sharedPreferences1.getBoolean("showcase", true);
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
