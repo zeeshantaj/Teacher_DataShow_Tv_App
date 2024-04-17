@@ -35,9 +35,6 @@ public class AnnounceScrollFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        SharedPreferences sharedPreferences1 = getActivity().getSharedPreferences("announceScrollTimeShared", Context.MODE_PRIVATE);
-        count = sharedPreferences1.getInt("announceScrollTime", 5);
-        binding.secTxt.setText(String.valueOf(count));
 
 
         binding.increaseBtn.setOnClickListener(v -> {
@@ -57,10 +54,7 @@ public class AnnounceScrollFragment extends Fragment {
             binding.secTxt.setText(String.valueOf(count));
         });
         binding.timeSetBtn.setOnClickListener(v -> {
-            Toast.makeText(getActivity(), "Time Set "+binding.secTxt.getText().toString(), Toast.LENGTH_SHORT).show();
 
-            int time = Integer.parseInt(binding.secTxt.getText().toString());
-            MethodUtils.createSharedPreference(getActivity(),"announceScrollTimeShared","announceScrollTime",time);
 
         });
     }

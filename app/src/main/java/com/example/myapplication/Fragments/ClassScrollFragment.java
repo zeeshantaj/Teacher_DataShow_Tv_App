@@ -36,9 +36,9 @@ public class ClassScrollFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        SharedPreferences sharedPreferences1 = getActivity().getSharedPreferences("classScrollTimeShared", Context.MODE_PRIVATE);
-        count = sharedPreferences1.getInt("classScrollTime", 5);
-        binding.secTxt.setText(String.valueOf(count));
+
+
+
 
         binding.increaseBtn.setOnClickListener(v -> {
             if (count == 60){
@@ -64,15 +64,29 @@ public class ClassScrollFragment extends Fragment {
                 return;
             }
             if (pos == 1){
-                Toast.makeText(getActivity(), "spinner item  "+binding.scrollTimeSpinner.getSelectedItemPosition(), Toast.LENGTH_SHORT).show();
                 Toast.makeText(getActivity(), "Time Set "+binding.secTxt.getText().toString(), Toast.LENGTH_SHORT).show();
                 int time = Integer.parseInt(binding.secTxt.getText().toString());
                 MethodUtils.createSharedPreference(getActivity(), "classScrollTimeShared","classScrollTime",time);
             }
             if (pos == 2) {
-                Toast.makeText(getActivity(), "spinner item  "+binding.scrollTimeSpinner.getSelectedItemPosition(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Time Set "+binding.secTxt.getText().toString(), Toast.LENGTH_SHORT).show();
+                int time = Integer.parseInt(binding.secTxt.getText().toString());
+                MethodUtils.createSharedPreference(getActivity(),"announceScrollTimeShared","announceScrollTime",time);
             }
-
         });
+        getClassTime();
+        getAnnounceTime();
+    }
+    private void getClassTime(){
+        SharedPreferences sharedPreferences1 = getActivity().getSharedPreferences("classScrollTimeShared", Context.MODE_PRIVATE);
+        count = sharedPreferences1.getInt("classScrollTime", 5);
+        String classFormattedStr = String.format("%s is preset time for class scroll",count);
+        binding.classPresetST.setText(classFormattedStr);
+    }
+    private void getAnnounceTime(){
+        SharedPreferences sharedPreferences2 = getActivity().getSharedPreferences("announceScrollTimeShared", Context.MODE_PRIVATE);
+        count = sharedPreferences2.getInt("announceScrollTime", 5);
+        String classFormattedStr1 = String.format("%s is preset time for class scroll", count);
+        binding.classPresetST.setText(classFormattedStr1);
     }
 }
