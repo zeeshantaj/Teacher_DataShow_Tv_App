@@ -63,9 +63,14 @@ public class ClassScrollFragment extends Fragment {
                 Toast.makeText(getActivity(), "Please Selected Item \nclass scroll time or announcement scroll time", Toast.LENGTH_SHORT).show();
                 return;
             }
+            if (pos == 1){
+                Toast.makeText(getActivity(), "spinner item  "+binding.scrollTimeSpinner.getSelectedItemPosition(), Toast.LENGTH_SHORT).show();
+            }
+            if (pos == 2) {
+                Toast.makeText(getActivity(), "spinner item  "+binding.scrollTimeSpinner.getSelectedItemPosition(), Toast.LENGTH_SHORT).show();
+            }
             Toast.makeText(getActivity(), "Time Set "+binding.secTxt.getText().toString(), Toast.LENGTH_SHORT).show();
             int time = Integer.parseInt(binding.secTxt.getText().toString());
-
             MethodUtils.createSharedPreference(getActivity(), "classScrollTimeShared","classScrollTime",time);
         });
     }
