@@ -17,10 +17,9 @@ public class Intro_Activity extends FancyWalkthroughActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FancyWalkthroughCard fancywalkthroughCard1 = new FancyWalkthroughCard("Key Set Fragment", "First of all you need to set the key then you start receiving class details and announcement.",R.drawable.key_into);
+        FancyWalkthroughCard fancywalkthroughCard1 = new FancyWalkthroughCard("Key Set Fragment", "First of all you need to set the key then you start receiving class details and announcement.",R.drawable.key_intro);
         FancyWalkthroughCard fancywalkthroughCard2 = new FancyWalkthroughCard("Home Fragment", "This is where you showed up the received Data",R.drawable.home_intro);
-        FancyWalkthroughCard fancywalkthroughCard3 = new FancyWalkthroughCard("Class scroll time fragment", "This is where you can set the class data scroll time.",R.drawable.class_intro);
-        FancyWalkthroughCard fancywalkthroughCard4 = new FancyWalkthroughCard("Announcement scroll time fragment", "This is where you can set the class data scroll time.",R.drawable.announce_into);
+        FancyWalkthroughCard fancywalkthroughCard3 = new FancyWalkthroughCard("scroll time fragment", "This is where you can set the class & announcement data scroll time.",R.drawable.scroll_time_intro);
 
 
 
@@ -31,18 +30,15 @@ public class Intro_Activity extends FancyWalkthroughActivity {
         fancywalkthroughCard2.setIconLayoutParams(500,300,0,0,0,0);
         fancywalkthroughCard3.setBackgroundColor(R.color.white);
         fancywalkthroughCard3.setIconLayoutParams(500,300,0,0,0,0);
-        fancywalkthroughCard4.setBackgroundColor(R.color.white);
-        fancywalkthroughCard4.setIconLayoutParams(500,300,0,0,0,0);
         List<FancyWalkthroughCard> pages = new ArrayList<>();
 
         pages.add(fancywalkthroughCard1);
         pages.add(fancywalkthroughCard2);
         pages.add(fancywalkthroughCard3);
-        pages.add(fancywalkthroughCard4);
 
         for (FancyWalkthroughCard page : pages) {
             page.setTitleColor(R.color.black);
-            fancywalkthroughCard4.setBackgroundColor(R.color.white);
+            fancywalkthroughCard3.setBackgroundColor(R.color.white);
             page.setDescriptionColor(R.color.black);
 
         }
