@@ -91,9 +91,9 @@ public class MainActivity2 extends FragmentActivity implements View.OnKeyListene
 //            }
 //        });
 
-        networkCheckReceiver = new NetworkCheckReceiver();
-        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(networkCheckReceiver,intentFilter);
+//        networkCheckReceiver = new NetworkCheckReceiver();
+//        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+//        registerReceiver(networkCheckReceiver,intentFilter);
 
 
         if (getSharedIsTrue()){

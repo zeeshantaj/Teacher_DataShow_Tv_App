@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -91,6 +92,12 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
                     .load(model.getImageUrl())
                     .apply(RequestOptions.bitmapTransform(new RoundedCorners(35)))
                     .into(binding.itemImage);
+            binding.itemImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "Clicked "+model.getImageUrl(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
 

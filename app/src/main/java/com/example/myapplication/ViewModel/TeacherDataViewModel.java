@@ -1,5 +1,7 @@
 package com.example.myapplication.ViewModel;
 
+import android.content.Context;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.myapplication.Model.AnnouncementModel;
 import com.example.myapplication.Model.DataModel;
+import com.example.myapplication.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +34,15 @@ public class TeacherDataViewModel extends ViewModel  {
     private  MutableLiveData<List<AnnouncementModel>> announcementData;
     private String showKey;
 
+    private MediaPlayer mediaPlayer;
+    private void initializeMediaPlayer(Context context) {
+        mediaPlayer = MediaPlayer.create(context, R.raw.item_inserted);
+    }
+    private void playSound() {
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+        }
+    }
     public LiveData<List<DataModel>> getTeacherDataList(String showKey) {
         if (teacherDataListLiveData == null) {
             teacherDataListLiveData = new MutableLiveData<>();
