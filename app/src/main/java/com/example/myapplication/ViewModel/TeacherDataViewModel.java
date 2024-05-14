@@ -34,15 +34,7 @@ public class TeacherDataViewModel extends ViewModel  {
     private  MutableLiveData<List<AnnouncementModel>> announcementData;
     private String showKey;
 
-    private MediaPlayer mediaPlayer;
-    private void initializeMediaPlayer(Context context) {
-        mediaPlayer = MediaPlayer.create(context, R.raw.item_inserted);
-    }
-    private void playSound() {
-        if (mediaPlayer != null) {
-            mediaPlayer.start();
-        }
-    }
+
     public LiveData<List<DataModel>> getTeacherDataList(String showKey) {
         if (teacherDataListLiveData == null) {
             teacherDataListLiveData = new MutableLiveData<>();

@@ -3,6 +3,7 @@ package com.example.myapplication.Adapter;
 import static com.example.myapplication.Utils.MethodUtils.getRadonColor;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,14 +39,37 @@ import java.util.Locale;
 public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapter.AnnouncementViewHolder> {
     private List<AnnouncementModel> announcementModelList;
     private Context context;
+    private MediaPlayer mediaPlayer;
+
+    private void playSound() {
+        if (mediaPlayer == null) {
+            mediaPlayer = MediaPlayer.create(context, R.raw.item_inserted);
+        }
+
+        mediaPlayer.setOnCompletionListener(mp -> {
+            mp.release();
+            mediaPlayer = null;
+        });
+
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+        }
+    }
     public AnnouncementAdapter(List<AnnouncementModel> announcementModelList, Context context) {
         this.announcementModelList = announcementModelList;
         this.context = context;
     }
     public void setData(List<AnnouncementModel> newDataList) {
+        boolean isDataInserted = false;
+        if (announcementModelList.size() < newDataList.size()){
+            isDataInserted = true;
+        }
         announcementModelList.clear();
         announcementModelList.addAll(newDataList);
         notifyDataSetChanged();
+        if (isDataInserted) {
+            playSound();
+        }
     }
     @NonNull
     @Override
