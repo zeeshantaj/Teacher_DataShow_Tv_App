@@ -22,6 +22,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.myapplication.Model.AnnouncementModel;
 import com.example.myapplication.Model.DataModel;
 import com.example.myapplication.R;
+import com.example.myapplication.Utils.MethodUtils;
 import com.example.myapplication.databinding.AnnounceDataLayoutBinding;
 import com.example.myapplication.databinding.AnnounceImgLaoutBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -39,22 +40,7 @@ import java.util.Locale;
 public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapter.AnnouncementViewHolder> {
     private List<AnnouncementModel> announcementModelList;
     private Context context;
-    private MediaPlayer mediaPlayer;
 
-    private void playSound() {
-        if (mediaPlayer == null) {
-            mediaPlayer = MediaPlayer.create(context, R.raw.item_inserted);
-        }
-
-        mediaPlayer.setOnCompletionListener(mp -> {
-            mp.release();
-            mediaPlayer = null;
-        });
-
-        if (mediaPlayer != null) {
-            mediaPlayer.start();
-        }
-    }
     public AnnouncementAdapter(List<AnnouncementModel> announcementModelList, Context context) {
         this.announcementModelList = announcementModelList;
         this.context = context;
@@ -68,7 +54,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         announcementModelList.addAll(newDataList);
         notifyDataSetChanged();
         if (isDataInserted) {
-            playSound();
+            MethodUtils.playSound(context);
         }
     }
     @NonNull

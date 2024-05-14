@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MethodUtils {
+
     public static int getRadonColor() {
         List<Integer> colorCode = new ArrayList<>();
 
@@ -76,6 +78,22 @@ public class MethodUtils {
             Toast.makeText(context, "Error checking internet connection", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private static MediaPlayer mediaPlayer;
+    public static void playSound(Context context) {
+        if (mediaPlayer == null) {
+            mediaPlayer = MediaPlayer.create(context, R.raw.item_inserted);
+        }
+
+        mediaPlayer.setOnCompletionListener(mp -> {
+            mp.release();
+            mediaPlayer = null;
+        });
+
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+        }
     }
     public static void showAlertDialogue(Context context){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
