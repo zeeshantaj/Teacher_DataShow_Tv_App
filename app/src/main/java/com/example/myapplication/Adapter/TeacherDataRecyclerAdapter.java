@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.util.MalformedJsonException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Model.DataModel;
 import com.example.myapplication.R;
+import com.example.myapplication.Utils.MethodUtils;
 import com.example.myapplication.ViewModel.TeacherDataViewModel;
 
 import java.text.DecimalFormat;
@@ -47,15 +49,26 @@ import java.util.Random;
 
 public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherDataRecyclerAdapter.TeacherDataViewHolder> {
     private List<DataModel> teacherDataList;
+    private Context context;
 
-    public TeacherDataRecyclerAdapter(List<DataModel> teacherDataList) {
+    public TeacherDataRecyclerAdapter(List<DataModel> teacherDataList, Context context) {
         this.teacherDataList = teacherDataList;
+        this.context = context;
     }
 
+
     public void setData(List<DataModel> newDataList) {
+        boolean isDataInserted = false;
+        if (teacherDataList.size() < newDataList.size()){
+            isDataInserted = true;
+        }
         teacherDataList.clear();
         teacherDataList.addAll(newDataList);
         notifyDataSetChanged();
+        if (isDataInserted){
+            MethodUtils.playSound(context);
+        }
+
     }
 
     @NonNull

@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
         announceScrollTime = sharedPreferences1.getInt("announceScrollTime", 5);
         announceScrollTime *= 1000;
 
-        classDataAdapter = new TeacherDataRecyclerAdapter(new ArrayList<>());
+        classDataAdapter = new TeacherDataRecyclerAdapter(new ArrayList<>(),getActivity());
         announcementAdapter = new AnnouncementAdapter(new ArrayList<>(), getActivity());
         //String androidId = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
         String androidId = MethodUtils.getSystemUid(getActivity());
