@@ -56,7 +56,6 @@ public class TeacherDataRecyclerAdapter extends RecyclerView.Adapter<TeacherData
         this.context = context;
     }
 
-
     public void setData(List<DataModel> newDataList) {
         boolean isDataInserted = false;
         if (teacherDataList.size() < newDataList.size()){
