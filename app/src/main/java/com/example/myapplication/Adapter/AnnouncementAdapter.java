@@ -109,9 +109,13 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
                 }
             });
         }
-
-
     }
+    @Override
+    public int getItemViewType(int position) {
+        AnnouncementModel model = announcementModelList.get(position);
+        return model.getImageUrl() != null ? 1 : 0; // Return 1 for image, 0 for title/description
+    }
+
     private void compareDate(String due_date,TextView textView){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy:M:d", Locale.US);
         try {
@@ -135,12 +139,6 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
     @Override
     public int getItemCount() {
         return announcementModelList.size();
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        AnnouncementModel model = announcementModelList.get(position);
-        return model.getImageUrl() != null ? 1 : 0; // Return 1 for image, 0 for title/description
     }
 
     public class AnnouncementViewHolder extends RecyclerView.ViewHolder {
