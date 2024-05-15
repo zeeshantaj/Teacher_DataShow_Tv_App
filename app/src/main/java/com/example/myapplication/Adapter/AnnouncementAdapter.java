@@ -4,6 +4,7 @@ import static com.example.myapplication.Utils.MethodUtils.getRadonColor;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
@@ -40,10 +42,12 @@ import java.util.Locale;
 public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapter.AnnouncementViewHolder> {
     private List<AnnouncementModel> announcementModelList;
     private Context context;
+    private ViewPager2 viewPager2;
 
-    public AnnouncementAdapter(List<AnnouncementModel> announcementModelList, Context context) {
+    public AnnouncementAdapter(List<AnnouncementModel> announcementModelList, Context context,ViewPager2 viewPager2) {
         this.announcementModelList = announcementModelList;
         this.context = context;
+        this.viewPager2 = viewPager2;
     }
     public void setData(List<AnnouncementModel> newDataList) {
         boolean isDataInserted = false;
@@ -96,18 +100,26 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
             // Set data for image layout
             AnnounceImgLaoutBinding binding = AnnounceImgLaoutBinding.bind(holder.itemView);
             //binding.itemDate.setText(model.getCurrent_date());
-
-
             Glide.with(holder.itemView.getContext())
                     .load(model.getImageUrl())
                     .apply(RequestOptions.bitmapTransform(new RoundedCorners(35)))
                     .into(binding.itemImage);
-            binding.itemImage.setOnClickListener(new View.OnClickListener() {
+
+            ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
+            params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+            holder.itemView.setLayoutParams(params);
+
+            new Handler().postDelayed(new Runnable() {
                 @Override
-                public void onClick(View v) {
-                    Toast.makeText(context, "Clicked "+model.getImageUrl(), Toast.LENGTH_SHORT).show();
+                public void run() {
+                    params.width = holder.itemView.getWidth();
+                    params.height = holder.itemView.getHeight();
+                    holder.itemView.setLayoutParams(params);
+
                 }
-            });
+            },5000);
+
         }
     }
     @Override
