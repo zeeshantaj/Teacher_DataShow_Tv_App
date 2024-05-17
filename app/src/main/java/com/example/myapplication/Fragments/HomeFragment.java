@@ -205,7 +205,6 @@ public class HomeFragment extends Fragment {
     private Runnable classDataSlider = new Runnable() {
         @Override
         public void run() {
-//            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
             int currentItem = binding.classDataVP.getCurrentItem();
             int itemCount = binding.classDataVP.getAdapter().getItemCount();
             if (currentItem < itemCount - 1) {
