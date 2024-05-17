@@ -104,21 +104,21 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
                     .load(model.getImageUrl())
                     .apply(RequestOptions.bitmapTransform(new RoundedCorners(35)))
                     .into(binding.itemImage);
-
-            ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
-            params.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            params.height = ViewGroup.LayoutParams.MATCH_PARENT;
-            holder.itemView.setLayoutParams(params);
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    params.width = holder.itemView.getWidth();
-                    params.height = holder.itemView.getHeight();
-                    holder.itemView.setLayoutParams(params);
-
-                }
-            },5000);
+//
+//            ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
+//            params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+//            params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+//            holder.itemView.setLayoutParams(params);
+//
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    params.width = holder.itemView.getWidth();
+//                    params.height = holder.itemView.getHeight();
+//                    holder.itemView.setLayoutParams(params);
+//
+//                }
+//            },5000);
 
         }
     }
