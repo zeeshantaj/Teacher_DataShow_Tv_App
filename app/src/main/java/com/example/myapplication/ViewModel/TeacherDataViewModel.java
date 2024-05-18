@@ -1,33 +1,20 @@
 package com.example.myapplication.ViewModel;
 
-import android.content.Context;
-import android.media.MediaPlayer;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.NonUiContext;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.myapplication.Model.AnnouncementModel;
 import com.example.myapplication.Model.DataModel;
-import com.example.myapplication.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 public class TeacherDataViewModel extends ViewModel  {
     private MutableLiveData<List<DataModel>> teacherDataListLiveData;
@@ -52,8 +39,6 @@ public class TeacherDataViewModel extends ViewModel  {
         }
         return announcementData;
     }
-
-
     private void loadTeacherData() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Teacher_Data");
         databaseReference.addValueEventListener(new ValueEventListener() {
