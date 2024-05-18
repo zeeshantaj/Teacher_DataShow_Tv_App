@@ -42,12 +42,10 @@ import java.util.Locale;
 public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapter.AnnouncementViewHolder> {
     private List<AnnouncementModel> announcementModelList;
     private Context context;
-    private ViewPager2 viewPager2;
 
-    public AnnouncementAdapter(List<AnnouncementModel> announcementModelList, Context context,ViewPager2 viewPager2) {
+    public AnnouncementAdapter(List<AnnouncementModel> announcementModelList, Context context) {
         this.announcementModelList = announcementModelList;
         this.context = context;
-        this.viewPager2 = viewPager2;
     }
     public void setData(List<AnnouncementModel> newDataList) {
         boolean isDataInserted = false;
