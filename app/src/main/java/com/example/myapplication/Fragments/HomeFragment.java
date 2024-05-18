@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment {
         announceScrollTime *= 1000;
 
         classDataAdapter = new TeacherDataRecyclerAdapter(new ArrayList<>(),getActivity());
-        announcementAdapter = new AnnouncementAdapter(new ArrayList<>(), getActivity(),binding.announceDataVP);
+        announcementAdapter = new AnnouncementAdapter(new ArrayList<>(), getActivity());
         //String androidId = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
         String androidId = MethodUtils.getSystemUid(getActivity());
         keyReference = FirebaseDatabase.getInstance().getReference("Tv_keys").child(androidId);
