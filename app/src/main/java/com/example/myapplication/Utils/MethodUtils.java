@@ -52,7 +52,6 @@ public class MethodUtils {
             NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
             if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
                 // Device's internet is turned on
-
                 NetworkUtils.hasInternetAccess(hasInternetAccess -> {
                     if (hasInternetAccess){
                         Toast.makeText(context, "Internet has service", Toast.LENGTH_SHORT).show();
@@ -63,7 +62,6 @@ public class MethodUtils {
                                     // Retry checking internet connectivity
                                     checkInternet(context,rootView);
                                 }).show();
-
                     }
                 });
 
@@ -71,7 +69,6 @@ public class MethodUtils {
                 // Device's internet is turned off
                 // Show dialog to prompt user to turn on internet
                 MethodUtils.showAlertDialogue(context);
-
             }
         } else {
             // Error checking internet connection
