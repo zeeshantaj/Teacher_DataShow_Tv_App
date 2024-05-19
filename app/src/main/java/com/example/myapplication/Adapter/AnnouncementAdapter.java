@@ -2,39 +2,22 @@ package com.example.myapplication.Adapter;
 
 import static com.example.myapplication.Utils.MethodUtils.getRadonColor;
 
-import android.content.Context;
-import android.media.MediaPlayer;
-import android.os.Handler;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.content.Context;import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.myapplication.Model.AnnouncementModel;
-import com.example.myapplication.Model.DataModel;
 import com.example.myapplication.R;
 import com.example.myapplication.Utils.MethodUtils;
 import com.example.myapplication.databinding.AnnounceDataLayoutBinding;
 import com.example.myapplication.databinding.AnnounceImgLaoutBinding;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
