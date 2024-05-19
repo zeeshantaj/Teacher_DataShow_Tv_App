@@ -20,8 +20,6 @@ public class TeacherDataViewModel extends ViewModel  {
     private MutableLiveData<List<DataModel>> teacherDataListLiveData;
     private  MutableLiveData<List<AnnouncementModel>> announcementData;
     private String showKey;
-
-
     public LiveData<List<DataModel>> getTeacherDataList(String showKey) {
         if (teacherDataListLiveData == null) {
             teacherDataListLiveData = new MutableLiveData<>();
@@ -103,7 +101,6 @@ public class TeacherDataViewModel extends ViewModel  {
             }
         });
     }
-
     private void removeAnnouncement(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Announcement");
         databaseReference.addValueEventListener(new ValueEventListener() {
