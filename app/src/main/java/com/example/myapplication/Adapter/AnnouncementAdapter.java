@@ -76,7 +76,6 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
             int color_code = getRadonColor();
             int color = ContextCompat.getColor(holder.itemView.getContext(), color_code);
             binding.card.setCardBackgroundColor(color);
-
         } else {
             // Set data for image layout
             AnnounceImgLaoutBinding binding = AnnounceImgLaoutBinding.bind(holder.itemView);
@@ -100,7 +99,6 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
 //
 //                }
 //            },5000);
-
         }
     }
     @Override
