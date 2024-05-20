@@ -21,7 +21,6 @@ public class InternetAccessTask extends AsyncTask<Void,Void,Boolean> {
             return false;
         }
     }
-
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
