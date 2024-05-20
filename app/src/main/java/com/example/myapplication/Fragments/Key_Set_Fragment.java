@@ -23,11 +23,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 
 public class Key_Set_Fragment extends Fragment {
-
     public Key_Set_Fragment() {
         // Required empty public constructor
     }
-
     private DatabaseReference queryReference, insertReference;
     private String databaseKey,uploadedKey;
     private FragmentKeyKeySetBinding binding;
@@ -44,8 +42,6 @@ public class Key_Set_Fragment extends Fragment {
         super.onStart();
         setKey();
     }
-
-
     private void setKey(){
         String androidId = MethodUtils.getSystemUid(getActivity());
         insertReference = FirebaseDatabase.getInstance().getReference("Tv_keys").child(androidId);
@@ -66,7 +62,6 @@ public class Key_Set_Fragment extends Fragment {
                 Toast.makeText(getActivity(), "Error "+ error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
         insertReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
