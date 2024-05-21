@@ -91,7 +91,6 @@ public class TeacherDataViewModel extends ViewModel  {
                 // Set the value of LiveData after the loop to contain all items
                 announcementData.setValue(modelList);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Handle any errors
