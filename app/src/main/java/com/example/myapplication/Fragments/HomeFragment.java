@@ -53,12 +53,10 @@ public class HomeFragment extends Fragment {
         binding = HomeFragmentBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
-
     @Override
     public void onStart() {
         super.onStart();
@@ -107,7 +105,6 @@ public class HomeFragment extends Fragment {
                     }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getActivity(), "Error "+error.getMessage(), Toast.LENGTH_SHORT).show();
@@ -116,8 +113,6 @@ public class HomeFragment extends Fragment {
         });
         binding.classDataVP.setAdapter(classDataAdapter);
         setViewPagerProperties(binding.classDataVP, classScrollTime, classSliderHandler, classDataSlider);
-
-
 //        TeacherDataViewModel viewModel = new ViewModelProvider(getActivity()).get(TeacherDataViewModel.class);
 //        new LoadDataInBackground(this,keyReference,viewModel,isClassDataAvailable,classDataAdapter,binding.classDataVP,classScrollTime,classSliderHandler,classDataSlider);
     }
