@@ -56,7 +56,6 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         }
         return new AnnouncementViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull AnnouncementViewHolder holder, int position) {
         AnnouncementModel model = announcementModelList.get(position);
