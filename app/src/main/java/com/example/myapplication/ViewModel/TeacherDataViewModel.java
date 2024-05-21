@@ -72,7 +72,6 @@ public class TeacherDataViewModel extends ViewModel  {
                         String key = keySnapshot.child("key").getValue(String.class);
                         if (key != null && key.equals(showKey)) {
                             AnnouncementModel model = new AnnouncementModel(); // Create a new instance only if the key matches
-
                             if (keySnapshot.child("title").exists()) {
                                 model.setTitle(keySnapshot.child("title").getValue(String.class));
                                 model.setCurrent_date(keySnapshot.child("current_date").getValue(String.class));
@@ -81,7 +80,6 @@ public class TeacherDataViewModel extends ViewModel  {
                                 model.setDescription(keySnapshot.child("description").getValue(String.class));
                                 model.setId(keySnapshot.child("id").getValue(String.class));
                             }
-
                             if (keySnapshot.child("imageUrl").exists()) {
                                 model.setImageUrl(keySnapshot.child("imageUrl").getValue(String.class));
                             }
