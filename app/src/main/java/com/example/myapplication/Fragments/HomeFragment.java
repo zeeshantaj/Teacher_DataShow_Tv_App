@@ -151,7 +151,6 @@ public class HomeFragment extends Fragment {
         binding.announceDataVP.setAdapter(announcementAdapter);
         setViewPagerProperties(binding.announceDataVP,announceScrollTime,announceSlideHandler,announceDataSlider);
     }
-
     private void showNoDataImageView() {
         if (!isClassDataAvailable && !isAnnounceDataAvailable) {
             // Show image view
@@ -185,7 +184,6 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
     private Runnable classDataSlider = new Runnable() {
         @Override
         public void run() {
@@ -211,10 +209,8 @@ public class HomeFragment extends Fragment {
             } else {
                 binding.announceDataVP.setCurrentItem(0);
             }
-
             // Repeat this runnable after a delay
             announceSlideHandler.postDelayed(this, announceScrollTime);
         }
     };
-
 }
