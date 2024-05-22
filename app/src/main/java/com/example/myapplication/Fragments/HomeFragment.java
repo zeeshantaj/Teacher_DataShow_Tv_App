@@ -100,7 +100,6 @@ public class HomeFragment extends Fragment {
                                 classDataAdapter.setData(newDataList);
                                 showNoDataImageView();
                             }
-
                         });
                     }
                 }
