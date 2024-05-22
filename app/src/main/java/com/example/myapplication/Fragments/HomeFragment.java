@@ -116,7 +116,6 @@ public class HomeFragment extends Fragment {
 //        TeacherDataViewModel viewModel = new ViewModelProvider(getActivity()).get(TeacherDataViewModel.class);
 //        new LoadDataInBackground(this,keyReference,viewModel,isClassDataAvailable,classDataAdapter,binding.classDataVP,classScrollTime,classSliderHandler,classDataSlider);
     }
-
     private void getAnnouncementData() {
         keyReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -164,13 +163,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void setViewPagerProperties(ViewPager2 viewPager2, int time, Handler handler, Runnable runnable) {
-
-
         viewPager2.setClipToPadding(false);
         viewPager2.setClipChildren(false);
         viewPager2.setOffscreenPageLimit(5);
         viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-
 
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         compositePageTransformer.addTransformer(new MarginPageTransformer(40));
