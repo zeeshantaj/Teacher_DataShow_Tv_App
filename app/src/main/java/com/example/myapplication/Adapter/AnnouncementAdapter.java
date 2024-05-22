@@ -59,7 +59,6 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
     @Override
     public void onBindViewHolder(@NonNull AnnouncementViewHolder holder, int position) {
         AnnouncementModel model = announcementModelList.get(position);
-
         if (getItemViewType(position) == 0) {
             // Set data for title/description layout
             AnnounceDataLayoutBinding binding = AnnounceDataLayoutBinding.bind(holder.itemView);
