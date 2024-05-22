@@ -122,9 +122,6 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         }
 
     }
-
-
-
     @Override
     public int getItemCount() {
         return announcementModelList.size();
