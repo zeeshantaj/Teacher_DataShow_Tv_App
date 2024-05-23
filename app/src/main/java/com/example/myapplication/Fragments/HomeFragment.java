@@ -87,19 +87,16 @@ public class HomeFragment extends Fragment {
                     if (getActivity() != null) {
 
                         TeacherDataViewModel viewModel = new ViewModelProvider(getActivity()).get(TeacherDataViewModel.class);
-                        viewModel.getTeacherDataList(dbKey).observe(getActivity(), new Observer<List<DataModel>>() {
-                            @Override
-                            public void onChanged(List<DataModel> newDataList) {
-                                if (!newDataList.isEmpty()) {
-                                    isClassDataAvailable = true;
-                                    binding.classDataVP.setVisibility(View.VISIBLE);
-                                } else {
-                                    isClassDataAvailable = false;
-                                    binding.classDataVP.setVisibility(View.GONE);
-                                }
-                                classDataAdapter.setData(newDataList);
-                                showNoDataImageView();
+                        viewModel.getTeacherDataList(dbKey).observe(getActivity(), newDataList -> {
+                            if (!newDataList.isEmpty()) {
+                                isClassDataAvailable = true;
+                                binding.classDataVP.setVisibility(View.VISIBLE);
+                            } else {
+                                isClassDataAvailable = false;
+                                binding.classDataVP.setVisibility(View.GONE);
                             }
+                            classDataAdapter.setData(newDataList);
+                            showNoDataImageView();
                         });
                     }
                 }
