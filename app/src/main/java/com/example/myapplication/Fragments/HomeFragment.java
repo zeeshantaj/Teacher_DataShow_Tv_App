@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
     private DatabaseReference keyReference;
     private boolean isClassDataAvailable = false;
     private boolean isAnnounceDataAvailable = false;
-    private int classScrollTime ;
+    private int classScrollTime;
     private int announceScrollTime;
     @Nullable
     @Override
