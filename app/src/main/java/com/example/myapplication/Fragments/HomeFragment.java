@@ -138,7 +138,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getActivity(), "Error "+error.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("Firebase", "Error: " + error.getMessage());
+             //   Log.e("Firebase", "Error: " + error.getMessage());
             }
         });
         binding.announceDataVP.setAdapter(announcementAdapter);
