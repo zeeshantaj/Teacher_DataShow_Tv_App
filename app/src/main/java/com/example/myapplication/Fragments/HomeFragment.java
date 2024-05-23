@@ -121,19 +121,16 @@ public class HomeFragment extends Fragment {
                     // Initialize ViewModel and observe data changes
                     if (getActivity() != null) {
                         TeacherDataViewModel viewModel = new ViewModelProvider(getActivity()).get(TeacherDataViewModel.class);
-                        viewModel.getAnnouncementData(dbKey).observe(getActivity(), new Observer<List<AnnouncementModel>>() {
-                            @Override
-                            public void onChanged(List<AnnouncementModel> announcementModels) {
-                                if (!announcementModels.isEmpty()) {
-                                    isAnnounceDataAvailable = true;
-                                    binding.announceDataVP.setVisibility(View.VISIBLE);
-                                } else {
-                                    isAnnounceDataAvailable = false;
-                                    binding.announceDataVP.setVisibility(View.GONE);
-                                }
-                                announcementAdapter.setData(announcementModels);
-                                showNoDataImageView();
+                        viewModel.getAnnouncementData(dbKey).observe(getActivity(), announcementModels -> {
+                            if (!announcementModels.isEmpty()) {
+                                isAnnounceDataAvailable = true;
+                                binding.announceDataVP.setVisibility(View.VISIBLE);
+                            } else {
+                                isAnnounceDataAvailable = false;
+                                binding.announceDataVP.setVisibility(View.GONE);
                             }
+                            announcementAdapter.setData(announcementModels);
+                            showNoDataImageView();
                         });
                     }
                 }
