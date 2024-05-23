@@ -17,7 +17,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/navBar"
             app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.leanback.widget.BrowseFrameLayout
             android:id="@+id/navBar"
             android:layout_width="50dp"
